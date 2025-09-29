@@ -67,21 +67,28 @@ const ProcessSection: React.FC = () => {
               const isCurrent = step.id === activeStep;
               const isComplete = index < activeIndex;
               return (
-                <div key={step.id} id={step.id} ref={el => { processStepRefs.current[step.id] = el; }} className="relative flex justify-between items-start w-full min-h-[300px] sm:min-h-[200px]">
-                  <div className={`relative w-[45%] p-6 rounded-2xl shadow-xl transition-all duration-700 ease-in-out transform`} style={{ backgroundColor: 'white', marginLeft: index % 2 === 0 ? '0' : '55%', transform: isCurrent || isComplete ? 'scale(1.0) translateY(0)' : 'scale(0.95) translateY(10px)', opacity: isCurrent || isComplete ? 1 : 0.4, border: isCurrent ? `3px solid ${COLORS.accent}` : `3px solid ${COLORS.light}` }}>
-                    <div className="flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-3 mb-4 text-center sm:text-left">
-                      <div className="p-2 rounded-full transition-all duration-500 mb-1 sm:mb-0" style={{ backgroundColor: isCurrent || isComplete ? COLORS.accent : COLORS.light }}>
-                        {renderProcessIcon(index, 'w-6 h-6', COLORS.dark)}
+                <React.Fragment key={step.id}>
+                  <div id={step.id} ref={el => { processStepRefs.current[step.id] = el; }} className="relative flex justify-between items-start w-full min-h-[300px] sm:min-h-[200px]">
+                    <div className={`relative w-[90%] sm:w-[45%] p-6 rounded-2xl shadow-xl transition-all duration-700 ease-in-out transform`} style={{ backgroundColor: 'white', marginLeft: 'auto', marginRight: 0, ...(window.innerWidth >= 640 ? { marginLeft: index % 2 === 0 ? '0' : '55%' } : {}), transform: isCurrent || isComplete ? 'scale(1.0) translateY(0)' : 'scale(0.95) translateY(10px)', opacity: isCurrent || isComplete ? 1 : 0.4, border: isCurrent ? `3px solid ${COLORS.accent}` : `3px solid ${COLORS.light}` }}>
+                      <div className="flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-3 mb-4 text-center sm:text-left">
+                        <div className="p-2 rounded-full transition-all duration-500 mb-1 sm:mb-0" style={{ backgroundColor: isCurrent || isComplete ? COLORS.accent : COLORS.light }}>
+                          {renderProcessIcon(index, 'w-6 h-6', COLORS.dark)}
+                        </div>
+                        <h3 className="text-base sm:text-xl md:text-2xl font-bold" style={{ color: COLORS.dark }}>{step.title}</h3>
                       </div>
-                      <h3 className="text-base sm:text-xl md:text-2xl font-bold" style={{ color: COLORS.dark }}>{step.title}</h3>
+                      <div className="overflow-hidden transition-all duration-700 ease-in-out" style={{ maxHeight: isCurrent || isComplete ? '200px' : '0', paddingTop: isCurrent || isComplete ? '10px' : '0', color: COLORS.dark }}>
+                        {step.detail}
+                      </div>
+                      <div className={`absolute w-0 h-0 border-transparent border-[10px] top-6 transition-opacity duration-500 hidden sm:block`} style={{ right: index % 2 === 0 ? '-20px' : 'auto', left: index % 2 !== 0 ? '-20px' : 'auto', borderLeftColor: index % 2 === 0 ? 'white' : 'transparent', borderRightColor: index % 2 !== 0 ? 'white' : 'transparent', opacity: isCurrent || isComplete ? 1 : 0.5 }}></div>
                     </div>
-                    <div className="overflow-hidden transition-all duration-700 ease-in-out" style={{ maxHeight: isCurrent || isComplete ? '200px' : '0', paddingTop: isCurrent || isComplete ? '10px' : '0', color: COLORS.dark }}>
-                      {step.detail}
-                    </div>
-                    <div className={`absolute w-0 h-0 border-transparent border-[10px] top-6 transition-opacity duration-500`} style={{ right: index % 2 === 0 ? '-20px' : 'auto', left: index % 2 !== 0 ? '-20px' : 'auto', borderLeftColor: index % 2 === 0 ? 'white' : 'transparent', borderRightColor: index % 2 !== 0 ? 'white' : 'transparent', opacity: isCurrent || isComplete ? 1 : 0.5 }}></div>
                   </div>
-                  <div className={`absolute left-1/2 top-10 transform -translate-x-1/2 w-5 h-5 rounded-full z-10 transition-all duration-500 shadow-lg`} style={{ backgroundColor: isCurrent || isComplete ? COLORS.accent : 'white', border: isCurrent || isComplete ? `4px solid ${COLORS.dark}` : `4px solid ${COLORS.light}`, boxShadow: isCurrent ? `0 0 0 7px ${COLORS.accent}60` : 'none' }}></div>
-                </div>
+                  {/* Checkpoint dot between steps for mobile only */}
+                  {index < PROCESS_STEPS.length - 1 && (
+                    <div className="flex sm:hidden justify-center my-2">
+                      <div className="w-5 h-5 rounded-full z-10 transition-all duration-500 shadow-lg border-4" style={{ backgroundColor: isCurrent || isComplete ? COLORS.accent : 'white', borderColor: isCurrent || isComplete ? COLORS.dark : COLORS.light, boxShadow: isCurrent ? `0 0 0 7px ${COLORS.accent}60` : 'none' }}></div>
+                    </div>
+                  )}
+                </React.Fragment>
               );
             })}
           </div>
