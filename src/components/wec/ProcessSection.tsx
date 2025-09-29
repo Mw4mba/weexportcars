@@ -13,7 +13,7 @@ const ProcessSection: React.FC = () => {
 
   // Stepper/Scroll Logic
   const handleScroll = useCallback(() => {
-    if (processStepRefs.current) {
+    if (typeof window !== 'undefined' && processStepRefs.current) {
       let currentActiveStep = PROCESS_STEPS[0].id;
       const triggerPoint = window.innerHeight * 0.4;
       PROCESS_STEPS.forEach((step) => {
@@ -34,9 +34,11 @@ const ProcessSection: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', handleScroll);
+      handleScroll();
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
   }, [handleScroll]);
 
   const renderProcessIcon = (index: number, className?: string, color?: string) => {
@@ -69,7 +71,15 @@ const ProcessSection: React.FC = () => {
               return (
                 <React.Fragment key={step.id}>
                   <div id={step.id} ref={el => { processStepRefs.current[step.id] = el; }} className="relative flex justify-between items-start w-full min-h-[300px] sm:min-h-[200px]">
-                    <div className={`relative w-[90%] sm:w-[45%] p-6 rounded-2xl shadow-xl transition-all duration-700 ease-in-out transform`} style={{ backgroundColor: 'white', marginLeft: 'auto', marginRight: 0, ...(window.innerWidth >= 640 ? { marginLeft: index % 2 === 0 ? '0' : '55%' } : {}), transform: isCurrent || isComplete ? 'scale(1.0) translateY(0)' : 'scale(0.95) translateY(10px)', opacity: isCurrent || isComplete ? 1 : 0.4, border: isCurrent ? `3px solid ${COLORS.accent}` : `3px solid ${COLORS.light}` }}>
+                    <div className={`relative w-[90%] sm:w-[45%] p-6 rounded-2xl shadow-xl transition-all duration-700 ease-in-out transform`} style={{
+                      backgroundColor: 'white',
+                      marginLeft: 'auto',
+                      marginRight: 0,
+                      ...(typeof window !== 'undefined' && window.innerWidth >= 640 ? { marginLeft: index % 2 === 0 ? '0' : '55%' } : {}),
+                      transform: isCurrent || isComplete ? 'scale(1.0) translateY(0)' : 'scale(0.95) translateY(10px)',
+                      opacity: isCurrent || isComplete ? 1 : 0.4,
+                      border: isCurrent ? `3px solid ${COLORS.accent}` : `3px solid ${COLORS.light}`
+                    }}>
                       <div className="flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-3 mb-4 text-center sm:text-left">
                         <div className="p-2 rounded-full transition-all duration-500 mb-1 sm:mb-0" style={{ backgroundColor: isCurrent || isComplete ? COLORS.accent : COLORS.light }}>
                           {renderProcessIcon(index, 'w-6 h-6', COLORS.dark)}
