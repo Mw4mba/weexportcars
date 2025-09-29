@@ -104,9 +104,9 @@ export default function Hero ()  {
                         </div>
                     </div>
 
-                    {/* Image Carousel - Right (Aspect Ratio 16:9) */}
-                    <div className="w-full md:[width:60vw] order-first md:order-last">
-                        <div className="relative overflow-hidden aspect-[16/9] md:aspect-[16/9] rounded-2xl shadow-2xl h-80 md:h-[500px]">
+                    {/* Image Carousel - Right (Centered and fully visible on mobile) */}
+                    <div className="w-full md:[width:60vw] order-first md:order-last flex justify-center items-center">
+                        <div className="relative flex justify-center items-center overflow-hidden aspect-[16/9] md:aspect-[16/9] rounded-2xl shadow-2xl h-56 xs:h-64 sm:h-80 md:h-[500px] bg-white">
                             <AnimatePresence initial={false} custom={1}>
                                 <motion.img
                                     key={index}
@@ -117,7 +117,7 @@ export default function Hero ()  {
                                     initial="hidden"
                                     animate="visible"
                                     exit="exit"
-                                    className="absolute w-full h-full object-cover rounded-2xl shadow-2xl"
+                                    className="w-full h-full object-contain md:object-cover rounded-2xl shadow-2xl"
                                 />
                             </AnimatePresence>
                         </div>

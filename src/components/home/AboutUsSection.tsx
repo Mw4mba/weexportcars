@@ -39,12 +39,20 @@ const AboutUsSection: React.FC = () => (
             </div>
           ))}
         </div>
+        <div className="flex justify-center mt-10">
+          <a
+            href="#learn-more"
+            className="inline-block px-8 py-4 text-lg font-semibold text-white bg-[#d10e22] rounded-xl shadow-2xl shadow-[#d10e22]/40 hover:bg-[#b00c1b] transition-all duration-300 transform hover:scale-[1.03] active:scale-[0.98] focus:ring-4 focus:ring-[#d10e22]/60"
+          >
+            Learn More
+          </a>
+        </div>
       </div>
       {/* Why Choose Us */}
       <div className="mt-28">
         <h3 className="text-5xl font-extrabold text-center text-[#2a3443] mb-16 tracking-tighter">
           <Car className="inline-block w-10 h-10 mr-4 text-[#d10e22] animate-pulse" />
-          Why Choose Our Global Drive
+          Why Choose US?
         </h3>
         <div className="grid md:grid-cols-4 gap-8">
           {[{ title: "Speed", detail: "Fastest Transit Times", icon: Clock },

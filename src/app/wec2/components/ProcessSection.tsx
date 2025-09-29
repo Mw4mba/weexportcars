@@ -79,7 +79,7 @@ const ProcessSection: React.FC = () => {
   <p className="text-base xs:text-lg text-center max-w-2xl mx-auto leading-relaxed break-words text-balance" style={{ color: COLORS.dark }}>
           We break down the complexity of international vehicle exporting into three simple, secure, and fully managed stages.
         </p>
-  <div className="relative pt-10 xs:pt-12 sm:pt-16 pb-6 sm:pb-8">
+  <div className="relative pt-10 xs:pt-12 sm:pt-16 pb-6 bg-sm:pb-8">
           {/* Vertical Flowchart Line (Base) */}
           <div className="absolute left-1/2 transform -translate-x-1/2 w-1.5 rounded-full" style={{ top: 0, bottom: 0, backgroundColor: COLORS.dark + '30' }}></div>
           {/* Vertical Flowchart Line (Progress) */}
