@@ -1,6 +1,6 @@
 
 import React from "react";
-import { AnimatedTitle } from '../page';
+import AnimatedTitle from '../../../components/wec/AnimatedTitle';
 
 // COLORS is also defined in page.tsx, so we need to re-declare or import it. We'll re-declare for isolation.
 const COLORS = {
