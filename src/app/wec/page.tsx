@@ -6,7 +6,6 @@ import AboutUsSection from '../../components/wec/AboutUsSection';
 import ShowroomSection from '../../components/wec/ShowroomSection';
 import ProcessSection from '../../components/wec/ProcessSection';
 import ContactFormSection from '../../components/wec/ContactFormSection';
-import Footer from '../../components/wec/Footer';
 // Note: In a production Next.js environment, you would use separate files for
 // components and hooks, but here we keep everything in one file as requested.
 
@@ -60,7 +59,7 @@ const WecPage = () => {
                 <ProcessSection />
                 <ContactFormSection />
             </main>
-            <Footer />
+            
         </>
     );
 };

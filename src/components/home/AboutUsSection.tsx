@@ -1,6 +1,6 @@
 import React from 'react';
 import { AnimatedTitle } from './AnimatedTitle';
-import { Car, DollarSign, Clock, Shield, MapPin, CheckCircle } from 'lucide-react';
+import { Car, Truck, Star, Globe, Clock, Shield, MapPin, CheckCircle } from 'lucide-react';
 
 
 const BG_LIGHT_COLOR = '#e6e6e6';
@@ -28,9 +28,9 @@ const AboutUsSection: React.FC = () => (
       <div id="services">
   <h3 className="text-4xl font-bold text-[#2a3443] text-center mb-12">Our Core Offerings</h3>
         <div className="grid md:grid-cols-3 gap-8">
-          {[{ title: "VAT-Free Export", icon: DollarSign, description: "Streamlined processes for qualified buyers to purchase vehicles without local sales tax, maximizing your investment." },
-            { title: "Bank Financing Support", icon: Clock, description: "Assistance with documentation required for secure international bank financing, ensuring smooth transactions." },
-            { title: "Comprehensive Insurance", icon: Shield, description: "All shipments are covered by robust marine and transit insurance policies, protecting your asset every step of the way." }
+          {[{ title: "SUVs", icon: Truck, description: "Quality SUVs available for export — inspected and ready for your market." },
+            { title: "Classic / Retro Cars", icon: Star, description: "Hand-picked classic and retro vehicles for collectors and enthusiasts." },
+            { title: "Export", icon: Globe, description: "Full export services from South Africa to your doorstep, including customs and shipping." }
           ].map((item, index) => (
             <div key={index} className="p-8 rounded-2xl shadow-xl bg-white transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] border-t-4 border-[#d10e22]">
               <item.icon size={36} className="text-[#d10e22] mb-4" />

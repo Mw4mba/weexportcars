@@ -21,6 +21,13 @@ const heroTextContent = [
 ];
 
 const heroImageContent = [
+    '/car1.png',
+    '/car2.jpg',
+    '/car3.png',
+];
+
+// Fallbacks to external images if local ones are not provided in /public
+const heroImageFallback = [
     "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -117,6 +124,7 @@ export default function Hero ()  {
                                     initial="hidden"
                                     animate="visible"
                                     exit="exit"
+                                    onError={(e) => { const t = e.currentTarget as HTMLImageElement; t.onerror = null; t.src = heroImageFallback[index] }}
                                     className="w-full h-full object-contain md:object-cover rounded-2xl shadow-2xl"
                                 />
                             </AnimatePresence>

@@ -11,6 +11,7 @@ import Hero2 from '@/components/home/Hero2';
 import OurProcess from '@/components/home/OurProcess';
 import Showroom from '@/components/home/Showroom';
 import WeServeSection from '@/components/home/WeServe';
+import InternationalMap from '@/components/home/InternationalMap';
 import WhoWeAre from './wec2/components/WhoWeAre';
 import ProcessSection from '@/components/wec/ProcessSection';
 
@@ -40,12 +41,13 @@ const App = () => {
             <Showroom />
            {/* <OurProcess />*/}
            <ProcessSection/>
-            <WeServeSection 
+{/*            <WeServeSection 
                 sectionRefs={sectionRefs}
                 scrollToSection={scrollToSection}
                 hoveredCountry={hoveredCountry} 
                 setHoveredCountry={setHoveredCountry} 
-            /> 
+            />*/ }
+            <InternationalMap sectionRefs={{ international: undefined }} scrollToSection={scrollToSection} />
             <ContactFormSection />
         </>
     );

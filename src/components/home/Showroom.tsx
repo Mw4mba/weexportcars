@@ -193,7 +193,7 @@ const Showroom = () => {
             isVisible ? 'animate-fade-in-up' : 'opacity-0'
           }`} style={{ animationDelay: '0.5s' }}>
             <Button 
-              className="bg-[#d10e22] hover:bg-[#b00c1b] text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg transition-all duration-300"
+              className="inline-block px-8 py-4 text-lg font-semibold text-white bg-[#d10e22] rounded-xl shadow-2xl shadow-[#d10e22]/40 hover:bg-[#b00c1b] transition-all duration-300 transform hover:scale-[1.03] active:scale-[0.98] focus:ring-4 focus:ring-[#d10e22]/60"
               size="lg"
             >
               View Complete Inventory
