@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+import Navigation from '@/components/home/navigation';
+import Footer from '@/components/wec/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Package, Truck, Shield, CreditCard, FileCheck, Users } from 'lucide-react';
 
