@@ -3,9 +3,9 @@ import React from 'react';
 import { Label } from '@/components/ui/label';
 
 const CustomRadio = ({ id, checked }: { id: string; checked: boolean }) => (
-  <div className={`w-4 h-4 rounded-full border-2 transition-all duration-300 mr-2
+  <div className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full border-2 transition-all duration-300 mr-1.5 sm:mr-2
     ${checked 
-      ? 'border-[#d10e22] bg-gradient-to-r from-[#d10e22] to-[#b00c1b] scale-125' 
+      ? 'border-[#d10e22] bg-gradient-to-r from-[#d10e22] to-[#b00c1b] sm:scale-125' 
       : 'border-gray-300 bg-white'
     }`}>
     <div className={`w-full h-full rounded-full transition-all duration-300
@@ -42,7 +42,7 @@ const VehicleFilters: React.FC<VehicleFiltersProps> = ({ selectedFilter, onFilte
             />
             <Label
               htmlFor={filter.value}
-              className={`flex items-center px-6 py-3 rounded-full cursor-pointer transition-all duration-300
+              className={`flex items-center px-3 sm:px-6 py-2 sm:py-3 rounded-full cursor-pointer transition-all duration-300 text-base sm:text-lg
                 ${selectedFilter === filter.value 
                   ? 'text-[#d10e22] border-[#d10e22] shadow-[0_0_20px_rgba(209,14,34,0.3)]'
                   : 'text-[#2a3443] border-gray-200'

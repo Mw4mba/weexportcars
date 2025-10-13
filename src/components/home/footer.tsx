@@ -2,7 +2,7 @@ import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react'
 
 const Footer = () => {
   return (
-    <footer className="gradient-hero text-primary-foreground pt-16 pb-8 bg-[#2a3443]">
+    <footer className="gradient-hero pt-16 pb-8 bg-[#2a3443]">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-12">
           
@@ -13,17 +13,17 @@ const Footer = () => {
               alt="We Export Cars"
               className="h-12 w-auto brightness-0 invert"
             />
-            <p className="text-primary-foreground/80 leading-relaxed">
+            <p className="text-white leading-relaxed">
               South Africa's premier vehicle export specialist, connecting automotive excellence with global markets since 1998.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-primary-foreground/60 hover:text-primary-foreground transition-quick">
+              <a href="#" className="text-white hover:text-white/80 transition-quick">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-primary-foreground/60 hover:text-primary-foreground transition-quick">
+              <a href="#" className="text-white hover:text-white/80 transition-quick">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-primary-foreground/60 hover:text-primary-foreground transition-quick">
+              <a href="#" className="text-white hover:text-white/80 transition-quick">
                 <Twitter className="h-5 w-5" />
               </a>
             </div>
@@ -31,25 +31,25 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-6 text-lg">Quick Links</h4>
+            <h4 className="font-semibold mb-6 text-lg text-red-500">Quick Links</h4>
             <ul className="space-y-3">
               <li>
-                <a href="#home" className="text-primary-foreground/80 hover:text-primary-foreground transition-quick">
+                <a href="#home" className="text-white hover:text-white/80 transition-quick">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#about" className="text-primary-foreground/80 hover:text-primary-foreground transition-quick">
+                <a href="#about" className="text-white hover:text-white/80 transition-quick">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="#services" className="text-primary-foreground/80 hover:text-primary-foreground transition-quick">
+                <a href="#services" className="text-white hover:text-white/80 transition-quick">
                   Services
                 </a>
               </li>
               <li>
-                <a href="#showroom" className="text-primary-foreground/80 hover:text-primary-foreground transition-quick">
+                <a href="#showroom" className="text-white hover:text-white/80 transition-quick">
                   Showroom
                 </a>
               </li>
@@ -58,48 +58,62 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="font-semibold mb-6 text-lg">Services</h4>
+            <h4 className="font-semibold mb-6 text-lg text-red-500">Services</h4>
             <ul className="space-y-3">
-              <li className="text-primary-foreground/80">VAT Free Export</li>
-              <li className="text-primary-foreground/80">Bank Financing</li>
-              <li className="text-primary-foreground/80">Full Insurance</li>
-              <li className="text-primary-foreground/80">Global Shipping</li>
+              <li className="text-white">VAT Free Export</li>
+              <li className="text-white">Bank Financing</li>
+              <li className="text-white">Full Insurance</li>
+              <li className="text-white">Global Shipping</li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-semibold mb-6 text-lg">Contact Info</h4>
+            <h4 className="font-semibold mb-6 text-lg text-red-500">Contact Info</h4>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
-                <Phone className="h-4 w-4 text-primary-foreground/60" />
-                <span className="text-primary-foreground/80">+27 (11) 123-4567</span>
+                <Phone className="h-4 w-4 text-white" />
+                <a href="tel:+27100859932" className="text-white hover:text-white/80 transition-quick">
+                  +27 10 085 9932
+                </a>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="h-4 w-4 text-primary-foreground/60" />
-                <span className="text-primary-foreground/80">exports@weexportcars.africa</span>
+                <Mail className="h-4 w-4 text-white" />
+                <a 
+                  href="mailto:kamatu@weexportcars.africa?subject=Inquiry%20about%20Vehicle%20Export&body=Hello%20We%20Export%20Cars%2C%0A%0AI%20am%20interested%20in%20your%20vehicle%20export%20services.%20Please%20provide%20more%20information.%0A%0ABest%20regards" 
+                  className="text-white hover:text-white/80 transition-quick"
+                >
+                  kamatu@weexportcars.africa
+                </a>
               </div>
               <div className="flex items-center space-x-3">
-                <MapPin className="h-4 w-4 text-primary-foreground/60" />
-                <span className="text-primary-foreground/80">Johannesburg, South Africa</span>
+                <MapPin className="h-4 w-4 text-white" />
+                <a 
+                  href="https://www.google.com/maps/search/?api=1&query=66+Park+Lane+Sandton+Johannesburg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-white/80 transition-quick"
+                >
+                  66 Park Lane, Sandton, Johannesburg
+                </a>
               </div>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-primary-foreground/20 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-primary-foreground/60 text-sm">
+        <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <p className="text-white text-sm">
             © 2024 We Export Cars. All rights reserved.
           </p>
           <div className="flex space-x-6 text-sm">
-            <a href="#" className="text-primary-foreground/60 hover:text-primary-foreground transition-quick">
+            <a href="#" className="text-white hover:text-white/80 transition-quick">
               Privacy Policy
             </a>
-            <a href="#" className="text-primary-foreground/60 hover:text-primary-foreground transition-quick">
+            <a href="#" className="text-white hover:text-white/80 transition-quick">
               Terms of Service
             </a>
-            <a href="#" className="text-primary-foreground/60 hover:text-primary-foreground transition-quick">
+            <a href="#" className="text-white hover:text-white/80 transition-quick">
               Cookie Policy
             </a>
           </div>

@@ -77,8 +77,9 @@ export default function Hero ()  {
                     {/* Text Carousel - Left */}
                     <div className="
                     relative top-0
-                    md:w-1/2 w-full text-center md:text-left h-80 md:h-[500px] flex flex-col justify-center items-center md:items-start
-                    px-2 sm:px-4
+                    md:w-1/2 w-full text-left h-[400px] sm:h-[450px] md:h-[500px] flex flex-col justify-center items-start
+                    px-4 sm:px-6 md:px-4
+                    max-w-[540px] sm:max-w-[600px] md:max-w-none mx-auto md:mx-0
                     ">
                         <AnimatePresence initial={false} custom={1}>
                             <motion.div
@@ -90,21 +91,21 @@ export default function Hero ()  {
                                 exit="exit"
                                 className="absolute w-full"
                             >
-                                <div className="flex flex-col items-center md:items-start w-full">
-                                    <span className="text-[#d10e22] text-sm xs:text-base md:text-lg font-semibold uppercase tracking-widest mb-2 block break-words text-balance">Premium Vehicle Export</span>
-                                    <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-6xl font-bold text-[#2a3443] mb-3 md:mb-4 leading-tight break-words text-balance max-w-full">
+                                <div className="flex flex-col items-start w-full">
+                                    <span className="text-[#d10e22] text-sm sm:text-base md:text-lg font-semibold uppercase tracking-widest mb-2 block break-words text-balance">Premium Vehicle Export</span>
+                                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#2a3443] mb-3 md:mb-4 leading-[1.15] sm:leading-tight break-words text-balance max-w-[500px] sm:max-w-[550px] md:max-w-full">
                                         {heroTextContent[index].title}
                                     </h1>
-                                    <p className="text-base xs:text-lg text-[#2a3443]/80 mb-6 md:mb-8 break-words text-balance max-w-full">
+                                    <p className="text-base sm:text-lg text-[#2a3443]/80 mb-6 md:mb-8 break-words text-balance max-w-[450px] sm:max-w-[500px] md:max-w-full leading-relaxed">
                                         {heroTextContent[index].subtitle}
                                     </p>
                                 </div>
                             </motion.div>
                         </AnimatePresence>
-                        <div className="mt-64 md:mt-48 absolute bottom-0">
+                        <div className="mt-56 sm:mt-60 md:mt-48 absolute bottom-0">
                             <a
                                 href="#contact"
-                                className="inline-block px-6 xs:px-8 sm:px-10 py-3 xs:py-4 text-base xs:text-lg font-semibold text-white bg-[#d10e22] rounded-xl shadow-2xl shadow-[#d10e22]/50 hover:bg-[#b00c1b] transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] focus:ring-4 focus:ring-[#d10e22]/60 whitespace-nowrap"
+                                className="inline-block px-6 sm:px-8 md:px-10 py-3 sm:py-4 text-base sm:text-lg font-semibold text-white bg-[#d10e22] rounded-xl shadow-2xl shadow-[#d10e22]/50 hover:bg-[#b00c1b] transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] focus:ring-4 focus:ring-[#d10e22]/60 whitespace-nowrap"
                             >
                                 Export My Car
                             </a>

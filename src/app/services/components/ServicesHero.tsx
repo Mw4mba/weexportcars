@@ -1,25 +1,20 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useMemo, useEffect } from 'react';
 import { COLORS } from '@/components/wec/constants';
 import WorldMap from '@/components/ui/world-map';
+import { useOptimizedScrollAnimation } from '@/utils/useOptimizedScrollAnimation';
 
 const ServicesHero: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement | null>(null);
+  const [ref, isVisible] = useOptimizedScrollAnimation({ threshold: 'early' });
   const textRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.15 }
-    );
-
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
+  const dots = useMemo(() => [
+    { start: { lat: 51.5074, lng: -0.1278, label: 'UK' }, end: { lat: -33.9249, lng: 18.4241, label: 'South Africa' } },
+    { start: { lat: 37.7749, lng: -122.4194, label: 'USA' }, end: { lat: -33.9249, lng: 18.4241, label: 'South Africa' } },
+    { start: { lat: 25.2048, lng: 55.2708, label: 'UAE' }, end: { lat: -33.9249, lng: 18.4241, label: 'South Africa' } },
+    { start: { lat: 52.5200, lng: 13.4050, label: 'Germany' }, end: { lat: -33.9249, lng: 18.4241, label: 'South Africa' } },
+  ], []);
 
   useEffect(() => {
     const updateHeight = () => {

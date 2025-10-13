@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, memo } from "react";
 import { motion } from "motion/react";
 import DottedMap from "dotted-map";
 
@@ -17,7 +17,7 @@ interface MapProps {
   animateRoutes?: boolean;
 }
 
-export default function WorldMap({
+function WorldMap({
   dots = [],
   lineColor = "#0ea5e9",
   theme = 'light',
@@ -221,3 +221,11 @@ export default function WorldMap({
     </div>
   );
 }
+
+export default memo(WorldMap, (prev, next) => {
+  return prev.animateRoutes === next.animateRoutes &&
+         JSON.stringify(prev.dots) === JSON.stringify(next.dots) &&
+         prev.theme === next.theme &&
+         prev.lineColor === next.lineColor &&
+         JSON.stringify(prev.focus) === JSON.stringify(next.focus);
+});
