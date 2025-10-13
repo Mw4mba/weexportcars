@@ -10,11 +10,17 @@ const AboutHero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    // Immediately show on mount for better perceived performance
+    setIsVisible(true);
+    
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
+        setIsVisible(entry.isIntersecting);
       },
-      { threshold: 0.15 }
+      { 
+        threshold: 0.01,  // Trigger with minimal visibility
+        rootMargin: '50px' // Start loading before element is in view
+      }
     );
 
     if (ref.current) obs.observe(ref.current);
@@ -38,7 +44,7 @@ const AboutHero: React.FC = () => {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div ref={containerRef} className="w-full rounded-3xl overflow-hidden shadow-lg relative transition-all duration-300">
+        <div ref={containerRef} className="w-full rounded-3xl overflow-hidden shadow-lg relative transition-all duration-300 min-h-[300px]">
           <div className="absolute inset-0" style={{ backgroundColor: COLORS.light }}>
             <div className="opacity-30 h-full">
               <WorldMap

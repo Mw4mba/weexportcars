@@ -7,12 +7,26 @@ interface SharedObserver {
 
 export const createSharedObserver = (options: IntersectionObserverInit): SharedObserver => {
   const callbacks = new Map<Element, ObserverCallback>();
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      const callback = callbacks.get(entry.target);
-      if (callback) callback(entry.isIntersecting);
-    });
-  }, options);
+  
+  // Check if we're in a browser environment
+  const isClient = typeof window !== 'undefined' && typeof window.IntersectionObserver !== 'undefined';
+  
+  // Create a no-op observer for server-side
+  const noOpObserver = {
+    observe: () => {},
+    unobserve: () => {},
+    disconnect: () => {},
+  };
+
+  // Only create real observer in browser environment
+  const observer = isClient
+    ? new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const callback = callbacks.get(entry.target);
+          if (callback) callback(entry.isIntersecting);
+        });
+      }, options)
+    : noOpObserver;
 
   return {
     observe: (element, callback) => {

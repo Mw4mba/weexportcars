@@ -33,7 +33,7 @@ const ServicesHero: React.FC = () => {
   return (
     <section className="pt-20 bg-white">
       <div className="container mx-auto px-4">
-        <div ref={containerRef} className="w-full rounded-3xl overflow-hidden shadow-lg relative transition-all duration-300">
+        <div ref={containerRef} className="w-full rounded-3xl overflow-hidden shadow-lg relative transition-all duration-300 min-h-[300px]">
           <div className="absolute inset-0" style={{ backgroundColor: COLORS.light }}>
             <div className="opacity-30 h-full">
               <WorldMap

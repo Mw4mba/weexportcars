@@ -17,6 +17,7 @@ import ProcessSection from '@/components/wec/ProcessSection';
 
 
 
+
 const App = () => {
     // Section refs for scrolling/navigation
     const weServeRef = useRef<HTMLElement>(null) as React.RefObject<HTMLElement>;

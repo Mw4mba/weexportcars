@@ -10,15 +10,16 @@ export function useOptimizedScrollAnimation<T extends HTMLElement = HTMLDivEleme
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // Immediately show on mount for better perceived performance
+    setIsVisible(true);
+
     const currentRef = ref.current;
     if (!currentRef) return;
 
     const observer = sharedObserver[threshold];
     observer.observe(currentRef, (isIntersecting) => {
-      if (isIntersecting) {
-        setIsVisible(true);
-        if (once) observer.unobserve(currentRef);
-      }
+      setIsVisible(isIntersecting);
+      if (isIntersecting && once) observer.unobserve(currentRef);
     });
 
     return () => {
