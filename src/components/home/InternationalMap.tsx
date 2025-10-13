@@ -55,14 +55,14 @@ const InternationalMap: React.FC<InternationalMapProps> = ({ sectionRefs, scroll
   }, []);
 
   return (
-    <section ref={sectionRefs?.international} id="international" className="py-24 bg-white">
+    <section ref={sectionRefs?.international} id="international" className="py-24 bg-[#2a3443]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-extrabold flex items-center justify-center" style={{ color: DARK_TEXT_COLOR }}> 
+          <h2 className="text-4xl md:text-5xl font-extrabold flex items-center justify-center text-white"> 
             <Globe size={44} className="mr-3" style={{ color: ACCENT_COLOR }} />
             International Import
           </h2>
-          <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">
             We handle international vehicle imports with care — from inspection to shipping, customs clearance and final delivery.
           </p>
         </div>

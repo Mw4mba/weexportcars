@@ -8,14 +8,14 @@ const DARK_TEXT_COLOR = '#2a3443';
 const ACCENT_COLOR = '#d10e22';
 
 const AboutUsSection: React.FC = () => (
-  <section id="about" className="py-28 bg-[#e6e6e6]">
+  <section id="about" className="py-28 bg-[#2a3443]">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Who We Are */}
       <div className="text-center mb-16">
-        <AnimatedTitle id="who-we-are">
+        <AnimatedTitle id="who-we-are" className="text-white">
           Who We Are
         </AnimatedTitle>
-        <p className="text-xl text-[#2a3443]/70 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             <br/>
          We Export Cars.Africa is a one-stop vehicle exporter specialising in new and quality pre-owned cars from South Africa and the UK.
           We offer a Showroom to Door solution.
@@ -26,7 +26,7 @@ const AboutUsSection: React.FC = () => (
       </div>
       {/* Services/Offerings */}
       <div id="services">
-  <h3 className="text-4xl font-bold text-[#2a3443] text-center mb-12">Our Core Offerings</h3>
+  <h3 className="text-4xl font-bold text-white text-center mb-12">Our Core Offerings</h3>
         <div className="grid md:grid-cols-3 gap-8">
           {[{ title: "SUVs", icon: Truck, description: "Quality SUVs available for export — inspected and ready for your market." },
             { title: "Classic / Retro Cars", icon: Star, description: "Hand-picked classic and retro vehicles for collectors and enthusiasts." },
@@ -50,7 +50,7 @@ const AboutUsSection: React.FC = () => (
       </div>
       {/* Why Choose Us */}
       <div className="mt-28">
-        <h3 className="text-5xl font-extrabold text-center text-[#2a3443] mb-16 tracking-tighter">
+        <h3 className="text-5xl font-extrabold text-center text-white mb-16 tracking-tighter">
           <Car className="inline-block w-10 h-10 mr-4 text-[#d10e22] animate-pulse" />
           Why Choose US?
         </h3>
@@ -60,12 +60,12 @@ const AboutUsSection: React.FC = () => (
             { title: "Reach", detail: "100+ Destination Ports", icon: MapPin },
             { title: "Clarity", detail: "Full Transparent Pricing", icon: CheckCircle }
           ].map((item, index) => (
-            <div key={index} className="flex flex-col items-center text-center p-6 bg-white rounded-xl transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group">
+            <div key={index} className="flex flex-col items-center text-center p-6 bg-[#f8fafc] rounded-xl transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group">
               <div className="p-4 mb-4 rounded-full bg-[#d10e22]/10 transition-colors duration-300 group-hover:bg-[#d10e22]/20">
                 <item.icon size={32} className="text-[#d10e22] transform transition-transform duration-500 group-hover:scale-110" />
               </div>
               <h4 className="text-xl font-bold text-[#2a3443] mb-1">{item.title}</h4>
-              <p className="text-[#2a3443]/60 text-sm">{item.detail}</p>
+              <p className="text-[#2a3443]/70 text-sm">{item.detail}</p>
             </div>
           ))}
         </div>

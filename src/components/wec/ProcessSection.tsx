@@ -51,9 +51,9 @@ const ProcessSection: React.FC = () => {
   };
 
   return (
-    <section id="process" ref={ref as React.RefObject<HTMLDivElement>} className="py-24 md:py-32" style={{ backgroundColor: COLORS.light }}>
+    <section id="process" ref={ref as React.RefObject<HTMLDivElement>} className="py-24 md:py-32 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <h2 className="text-5xl font-extrabold text-center" style={{ color: COLORS.dark }}>
+        <h2 className="text-5xl font-extrabold text-center" style={{ color: COLORS.accent }}>
           Our Seamless Export Process
         </h2>
         <p className="text-lg text-center max-w-4xl mx-auto leading-relaxed" style={{ color: COLORS.dark }}>

@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import { COLORS } from '@/components/wec/constants';
 import WorldMap from '@/components/ui/world-map';
+import { COLORS } from '@/components/wec/constants';
 
 const AboutHero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -40,7 +40,7 @@ const AboutHero: React.FC = () => {
       <div className="container mx-auto px-4">
         <div ref={containerRef} className="w-full rounded-3xl overflow-hidden shadow-lg relative transition-all duration-300">
           <div className="absolute inset-0" style={{ backgroundColor: COLORS.light }}>
-            <div className="opacity-30">
+            <div className="opacity-30 h-full">
               <WorldMap
                 dots={[
                   // UK -> South Africa
@@ -55,6 +55,11 @@ const AboutHero: React.FC = () => {
                 lineColor={COLORS.accent}
                 theme="light"
                 animateRoutes={isVisible}
+                focus={{ 
+                  lat: -30, // South Africa's approximate center latitude
+                  lng: 25, // South Africa's approximate center longitude
+                  zoom: 2 // Closer zoom to focus on South Africa while still showing connections
+                }}
               />
             </div>
           </div>
