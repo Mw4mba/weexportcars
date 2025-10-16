@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState } from 'react';
-import Navbar from '../components/home/Navbar';
 import Navigation from '@/components/home/navigation';
 import HeroSection from '../components/home/HeroSection';
 import AboutUsSection from '../components/home/AboutUsSection';
@@ -13,7 +12,7 @@ import Showroom from '@/components/home/Showroom';
 import WeServeSection from '@/components/home/WeServe';
 import InternationalMap from '@/components/home/InternationalMap';
 import WhoWeAre from './wec2/components/WhoWeAre';
-import ProcessSection from '@/components/wec/ProcessSection';
+import ResponsiveProcessSection from '@/components/home/ResponsiveProcessSection';
 
 
 
@@ -40,14 +39,7 @@ const App = () => {
             <Hero2 />
             <AboutUsSection />
             <Showroom />
-           {/* <OurProcess />*/}
-           <ProcessSection/>
-{/*            <WeServeSection 
-                sectionRefs={sectionRefs}
-                scrollToSection={scrollToSection}
-                hoveredCountry={hoveredCountry} 
-                setHoveredCountry={setHoveredCountry} 
-            />*/ }
+            <ResponsiveProcessSection />
             <InternationalMap sectionRefs={{ international: undefined }} scrollToSection={scrollToSection} />
             <ContactFormSection />
         </>

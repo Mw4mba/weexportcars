@@ -47,7 +47,7 @@ const Navigation = () => {
       scrolled ? 'bg-[#e6e6e6]/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4">
-  <div className="flex items-center justify-between h-20">
+  <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <div className="flex items-center space-x-4">
             <img 
@@ -134,7 +134,7 @@ const Navigation = () => {
           exit={{ y: '-100%', opacity: 0 }}
           transition={{ type: 'tween', duration: 0.28 }}
           className="fixed left-0 right-0 z-40 md:hidden flex justify-center"
-          style={{ top: '5rem' }} // 5rem = 80px = h-20, navbar height
+          style={{ top: '4rem' }} // 4rem = 64px = h-16, mobile navbar height
         >
               <div className="bg-white rounded-b-2xl border-b-2 border-[#e6e6e6] w-full max-w-full shadow-2xl flex flex-col items-center px-2 pt-8 pb-3 space-y-1">
             <a href="/" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Home</a>

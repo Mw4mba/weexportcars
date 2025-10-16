@@ -65,21 +65,20 @@ export default function Hero ()  {
     return (
         <section
             id="home"
-            className="min-h-screen bg-white flex items-center pt-20 md:pt-0"
+            className="w-full bg-white pt-20 md:pt-24 pb-8 md:pb-12"
         >
             <motion.div
-                className="container mx-auto px-6 overflow-hidden"
+                className="w-full max-w-7xl mx-auto px-4 sm:px-6"
                 variants={heroLoadVariants}
                 initial="hidden"
                 animate="visible"
             >
-                <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 lg:gap-12">
                     {/* Text Carousel - Left */}
                     <div className="
-                    relative top-0
-                    md:w-1/2 w-full text-left h-[400px] sm:h-[450px] md:h-[500px] flex flex-col justify-center items-start
-                    px-4 sm:px-6 md:px-4
-                    max-w-[540px] sm:max-w-[600px] md:max-w-none mx-auto md:mx-0
+                    relative
+                    w-full md:w-1/2 text-left h-[320px] sm:h-[380px] md:h-[500px] flex flex-col justify-center items-start
+                    max-w-full
                     ">
                         <AnimatePresence initial={false} custom={1}>
                             <motion.div
@@ -102,7 +101,7 @@ export default function Hero ()  {
                                 </div>
                             </motion.div>
                         </AnimatePresence>
-                        <div className="mt-56 sm:mt-60 md:mt-48 absolute bottom-0">
+                        <div className="mt-44 sm:mt-52 md:mt-48 absolute bottom-0">
                             <a
                                 href="#contact"
                                 className="inline-block px-6 sm:px-8 md:px-10 py-3 sm:py-4 text-base sm:text-lg font-semibold text-white bg-[#d10e22] rounded-xl shadow-2xl shadow-[#d10e22]/50 hover:bg-[#b00c1b] transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] focus:ring-4 focus:ring-[#d10e22]/60 whitespace-nowrap"
@@ -113,8 +112,8 @@ export default function Hero ()  {
                     </div>
 
                     {/* Image Carousel - Right (Centered and fully visible on mobile) */}
-                    <div className="w-full md:[width:60vw] order-first md:order-last flex justify-center items-center">
-                        <div className="relative flex justify-center items-center overflow-hidden aspect-[16/9] md:aspect-[16/9] rounded-2xl shadow-2xl h-56 xs:h-64 sm:h-80 md:h-[500px] bg-white">
+                    <div className="w-full md:w-1/2 order-first md:order-last flex justify-center items-center">
+                        <div className="relative w-full flex justify-center items-center aspect-[16/9] md:aspect-[16/9] rounded-2xl shadow-2xl h-48 xs:h-56 sm:h-72 md:h-[500px] bg-white overflow-hidden">
                             <AnimatePresence initial={false} custom={1}>
                                 <motion.img
                                     key={index}

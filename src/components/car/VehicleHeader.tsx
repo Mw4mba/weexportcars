@@ -2,10 +2,17 @@
 import { Vehicle } from '@/lib/vehicleData';
 import { Badge } from '@/components/ui/badge';
 import { Tag, MapPin, Calendar, Gauge, Fuel } from 'lucide-react';
+import { useContactForm } from '@/contexts/ContactFormContext';
 
 const VehicleHeader = ({ vehicle }: { vehicle: Vehicle }) => {
+  const { openContactForm } = useContactForm();
+
+  const handleInquireClick = () => {
+    openContactForm(vehicle);
+  };
+
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md sticky top-24">
+    <div className="bg-white p-6 rounded-lg shadow-md lg:sticky lg:top-24">
       <div className="space-y-6">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-[#2a3443] leading-tight">
@@ -67,8 +74,11 @@ const VehicleHeader = ({ vehicle }: { vehicle: Vehicle }) => {
           ))}
         </div>
 
-        <button className="w-full bg-[#d10e22] text-white py-4 rounded-lg font-semibold hover:bg-[#b00c1b] transition-colors">
-          Contact Seller
+        <button 
+          onClick={handleInquireClick}
+          className="w-full bg-[#d10e22] text-white py-4 rounded-lg font-semibold hover:bg-[#b00c1b] transition-colors"
+        >
+          Inquire Now
         </button>
       </div>
     </div>

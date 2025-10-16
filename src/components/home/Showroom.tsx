@@ -1,16 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ChevronLeft, ChevronRight, Calendar, Gauge, Fuel } from 'lucide-react';
+import { useOptimizedScrollAnimation } from '@/utils/useOptimizedScrollAnimation';
 //import heroCar1 from '../../public/hero-car-1.jpg';
 //import heroCar2 from '../../public/hero-car-2.jpg';
 //import heroCar3 from '../../public/hero-car-3.jpg';
 
 const Showroom = () => {
   const [currentCar, setCurrentCar] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const [sectionRef, isVisible] = useOptimizedScrollAnimation({ threshold: 'standard' });
 
   const featuredCars = [
     {
@@ -52,23 +53,6 @@ const Showroom = () => {
     return () => clearInterval(timer);
   }, [featuredCars.length]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   const nextCar = () => {
     setCurrentCar((prev) => (prev + 1) % featuredCars.length);
   };
@@ -103,11 +87,14 @@ const Showroom = () => {
                   <div key={car.id} className="w-full flex-shrink-0">
                     <div className="grid lg:grid-cols-2 gap-0">
                       {/* Car Image */}
-                      <div className="relative aspect-[4/3] lg:aspect-square bg-[#e6e6e6]">
-                        <img
-                          src={ car.image }
+                      <div className="relative aspect-[4/3] lg:aspect-square bg-[#e6e6e6] overflow-hidden">
+                        <Image
+                          src={car.image}
                           alt={car.name}
-                          className="w-full h-full object-cover"
+                          fill
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          className="object-cover"
+                          priority={index === 0}
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-[#d10e22]/10 to-transparent" />
                       </div>

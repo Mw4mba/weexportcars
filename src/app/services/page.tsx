@@ -4,8 +4,8 @@ import ServicesIntro from './components/ServicesIntro';
 import Navigation from '@/components/home/navigation';
 import ServicesGridWrapper from './components/ServicesGridWrapper';
 
-// Turn off static page generation for this route
-export const dynamic = 'force-dynamic';
+// Static generation with revalidation for better performance
+export const revalidate = 3600; // Revalidate every hour
 
 export default function ServicesPage() {
   return (

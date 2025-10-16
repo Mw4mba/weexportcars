@@ -1,4 +1,6 @@
-import React from 'react';
+"use client";
+
+import React, { memo } from 'react';
 import { useScrollAnimation } from './useScrollAnimation';
 
 interface AnimatedTitleProps {
@@ -7,7 +9,7 @@ interface AnimatedTitleProps {
   className?: string;
 }
 
-export const AnimatedTitle: React.FC<AnimatedTitleProps> = ({ id, children, className = '' }) => {
+export const AnimatedTitle: React.FC<AnimatedTitleProps> = memo(({ id, children, className = '' }) => {
   const [ref, isVisible] = useScrollAnimation('0px');
   return (
     <h2
@@ -19,4 +21,6 @@ export const AnimatedTitle: React.FC<AnimatedTitleProps> = ({ id, children, clas
       {children}
     </h2>
   );
-};
+});
+
+AnimatedTitle.displayName = 'AnimatedTitle';

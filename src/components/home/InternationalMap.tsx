@@ -1,6 +1,13 @@
-import React, { RefObject, useState, useRef, useEffect } from 'react';
+import React, { RefObject, useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { Globe, ArrowRightCircle } from 'lucide-react';
-import WorldMap from '@/components/ui/world-map';
+import { useOptimizedScrollAnimation } from '@/utils/useOptimizedScrollAnimation';
+
+// Lazy load WorldMap for better performance
+const WorldMap = dynamic(() => import('@/components/ui/world-map'), {
+  loading: () => <div className="w-full h-full bg-gray-100 animate-pulse rounded-lg" />,
+  ssr: false,
+});
 
 const DARK_TEXT_COLOR = '#2a3443';
 const ACCENT_COLOR = '#d10e22';
@@ -12,6 +19,12 @@ type InternationalMapProps = {
 
 const InternationalMap: React.FC<InternationalMapProps> = ({ sectionRefs, scrollToSection }) => {
   const [hovered, setHovered] = useState<string | null>(null);
+  const [shouldLoadMap, setShouldLoadMap] = useState(false);
+
+  // Load map immediately on mount for faster perceived performance
+  useEffect(() => {
+    setShouldLoadMap(true);
+  }, []);
 
   // Example: countries to highlight on world map for international import (could be expanded)
   const highlightCountries = [
@@ -36,23 +49,7 @@ const InternationalMap: React.FC<InternationalMapProps> = ({ sectionRefs, scroll
     { start: { lat: -1.2921, lng: 36.8219, label: 'Kenya' }, end: { lat: 51.5074, lng: -0.1278, label: 'London' } },
   ];
 
-  const mapRef = useRef<HTMLDivElement | null>(null);
-  const [animateRoutes, setAnimateRoutes] = useState(false);
-
-  useEffect(() => {
-    const el = mapRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setAnimateRoutes(true);
-        });
-      },
-      { root: null, threshold: 0.35 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
+  const [mapRef, animateRoutes] = useOptimizedScrollAnimation({ threshold: 'early' });
 
   return (
     <section ref={sectionRefs?.international} id="international" className="py-24 bg-[#2a3443]">
@@ -71,13 +68,15 @@ const InternationalMap: React.FC<InternationalMapProps> = ({ sectionRefs, scroll
           {/* Map full width */}
           <div ref={mapRef} className="w-full h-96 rounded-2xl overflow-hidden relative">
             <div className="w-full h-full">
-              <WorldMap
-                dots={routeDots}
-                lineColor={ACCENT_COLOR}
-                theme="light"
-                focus={{ lat: -33.9249, lng: 18.4241, zoom: 1.3 }}
-                animateRoutes={animateRoutes}
-              />
+              {shouldLoadMap && (
+                <WorldMap
+                  dots={routeDots}
+                  lineColor={ACCENT_COLOR}
+                  theme="light"
+                  focus={{ lat: -33.9249, lng: 18.4241, zoom: 1.3 }}
+                  animateRoutes={animateRoutes}
+                />
+              )}
             </div>
           </div>
 

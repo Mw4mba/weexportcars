@@ -1,13 +1,28 @@
-import React from 'react';
+"use client";
+
+import React, { memo, useMemo } from 'react';
 import { AnimatedTitle } from './AnimatedTitle';
 import { Car, Truck, Star, Globe, Clock, Shield, MapPin, CheckCircle } from 'lucide-react';
-
 
 const BG_LIGHT_COLOR = '#e6e6e6';
 const DARK_TEXT_COLOR = '#2a3443';
 const ACCENT_COLOR = '#d10e22';
 
-const AboutUsSection: React.FC = () => (
+// Memoize service items to prevent recreation
+const SERVICE_ITEMS = [
+  { title: "SUVs", icon: Truck, description: "Quality SUVs available for export — inspected and ready for your market." },
+  { title: "Classic / Retro Cars", icon: Star, description: "Hand-picked classic and retro vehicles for collectors and enthusiasts." },
+  { title: "Export", icon: Globe, description: "Full export services from South Africa to your doorstep, including customs and shipping." }
+] as const;
+
+const WHY_CHOOSE_ITEMS = [
+  { title: "Speed", detail: "Fastest Transit Times", icon: Clock },
+  { title: "Safety", detail: "Zero-Damage Guarantee", icon: Shield },
+  { title: "Reach", detail: "100+ Destination Ports", icon: MapPin },
+  { title: "Clarity", detail: "Full Transparent Pricing", icon: CheckCircle }
+] as const;
+
+const AboutUsSection: React.FC = memo(() => (
   <section id="about" className="py-28 bg-[#2a3443]">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Who We Are */}
@@ -28,11 +43,8 @@ const AboutUsSection: React.FC = () => (
       <div id="services">
   <h3 className="text-4xl font-bold text-white text-center mb-12">Our Core Offerings</h3>
         <div className="grid md:grid-cols-3 gap-8">
-          {[{ title: "SUVs", icon: Truck, description: "Quality SUVs available for export — inspected and ready for your market." },
-            { title: "Classic / Retro Cars", icon: Star, description: "Hand-picked classic and retro vehicles for collectors and enthusiasts." },
-            { title: "Export", icon: Globe, description: "Full export services from South Africa to your doorstep, including customs and shipping." }
-          ].map((item, index) => (
-            <div key={index} className="p-8 rounded-2xl shadow-xl bg-white transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] border-t-4 border-[#d10e22]">
+          {SERVICE_ITEMS.map((item, index) => (
+            <div key={item.title} className="p-8 rounded-2xl shadow-xl bg-white transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] border-t-4 border-[#d10e22]">
               <item.icon size={36} className="text-[#d10e22] mb-4" />
               <h4 className="text-2xl font-semibold text-[#2a3443] mb-3">{item.title}</h4>
               <p className="text-[#2a3443]/70">{item.description}</p>
@@ -55,12 +67,8 @@ const AboutUsSection: React.FC = () => (
           Why Choose US?
         </h3>
         <div className="grid md:grid-cols-4 gap-8">
-          {[{ title: "Speed", detail: "Fastest Transit Times", icon: Clock },
-            { title: "Safety", detail: "Zero-Damage Guarantee", icon: Shield },
-            { title: "Reach", detail: "100+ Destination Ports", icon: MapPin },
-            { title: "Clarity", detail: "Full Transparent Pricing", icon: CheckCircle }
-          ].map((item, index) => (
-            <div key={index} className="flex flex-col items-center text-center p-6 bg-[#f8fafc] rounded-xl transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group">
+          {WHY_CHOOSE_ITEMS.map((item) => (
+            <div key={item.title} className="flex flex-col items-center text-center p-6 bg-[#f8fafc] rounded-xl transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group">
               <div className="p-4 mb-4 rounded-full bg-[#d10e22]/10 transition-colors duration-300 group-hover:bg-[#d10e22]/20">
                 <item.icon size={32} className="text-[#d10e22] transform transition-transform duration-500 group-hover:scale-110" />
               </div>
@@ -72,6 +80,8 @@ const AboutUsSection: React.FC = () => (
       </div>
     </div>
   </section>
-);
+));
+
+AboutUsSection.displayName = 'AboutUsSection';
 
 export default AboutUsSection;

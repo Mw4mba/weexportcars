@@ -5,11 +5,9 @@ import { vehicleData } from '@/lib/vehicleData';
 
 const VehicleGrid: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = React.useState('all');
-  console.log('Selected filter:', selectedFilter); // Debug log
 
   // Filter vehicles based on selected filter
   const filteredVehicles = React.useMemo(() => {
-    console.log('Filtering vehicles with:', selectedFilter);
     const filtered = vehicleData.filter(vehicle => {
       const result = (() => {
         switch (selectedFilter) {
@@ -28,10 +26,8 @@ const VehicleGrid: React.FC = () => {
             return true;
         }
       })();
-      console.log(`Vehicle ${vehicle.make} ${vehicle.model} (${vehicle.condition}) - matches filter '${selectedFilter}':`, result);
       return result;
     });
-    console.log('Total filtered vehicles:', filtered.length);
     return filtered;
   }, [selectedFilter]);
 

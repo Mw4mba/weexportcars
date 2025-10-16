@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, memo } from "react";
+import { useRef, memo, useMemo, useCallback } from "react";
 import { motion } from "motion/react";
 import DottedMap from "dotted-map";
 
@@ -17,6 +17,15 @@ interface MapProps {
   animateRoutes?: boolean;
 }
 
+// Create a singleton DottedMap instance to share across all WorldMap components
+let sharedMapInstance: DottedMap | null = null;
+const getSharedMapInstance = () => {
+  if (!sharedMapInstance) {
+    sharedMapInstance = new DottedMap({ height: 100, grid: "diagonal" });
+  }
+  return sharedMapInstance;
+};
+
 function WorldMap({
   dots = [],
   lineColor = "#0ea5e9",
@@ -25,88 +34,107 @@ function WorldMap({
   animateRoutes = true,
 }: MapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
-  const map = new DottedMap({ height: 100, grid: "diagonal" });
+  
+  // Use shared DottedMap instance across all WorldMap components
+  const map = useMemo(() => getSharedMapInstance(), []);
 
-  // Detect dark mode on the client without relying on `next-themes`.
+  // Simplified dark mode detection
   const [detectedDark, setDetectedDark] = useState(false);
 
   useEffect(() => {
-    const detect = () => {
-      try {
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const hasDarkClass = document.documentElement.classList.contains('dark');
-  setDetectedDark(Boolean(prefersDark || hasDarkClass));
-      } catch (e) {
-  setDetectedDark(false);
-      }
+    // Only run if theme is 'auto'
+    if (theme !== 'auto') return;
+
+    const updateDarkMode = () => {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const hasDarkClass = document.documentElement.classList.contains('dark');
+      setDetectedDark(prefersDark || hasDarkClass);
     };
 
-    detect();
-    const mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
-  const handler = (e: MediaQueryListEvent) => setDetectedDark(Boolean(e.matches));
-    if (mq && mq.addEventListener) {
-      mq.addEventListener('change', handler);
-    } else if (mq && (mq as any).addListener) {
-      // older browsers
-      (mq as any).addListener(handler);
-    }
+    updateDarkMode();
+    
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', updateDarkMode);
 
-    return () => {
-      if (mq && mq.removeEventListener) {
-        mq.removeEventListener('change', handler);
-      } else if (mq && (mq as any).removeListener) {
-        (mq as any).removeListener(handler);
-      }
-    };
-  }, []);
+    return () => mediaQuery.removeEventListener('change', updateDarkMode);
+  }, [theme]);
 
   // Determine effective theme (prop overrides detection)
   const effectiveDark = theme === 'dark' ? true : theme === 'light' ? false : detectedDark;
 
-  const svgMap = map.getSVG({
-    radius: 0.22,
-    color: effectiveDark ? '#FFFFFF40' : '#00000040',
-    shape: 'circle',
-    backgroundColor: effectiveDark ? 'black' : 'white',
-  });
+  // Memoize SVG generation
+  const svgMap = useMemo(() => 
+    map.getSVG({
+      radius: 0.22,
+      color: effectiveDark ? '#FFFFFF40' : '#00000040',
+      shape: 'circle',
+      backgroundColor: effectiveDark ? 'black' : 'white',
+    }), 
+    [map, effectiveDark]
+  );
 
-  const projectPoint = (lat: number, lng: number) => {
+  // Memoize data URL to avoid re-encoding
+  const svgDataUrl = useMemo(() => 
+    `data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`,
+    [svgMap]
+  );
+
+  // Memoize projection function
+  const projectPoint = useCallback((lat: number, lng: number) => {
     const x = (lng + 180) * (800 / 360);
     const y = (90 - lat) * (400 / 180);
     return { x, y };
-  };
+  }, []);
 
-  const createCurvedPath = (
+  // Memoize curve path creation
+  const createCurvedPath = useCallback((
     start: { x: number; y: number },
     end: { x: number; y: number }
   ) => {
     const midX = (start.x + end.x) / 2;
     const midY = Math.min(start.y, end.y) - 50;
     return `M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`;
-  };
+  }, []);
 
-  // Compute transform to center focus point, if provided.
-  let transformStyle: string | undefined = undefined;
-  if (focus && typeof focus.lat === 'number' && typeof focus.lng === 'number') {
+  // Memoize projected points and paths to avoid recalculation
+  const projectedDots = useMemo(() => 
+    dots.map(dot => ({
+      startPoint: projectPoint(dot.start.lat, dot.start.lng),
+      endPoint: projectPoint(dot.end.lat, dot.end.lng),
+      path: createCurvedPath(
+        projectPoint(dot.start.lat, dot.start.lng),
+        projectPoint(dot.end.lat, dot.end.lng)
+      )
+    })),
+    [dots, projectPoint, createCurvedPath]
+  );
+
+  // Memoize transform calculation
+  const transformStyle = useMemo(() => {
+    if (!focus || typeof focus.lat !== 'number' || typeof focus.lng !== 'number') {
+      return undefined;
+    }
     const center = projectPoint(focus.lat, focus.lng);
-    const dx = center.x - 400; // positive means focus is to the right
-    const dy = center.y - 200; // positive means focus is below
-    const txPercent = -(dx / 800) * 100; // negative moves map left
-    const tyPercent = -(dy / 400) * 100; // negative moves map up
+    const dx = center.x - 400;
+    const dy = center.y - 200;
+    const txPercent = -(dx / 800) * 100;
+    const tyPercent = -(dy / 400) * 100;
     const scale = focus.zoom && focus.zoom > 0 ? focus.zoom : 1;
-    transformStyle = `translate(${txPercent}%, ${tyPercent}%) scale(${scale})`;
-  }
+    return `translate(${txPercent}%, ${tyPercent}%) scale(${scale})`;
+  }, [focus, projectPoint]);
 
   return (
     <div className="w-full aspect-square md:aspect-[2/1] bg-transparent rounded-lg relative font-sans overflow-hidden">
       <img
-        src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
+        src={svgDataUrl}
         className="h-full w-full object-cover pointer-events-none select-none"
         style={transformStyle ? { transform: transformStyle, transformOrigin: '50% 50%' } : undefined}
         alt="world map"
         height="495"
         width="1056"
         draggable={false}
+        loading="eager"
+        decoding="async"
       />
       <svg
         ref={svgRef}
@@ -115,30 +143,25 @@ function WorldMap({
         className="w-full h-full absolute inset-0 pointer-events-none select-none"
         style={transformStyle ? { transform: transformStyle, transformOrigin: '50% 50%' } : undefined}
       >
-        {dots.map((dot, i) => {
-          const startPoint = projectPoint(dot.start.lat, dot.start.lng);
-          const endPoint = projectPoint(dot.end.lat, dot.end.lng);
-          return (
-            <g key={`path-group-${i}`}>
-              <motion.path
-                d={createCurvedPath(startPoint, endPoint)}
-                fill="none"
-                stroke="url(#path-gradient)"
-                strokeWidth="1"
-                initial={{
-                  pathLength: 0,
-                }}
-                animate={animateRoutes ? { pathLength: 1 } : { pathLength: 0 }}
-                transition={{
-                  duration: 1,
-                  delay: 0.5 * i,
-                  ease: "easeOut",
-                }}
-                key={`start-upper-${i}`}
-              ></motion.path>
-            </g>
-          );
-        })}
+        {projectedDots.map((dot, i) => (
+          <g key={`path-group-${i}`}>
+            <motion.path
+              d={dot.path}
+              fill="none"
+              stroke="url(#path-gradient)"
+              strokeWidth="1"
+              initial={{
+                pathLength: 0,
+              }}
+              animate={animateRoutes ? { pathLength: 1 } : { pathLength: 0 }}
+              transition={{
+                duration: 1,
+                delay: 0.5 * i,
+                ease: "easeOut",
+              }}
+            />
+          </g>
+        ))}
 
         <defs>
           <linearGradient id="path-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -149,18 +172,18 @@ function WorldMap({
           </linearGradient>
         </defs>
 
-        {dots.map((dot, i) => (
+        {projectedDots.map((dot, i) => (
           <g key={`points-group-${i}`}>
             <g key={`start-${i}`}>
               <circle
-                cx={projectPoint(dot.start.lat, dot.start.lng).x}
-                cy={projectPoint(dot.start.lat, dot.start.lng).y}
+                cx={dot.startPoint.x}
+                cy={dot.startPoint.y}
                 r="2"
                 fill={lineColor}
               />
               <circle
-                cx={projectPoint(dot.start.lat, dot.start.lng).x}
-                cy={projectPoint(dot.start.lat, dot.start.lng).y}
+                cx={dot.startPoint.x}
+                cy={dot.startPoint.y}
                 r="2"
                 fill={lineColor}
                 opacity="0.5"
@@ -185,14 +208,14 @@ function WorldMap({
             </g>
             <g key={`end-${i}`}>
               <circle
-                cx={projectPoint(dot.end.lat, dot.end.lng).x}
-                cy={projectPoint(dot.end.lat, dot.end.lng).y}
+                cx={dot.endPoint.x}
+                cy={dot.endPoint.y}
                 r="2"
                 fill={lineColor}
               />
               <circle
-                cx={projectPoint(dot.end.lat, dot.end.lng).x}
-                cy={projectPoint(dot.end.lat, dot.end.lng).y}
+                cx={dot.endPoint.x}
+                cy={dot.endPoint.y}
                 r="2"
                 fill={lineColor}
                 opacity="0.5"
@@ -222,10 +245,34 @@ function WorldMap({
   );
 }
 
+// More efficient memo comparison - avoid JSON.stringify
 export default memo(WorldMap, (prev, next) => {
-  return prev.animateRoutes === next.animateRoutes &&
-         JSON.stringify(prev.dots) === JSON.stringify(next.dots) &&
-         prev.theme === next.theme &&
-         prev.lineColor === next.lineColor &&
-         JSON.stringify(prev.focus) === JSON.stringify(next.focus);
+  // Quick checks first (fastest comparisons)
+  if (prev.animateRoutes !== next.animateRoutes) return false;
+  if (prev.theme !== next.theme) return false;
+  if (prev.lineColor !== next.lineColor) return false;
+  
+  // Check dots array
+  if (prev.dots?.length !== next.dots?.length) return false;
+  if (prev.dots && next.dots) {
+    for (let i = 0; i < prev.dots.length; i++) {
+      const prevDot = prev.dots[i];
+      const nextDot = next.dots[i];
+      if (
+        prevDot.start.lat !== nextDot.start.lat ||
+        prevDot.start.lng !== nextDot.start.lng ||
+        prevDot.end.lat !== nextDot.end.lat ||
+        prevDot.end.lng !== nextDot.end.lng
+      ) {
+        return false;
+      }
+    }
+  }
+  
+  // Check focus object
+  if (prev.focus?.lat !== next.focus?.lat) return false;
+  if (prev.focus?.lng !== next.focus?.lng) return false;
+  if (prev.focus?.zoom !== next.focus?.zoom) return false;
+  
+  return true; // Props are equal, don't re-render
 });

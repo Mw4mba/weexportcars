@@ -15,8 +15,14 @@ const VehicleCard: React.FC<{ vehicle: Vehicle; index?: number; visible?: boolea
         style={{ animationDelay: `${index * 0.1}s` }}
       >
         <div className="relative h-64 overflow-hidden">
-          <img src={vehicle.image} alt={`${vehicle.make} ${vehicle.model}`} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500 transform" />
-          <Badge className="absolute top-4 right-4 bg-[#d10e22] text-white px-2 py-1 rounded">{vehicle.condition}</Badge>
+          <img 
+            src={vehicle.image} 
+            alt={`${vehicle.make} ${vehicle.model}`}
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-all duration-500 transform" 
+          />
+          <Badge className="absolute top-4 right-4 bg-[#d10e22] text-white px-2 py-1 rounded z-10">{vehicle.condition}</Badge>
         </div>
 
         <CardContent className="p-6 space-y-4">

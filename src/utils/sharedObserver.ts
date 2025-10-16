@@ -1,4 +1,5 @@
 type ObserverCallback = (isIntersecting: boolean) => void;
+type EntryCallback = (entry: IntersectionObserverEntry) => void;
 
 interface SharedObserver {
   observe: (element: Element, callback: ObserverCallback) => void;
@@ -38,6 +39,30 @@ export const createSharedObserver = (options: IntersectionObserverInit): SharedO
       observer.unobserve(element);
     }
   };
+};
+
+// Helper to get or create shared observer with custom options
+export const getSharedObserver = (
+  callback: EntryCallback,
+  options: IntersectionObserverInit = {}
+): IntersectionObserver => {
+  // Check if we're in a browser environment
+  const isClient = typeof window !== 'undefined' && typeof window.IntersectionObserver !== 'undefined';
+  
+  if (!isClient) {
+    // Return a no-op observer for SSR
+    return {
+      observe: () => {},
+      unobserve: () => {},
+      disconnect: () => {},
+    } as unknown as IntersectionObserver;
+  }
+  
+  // For custom rootMargin, create a standard observer
+  // This is acceptable for components like AnimatedTitle that have different rootMargin values
+  return new IntersectionObserver((entries) => {
+    entries.forEach(entry => callback(entry));
+  }, options);
 };
 
 // Create shared observers with different thresholds

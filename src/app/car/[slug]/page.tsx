@@ -19,6 +19,12 @@ const CarDetailPage = ({ params }: { params: { slug: string } }) => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-8">
               <ImageGallery vehicle={vehicle} />
+              
+              {/* VehicleHeader for mobile/tablet - shows right after images */}
+              <div className="lg:hidden mt-8">
+                <VehicleHeader vehicle={vehicle} />
+              </div>
+              
               <div className="mt-8">
                 <h2 className="text-xl font-semibold mb-4">Description</h2>
                 <p className="text-gray-600 whitespace-pre-wrap">{vehicle.description}</p>
@@ -46,7 +52,9 @@ const CarDetailPage = ({ params }: { params: { slug: string } }) => {
                 </div>
               </div>
             </div>
-            <div className="lg:col-span-4">
+            
+            {/* VehicleHeader for desktop - sticky sidebar */}
+            <div className="hidden lg:block lg:col-span-4">
               <VehicleHeader vehicle={vehicle} />
             </div>
           </div>
