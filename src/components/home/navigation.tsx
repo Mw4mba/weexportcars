@@ -48,14 +48,14 @@ const Navigation = () => {
     }`}>
       <div className="container mx-auto px-4">
   <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <div className="flex items-center space-x-4">
+          {/* Logo - Clickable home button */}
+          <a href="/" className="flex items-center space-x-4 hover:opacity-80 transition-opacity" aria-label="Go to homepage">
             <img 
               src="https://www.weexportcars.africa/wp-content/uploads/2024/04/logo-dark.png" 
               alt="We Export Cars"
               className="h-12 w-auto"
             />
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8 justify-center flex-1">

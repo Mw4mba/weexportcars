@@ -8,11 +8,13 @@ const Footer = () => {
           
           {/* Company Info */}
           <div className="space-y-6">
-            <img 
-              src="https://www.weexportcars.africa/wp-content/uploads/2024/04/logo-dark.png" 
-              alt="We Export Cars"
-              className="h-12 w-auto brightness-0 invert"
-            />
+            <a href="/" className="inline-block hover:opacity-80 transition-opacity" aria-label="Go to homepage">
+              <img 
+                src="https://www.weexportcars.africa/wp-content/uploads/2024/04/logo-dark.png" 
+                alt="We Export Cars"
+                className="h-12 w-auto brightness-0 invert"
+              />
+            </a>
             <p className="text-white leading-relaxed">
               South Africa's premier vehicle export specialist, connecting automotive excellence with global markets since 1998.
             </p>

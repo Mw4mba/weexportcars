@@ -22,12 +22,7 @@ const ContactFormSection = dynamic(() => import('@/components/home/ContactFormSe
 const InternationalMap = dynamic(() => import('@/components/home/InternationalMap'), {
   ssr: true,
   loading: () => <div className="h-screen"></div> // Prevent layout shift
-});
-
-
-
-
-const App = () => {
+});const App = () => {
     // Section refs for scrolling/navigation
     const weServeRef = useRef<HTMLElement>(null) as React.RefObject<HTMLElement>;
     const sectionRefs = { weServe: weServeRef };

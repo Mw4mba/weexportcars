@@ -3,10 +3,55 @@ import Navigation from '@/components/home/navigation';
 import { notFound } from 'next/navigation';
 import VehicleHeader from '@/components/car/VehicleHeader';
 import ImageGallery from '@/components/car/ImageGallery';
+import { Metadata } from 'next';
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+// Generate metadata for each vehicle page
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const vehicle = getVehicleBySlug(slug);
+
+  if (!vehicle) {
+    return {
+      title: 'Vehicle Not Found',
+    };
+  }
+
+  const title = `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
+  const description = `${vehicle.description.slice(0, 155)}...`;
+  const mainImage = vehicle.image || (vehicle.gallery && vehicle.gallery.length > 0 ? vehicle.gallery[0] : undefined);
+  
+  return {
+    title,
+    description,
+    keywords: [
+      vehicle.make,
+      vehicle.model,
+      `${vehicle.year} ${vehicle.make}`,
+      vehicle.condition,
+      "we export cars",
+      "vehicle export",
+      "car export Africa",
+      "premium vehicle"
+    ],
+    openGraph: {
+      title: `${title} | We Export Cars`,
+      description,
+      images: mainImage ? [mainImage] : undefined,
+      type: 'website',
+      siteName: "We Export Cars",
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${title} | We Export Cars`,
+      description,
+      images: mainImage ? [mainImage] : undefined,
+    },
+  };
+}
 
 const CarDetailPage = async ({ params }: Props) => {
   const { slug } = await params;
