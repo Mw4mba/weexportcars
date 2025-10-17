@@ -95,12 +95,15 @@ const ContactFormSection: React.FC = () => {
     const form = e.currentTarget;
     const formData = new FormData(form);
     
+    // Find the full country name from the country code
+    const countryName = countries.find(c => c.value === selectedCountry)?.label || selectedCountry;
+    
     const data = {
       name: formData.get('name') as string,
       email: formData.get('email') as string,
       vehicle: selectedVehicle || 'Not specified',
       customModel: customModel,
-      country: selectedCountry,
+      country: countryName,
       message: message,
       honeypot: formData.get('honeypot') as string, // Anti-bot field
     };
