@@ -4,6 +4,7 @@ import "./globals.css";
 import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp';
 import Footer from '@/components/home/footer';
 import { ContactFormProvider } from '@/contexts/ContactFormContext';
+import { WebVitals } from '@/components/WebVitals';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,9 +33,10 @@ export default function RootLayout({
       >
         <ContactFormProvider>
           {children}
-          <Footer />
+          <WebVitals />
           <FloatingWhatsApp />
         </ContactFormProvider>
+        <Footer />
       </body>
     </html>
   );

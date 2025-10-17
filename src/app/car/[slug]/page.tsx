@@ -4,7 +4,11 @@ import { notFound } from 'next/navigation';
 import VehicleHeader from '@/components/car/VehicleHeader';
 import ImageGallery from '@/components/car/ImageGallery';
 
-const CarDetailPage = ({ params }: { params: { slug: string } }) => {
+type Props = {
+  params: { slug: string };
+};
+
+const CarDetailPage = ({ params }: Props) => {
   const vehicle = getVehicleBySlug(params.slug);
 
   if (!vehicle) {
