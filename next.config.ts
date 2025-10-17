@@ -28,6 +28,9 @@ const nextConfig: NextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+  
+  // Modern browser support - reduces legacy JavaScript
+  swcMinify: true,
 };
 
 export default withBundleAnalyzer(nextConfig);

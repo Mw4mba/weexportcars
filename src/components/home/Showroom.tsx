@@ -1,15 +1,12 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ChevronLeft, ChevronRight, Calendar, Gauge, Fuel } from 'lucide-react';
 import { useOptimizedScrollAnimation } from '@/utils/useOptimizedScrollAnimation';
-//import heroCar1 from '../../public/hero-car-1.jpg';
-//import heroCar2 from '../../public/hero-car-2.jpg';
-//import heroCar3 from '../../public/hero-car-3.jpg';
 
-const Showroom = () => {
+const Showroom = memo(() => {
   const [currentCar, setCurrentCar] = useState(0);
   const [sectionRef, isVisible] = useOptimizedScrollAnimation({ threshold: 'standard' });
 
@@ -190,6 +187,8 @@ const Showroom = () => {
       </div>
     </section>
   );
-};
+});
+
+Showroom.displayName = 'Showroom';
 
 export default Showroom;

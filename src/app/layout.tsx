@@ -12,11 +12,13 @@ const Footer = dynamic(() => import('@/components/home/footer'));
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: 'swap', // Improve font loading performance
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: 'swap', // Improve font loading performance
 });
 
 export const metadata: Metadata = {
