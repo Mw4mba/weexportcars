@@ -6,8 +6,8 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+    --font-body: var(--font-urbanist);
+    --font-heading: var(--font-bebas-neue);
 
     --radius: 0.625rem;
     --radius-sm: calc(var(--radius) - 4px);
@@ -136,5 +136,19 @@
     height: 100%;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    font-family: var(--font-urbanist), sans-serif;
+  }
+
+  /* Headings with Bebas Neue and 1-degree slant */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-bebas-neue), sans-serif;
+    font-style: italic;
+    transform: skewX(-1deg);
+    letter-spacing: 0.02em;
+  }
+
+  /* Unskew the text content inside headings to keep text readable */
+  h1 > *, h2 > *, h3 > *, h4 > *, h5 > *, h6 > * {
+    transform: skewX(1deg);
   }
 }

@@ -101,7 +101,7 @@ export default function Hero ()  {
                                 </div>
                             </motion.div>
                         </AnimatePresence>
-                        <div className="mt-44 sm:mt-52 md:mt-48 absolute bottom-0">
+                        <div className="mt-44 sm:mt-52 md:mt-48 absolute bottom-0 w-full flex justify-center md:justify-start">
                             <a
                                 href="#contact"
                                 className="inline-block px-6 sm:px-8 md:px-10 py-3 sm:py-4 text-base sm:text-lg font-semibold text-white bg-[#d10e22] rounded-xl shadow-2xl shadow-[#d10e22]/50 hover:bg-[#b00c1b] transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] focus:ring-4 focus:ring-[#d10e22]/60 whitespace-nowrap"

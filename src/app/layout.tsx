@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Urbanist, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import dynamic from 'next/dynamic';
 import { ContactFormProvider } from '@/contexts/ContactFormContext';
@@ -10,16 +10,17 @@ const FloatingWhatsApp = dynamic(() => import('@/components/LazyFloatingWhatsApp
 
 const Footer = dynamic(() => import('@/components/home/footer'));
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const urbanist = Urbanist({
+  variable: "--font-urbanist",
   subsets: ["latin"],
-  display: 'swap', // Improve font loading performance
+  display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const bebasNeue = Bebas_Neue({
+  variable: "--font-bebas-neue",
+  weight: "400",
   subsets: ["latin"],
-  display: 'swap', // Improve font loading performance
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -108,7 +109,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#d10e22" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${urbanist.variable} ${bebasNeue.variable} antialiased`}
       >
         <ContactFormProvider>
           {children}

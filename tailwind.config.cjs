@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-urbanist)', 'sans-serif'],
+        heading: ['var(--font-bebas-neue)', 'sans-serif'],
+      },
       animation: {
         'scale-in': 'scale-in 0.5s ease-out forwards'
       },
