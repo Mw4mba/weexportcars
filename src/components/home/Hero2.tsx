@@ -22,8 +22,8 @@ const heroTextContent = [
 
 const heroImageContent = [
     '/we-export_1.png',
-    '/car2.jpg',
-    '/car3.png',
+    '/we-export_2.jpg',
+    '/we-export_3.jpg',
 ];
 
 // Fallbacks to external images if local ones are not provided in /public
@@ -130,7 +130,7 @@ export default function Hero ()  {
                                         fill
                                         priority={index === 0}
                                         sizes="(max-width: 768px) 100vw, 50vw"
-                                        className="object-contain md:object-cover rounded-2xl"
+                                        className="object-cover rounded-2xl"
                                         onError={(e) => { 
                                             const t = e.currentTarget as HTMLImageElement; 
                                             t.onerror = null; 
