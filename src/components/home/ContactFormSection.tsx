@@ -31,8 +31,6 @@ const ContactFormSection: React.FC = () => {
     const vehicleSlug = urlParams.get('vehicleSlug');
     const vehicleName = urlParams.get('vehicleName');
     
-    console.log('URL Params:', { vehicleSlug, vehicleName }); // Debug log
-    
     if (vehicleSlug && vehicleName) {
       // Auto-fill from URL parameters
       const autoFillData = {
@@ -40,8 +38,6 @@ const ContactFormSection: React.FC = () => {
         vehicleName,
         message: `I am interested in the ${vehicleName}. Please provide more information about this vehicle.`,
       };
-      
-      console.log('Setting form data:', autoFillData); // Debug log
       
       setFormData(autoFillData);
       setIsFormOpen(true);
@@ -55,11 +51,7 @@ const ContactFormSection: React.FC = () => {
 
   // Auto-fill form when vehicle data is provided
   useEffect(() => {
-    console.log('Form data changed:', formData); // Debug log
-    
     if (formData.vehicleSlug) {
-      console.log('Auto-filling form with:', formData.vehicleSlug); // Debug log
-      
       setSelectedVehicle(formData.vehicleSlug);
       setMessage(formData.message || '');
       
@@ -144,7 +136,6 @@ const ContactFormSection: React.FC = () => {
                     key={selectedVehicle || 'empty'} 
                     value={selectedVehicle} 
                     onValueChange={(value) => {
-                      console.log('Vehicle selected:', value); // Debug log
                       setSelectedVehicle(value);
                       if (value !== 'other') {
                         setCustomModel('');
