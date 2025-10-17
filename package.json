@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start",
-    "analyze-vitals": "node analyze-vitals.js"
+    "start": "next start"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",

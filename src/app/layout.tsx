@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import dynamic from 'next/dynamic';
 import { ContactFormProvider } from '@/contexts/ContactFormContext';
-import { WebVitals } from '@/components/WebVitals';
 
 // Lazy load non-critical components
 const FloatingWhatsApp = dynamic(() => import('@/components/LazyFloatingWhatsApp'));
@@ -42,7 +41,6 @@ export default function RootLayout({
       >
         <ContactFormProvider>
           {children}
-          <WebVitals />
           <FloatingWhatsApp />
         </ContactFormProvider>
         <Footer />
