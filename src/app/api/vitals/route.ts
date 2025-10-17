@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { appendFileSync } from 'fs';
+import { appendFile } from 'fs/promises';
 import { join } from 'path';
 
 export async function POST(request: NextRequest) {
@@ -29,9 +29,9 @@ export async function POST(request: NextRequest) {
       metrics: metrics.metrics,
     };
     
-    // Append to a JSON Lines file (each line is a JSON object)
+    // Append to a JSON Lines file (each line is a JSON object) - using async file write
     const logPath = join(process.cwd(), 'web-vitals-report.jsonl');
-    appendFileSync(logPath, JSON.stringify(logEntry) + '\n');
+    await appendFile(logPath, JSON.stringify(logEntry) + '\n');
     
     return NextResponse.json({ success: true });
   } catch (error) {

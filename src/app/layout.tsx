@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp';
-import Footer from '@/components/home/footer';
+import dynamic from 'next/dynamic';
 import { ContactFormProvider } from '@/contexts/ContactFormContext';
 import { WebVitals } from '@/components/WebVitals';
+
+// Lazy load non-critical components
+const FloatingWhatsApp = dynamic(() => import('@/components/LazyFloatingWhatsApp'));
+
+const Footer = dynamic(() => import('@/components/home/footer'));
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +32,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://api.whatsapp.com" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

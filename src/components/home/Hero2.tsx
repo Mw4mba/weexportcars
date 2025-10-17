@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence, easeInOut } from 'framer-motion';
 import { ArrowRight, Phone, Mail, MapPin, CheckCircle, Shield, Banknote, Car, Gauge, Zap } from 'lucide-react';
+import Image from 'next/image';
 
 
 const heroTextContent = [
@@ -115,18 +116,29 @@ export default function Hero ()  {
                     <div className="w-full md:w-1/2 order-first md:order-last flex justify-center items-center">
                         <div className="relative w-full flex justify-center items-center aspect-[16/9] md:aspect-[16/9] rounded-2xl shadow-2xl h-48 xs:h-56 sm:h-72 md:h-[500px] bg-white overflow-hidden">
                             <AnimatePresence initial={false} custom={1}>
-                                <motion.img
+                                <motion.div
                                     key={index}
-                                    src={heroImageContent[index]}
-                                    alt="Premium Car"
                                     custom={1}
                                     variants={slideVariants}
                                     initial="hidden"
                                     animate="visible"
                                     exit="exit"
-                                    onError={(e) => { const t = e.currentTarget as HTMLImageElement; t.onerror = null; t.src = heroImageFallback[index] }}
-                                    className="w-full h-full object-contain md:object-cover rounded-2xl shadow-2xl"
-                                />
+                                    className="w-full h-full relative"
+                                >
+                                    <Image
+                                        src={heroImageContent[index]}
+                                        alt="Premium Car"
+                                        fill
+                                        priority={index === 0}
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        className="object-contain md:object-cover rounded-2xl"
+                                        onError={(e) => { 
+                                            const t = e.currentTarget as HTMLImageElement; 
+                                            t.onerror = null; 
+                                            t.src = heroImageFallback[index];
+                                        }}
+                                    />
+                                </motion.div>
                             </AnimatePresence>
                         </div>
                     </div>

@@ -70,6 +70,11 @@ const CarDetailPage = ({ params }: Props) => {
 
 export default CarDetailPage;
 
+// Static generation configuration
+export const dynamic = 'force-static';
+export const dynamicParams = false;
+export const revalidate = 3600; // Revalidate every hour
+
 // This function is needed for Next.js to know which dynamic routes to pre-render at build time.
 export async function generateStaticParams() {
   return vehicleData.map((car) => ({

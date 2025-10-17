@@ -5,7 +5,29 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 const nextConfig: NextConfig = {
-  // Configuration options
+  // Performance optimizations
+  experimental: {
+    optimizePackageImports: [
+      'framer-motion',
+      '@radix-ui/react-select',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-popover',
+      '@radix-ui/react-radio-group',
+      '@radix-ui/react-label',
+      'lucide-react'
+    ],
+  },
+  
+  // Image optimization
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60,
+  },
+  
+  // Compiler optimizations
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
 };
 
 export default withBundleAnalyzer(nextConfig);
