@@ -1,0 +1,47 @@
+name: Unlighthouse Audit
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  audit:
+    name: Run audit (Unlighthouse  Lighthouse fallback)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Unlighthouse
+        id: run-unlighthouse
+        run: |
+          echo "Running Unlighthouse against https://weexportcars.vercel.app"
+          npx @unlighthouse/cli --site https://weexportcars.vercel.app --outputPath=unlighthouse-report --format markdown
+        timeout-minutes: 30
+
+      - name: Upload Unlighthouse report
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unlighthouse-report
+          path: unlighthouse-report
+
+      - name: Run Lighthouse fallback
+        if: failure()
+        run: |
+          echo "Unlighthouse failed  running Lighthouse as fallback"
+          mkdir -p lighthouse-report
+          # run Lighthouse headless; --no-sandbox is often required on CI runners
+          npx lighthouse https://weexportcars.vercel.app --output=json --output=html --output-path=./lighthouse-report/report --chrome-flags="--no-sandbox" || true
+        timeout-minutes: 20
+
+      - name: Upload Lighthouse report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: lighthouse-report

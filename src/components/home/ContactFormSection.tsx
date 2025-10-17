@@ -24,6 +24,11 @@ const ContactFormSection: React.FC = () => {
   const [customModel, setCustomModel] = useState<string>('');
   const [selectedCountry, setSelectedCountry] = useState<string>('');
   const [message, setMessage] = useState<string>('');
+  
+  // Form submission state
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitMessage, setSubmitMessage] = useState('');
 
   // Check URL parameters on component mount
   useEffect(() => {
@@ -80,6 +85,69 @@ const ContactFormSection: React.FC = () => {
     label: `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
   }));
 
+  // Form submission handler
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setSubmitMessage('');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    const data = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      vehicle: selectedVehicle || 'Not specified',
+      customModel: customModel,
+      country: selectedCountry,
+      message: message,
+      honeypot: formData.get('honeypot') as string, // Anti-bot field
+    };
+
+    // Basic client-side validation
+    if (!data.name || !data.email || !data.country) {
+      setSubmitStatus('error');
+      setSubmitMessage('Please fill in all required fields.');
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message');
+      }
+
+      setSubmitStatus('success');
+      setSubmitMessage(result.message || 'Your inquiry has been sent successfully!');
+      
+      // Reset form after 4 seconds
+      setTimeout(() => {
+        form.reset();
+        setSelectedVehicle('');
+        setCustomModel('');
+        setSelectedCountry('');
+        setMessage('');
+        setSubmitStatus('idle');
+        setSubmitMessage('');
+      }, 4000);
+
+    } catch (error) {
+      setSubmitStatus('error');
+      setSubmitMessage(error instanceof Error ? error.message : 'An error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section 
       id="contact" 
@@ -99,10 +167,20 @@ const ContactFormSection: React.FC = () => {
           <div className="w-full lg:w-[45%] xl:w-[42%] bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border-4 border-[#2a3443]/10">
             {/* Contact Form */}
             <div className="p-8 sm:p-12">
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                {/* Honeypot field - hidden from users, visible to bots */}
+                <input 
+                  type="text" 
+                  name="honeypot" 
+                  style={{ display: 'none' }} 
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
+
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-[#2a3443] mb-1">
-                    Full Name
+                    Full Name <span className="text-[#d10e22]">*</span>
                   </label>
                   <input 
                     type="text" 
@@ -116,7 +194,7 @@ const ContactFormSection: React.FC = () => {
 
                 <div>
                   <label htmlFor="email" className="block text-sm font-semibold text-[#2a3443] mb-1">
-                    Email Address
+                    Email Address <span className="text-[#d10e22]">*</span>
                   </label>
                   <input 
                     type="email" 
@@ -176,7 +254,7 @@ const ContactFormSection: React.FC = () => {
 
                 <div>
                   <label htmlFor="country" className="block text-sm font-semibold text-[#2a3443] mb-1">
-                    Destination Country
+                    Destination Country <span className="text-[#d10e22]">*</span>
                   </label>
                   <Combobox
                     options={countries}
@@ -204,12 +282,46 @@ const ContactFormSection: React.FC = () => {
                   ></textarea>
                 </div>
 
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <div className="p-4 bg-green-50 border-2 border-green-400 rounded-lg animate-in fade-in slide-in-from-top-2">
+                    <p className="text-green-800 font-bold flex items-center">
+                      <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      Message sent successfully!
+                    </p>
+                    <p className="text-green-700 text-sm mt-1">{submitMessage}</p>
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="p-4 bg-red-50 border-2 border-red-400 rounded-lg animate-in fade-in slide-in-from-top-2">
+                    <p className="text-red-800 font-bold flex items-center">
+                      <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                      </svg>
+                      Failed to send message
+                    </p>
+                    <p className="text-red-700 text-sm mt-1">{submitMessage}</p>
+                  </div>
+                )}
+
                 {/* Submit Button (Red CTA) */}
                 <button 
                   type="submit"
-                  className="w-full px-6 py-3 text-lg font-semibold text-white bg-[#d10e22] rounded-xl shadow-lg hover:bg-[#b00c1b] transition-all duration-300 focus:ring-4 focus:ring-[#d10e22]/60 transform hover:scale-[1.02]"
+                  disabled={isSubmitting}
+                  className="w-full px-6 py-3 text-lg font-semibold text-white bg-[#d10e22] rounded-xl shadow-lg hover:bg-[#b00c1b] transition-all duration-300 focus:ring-4 focus:ring-[#d10e22]/60 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                  Submit Request
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : 'Submit Request'}
                 </button>
               </form>
 
