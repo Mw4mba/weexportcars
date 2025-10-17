@@ -21,7 +21,7 @@ const heroTextContent = [
 ];
 
 const heroImageContent = [
-    '/car1.png',
+    '/we-export_1.png',
     '/car2.jpg',
     '/car3.png',
 ];
