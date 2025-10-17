@@ -5,11 +5,12 @@ import VehicleHeader from '@/components/car/VehicleHeader';
 import ImageGallery from '@/components/car/ImageGallery';
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
-const CarDetailPage = ({ params }: Props) => {
-  const vehicle = getVehicleBySlug(params.slug);
+const CarDetailPage = async ({ params }: Props) => {
+  const { slug } = await params;
+  const vehicle = getVehicleBySlug(slug);
 
   if (!vehicle) {
     notFound();

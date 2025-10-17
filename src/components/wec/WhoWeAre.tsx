@@ -1,13 +1,6 @@
-
 import React from "react";
-import AnimatedTitle from '../../../components/wec/AnimatedTitle';
-
-// COLORS is also defined in page.tsx, so we need to re-declare or import it. We'll re-declare for isolation.
-const COLORS = {
-  light: '#e6e6e6',
-  dark: '#2a3443',
-  accent: '#d10e22',
-};
+import AnimatedTitle from './AnimatedTitle';
+import { COLORS } from './constants';
 
 interface WhoWeAreProps {
   className?: string;

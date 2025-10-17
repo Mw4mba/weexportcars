@@ -1,8 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, easeInOut } from 'framer-motion';
-import { ArrowRight, Phone, Mail, MapPin, CheckCircle, Shield, Banknote, Car, Gauge, Zap } from 'lucide-react';
 import Image from 'next/image';
 
 

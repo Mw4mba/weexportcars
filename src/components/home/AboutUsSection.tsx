@@ -1,6 +1,6 @@
 "use client";
 
-import React, { memo, useMemo } from 'react';
+import React, { memo } from 'react';
 import { AnimatedTitle } from './AnimatedTitle';
 import { Car, Truck, Star, Globe, Clock, Shield, MapPin, CheckCircle } from 'lucide-react';
 

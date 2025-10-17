@@ -11,7 +11,7 @@ import OurProcess from '@/components/home/OurProcess';
 import Showroom from '@/components/home/Showroom';
 import WeServeSection from '@/components/home/WeServe';
 import InternationalMap from '@/components/home/InternationalMap';
-import WhoWeAre from './wec2/components/WhoWeAre';
+import WhoWeAre from '@/components/wec/WhoWeAre';
 import ResponsiveProcessSection from '@/components/home/ResponsiveProcessSection';
 
 

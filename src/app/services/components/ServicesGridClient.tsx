@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { COLORS } from '@/components/wec/constants';
-import * as Icons from 'lucide-react';
+import { Package, Truck, Shield, CreditCard, FileCheck, Users } from 'lucide-react';
 import { services } from '../data/services';
 
 type Service = typeof services[number];
@@ -53,25 +53,25 @@ const ServiceCard: React.FC<{
 
   switch (service.icon) {
     case 'Package':
-      IconComponent = Icons.Package;
+      IconComponent = Package;
       break;
     case 'Truck':
-      IconComponent = Icons.Truck;
+      IconComponent = Truck;
       break;
     case 'Shield':
-      IconComponent = Icons.Shield;
+      IconComponent = Shield;
       break;
     case 'CreditCard':
-      IconComponent = Icons.CreditCard;
+      IconComponent = CreditCard;
       break;
     case 'FileCheck':
-      IconComponent = Icons.FileCheck;
+      IconComponent = FileCheck;
       break;
     case 'Users':
-      IconComponent = Icons.Users;
+      IconComponent = Users;
       break;
     default:
-      IconComponent = Icons.Package; // Default icon
+      IconComponent = Package; // Default icon
   }
 
   return (

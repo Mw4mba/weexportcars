@@ -109,7 +109,7 @@ interface AnimatedTitleProps {
     id: string;
     children: React.ReactNode;
 }
-export const AnimatedTitle = ({ id, children }: AnimatedTitleProps) => {
+const AnimatedTitle = ({ id, children }: AnimatedTitleProps) => {
     const [ref, isVisible] = useScrollAnimation('0px');
     return (
         <h2 
