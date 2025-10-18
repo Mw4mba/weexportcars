@@ -113,7 +113,7 @@ export async function POST(request: NextRequest) {
 
     // Send email via Resend
     const { data, error } = await resend.emails.send({
-      from: 'We Export Cars <onboarding@resend.dev>', // Use verified domain or resend dev domain
+      from: 'We export cars <onboarding@resend.dev>', // Use verified domain or resend dev domain
       to: [recipientEmail],
       replyTo: sanitizedEmail, // Allow direct reply to customer
       subject: `New Export Inquiry - ${vehicleName}`,
