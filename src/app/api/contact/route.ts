@@ -111,12 +111,7 @@ export async function POST(request: NextRequest) {
     // Send email via Resend
     const { data, error } = await resend.emails.send({
       from: 'We Export Cars <onboarding@resend.dev>', // Use verified domain or resend dev domain
-      to: [
-        'mwambaandy06@gmail.com',
-        'kamatu@weexportcars.africa',
-        '4ndilok@gmail.com',
-        'kamatu.g@gmail.com'
-      ],
+      to: ['kamatu.g@gmail.com'],
       replyTo: sanitizedEmail, // Allow direct reply to customer
       subject: `New Export Inquiry - ${vehicleName}`,
       react: ContactFormEmail({
