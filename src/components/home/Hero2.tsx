@@ -77,8 +77,9 @@ export default function Hero ()  {
                     {/* Text Carousel - Left */}
                     <div className="
                     relative
-                    w-full md:w-2/5 lg:w-[32%] text-left h-[320px] sm:h-[380px] md:h-[500px] flex flex-col justify-center items-start
+                    w-full md:w-2/5 lg:w-[32%] text-left h-[320px] sm:h-[380px] md:h-[500px] flex flex-col justify-center items-center md:items-start
                     max-w-full
+                    px-4 sm:px-6 md:px-0
                     ">
                         <AnimatePresence initial={false} custom={1}>
                             <motion.div
@@ -90,12 +91,12 @@ export default function Hero ()  {
                                 exit="exit"
                                 className="absolute w-full"
                             >
-                                <div className="flex flex-col items-start w-full">
-                                    <span className="text-[#d10e22] text-sm sm:text-base md:text-lg font-semibold uppercase tracking-widest mb-2 block break-words text-balance">Premium Vehicle Export</span>
-                                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#2a3443] mb-3 md:mb-4 leading-[1.15] sm:leading-tight break-words text-balance max-w-[500px] sm:max-w-[550px] md:max-w-full">
+                                <div className="flex flex-col items-center md:items-start w-full">
+                                    <span className="text-[#d10e22] text-sm sm:text-base md:text-lg font-semibold uppercase tracking-widest mb-2 block break-words text-balance text-center md:text-left">Premium Vehicle Export</span>
+                                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#2a3443] mb-3 md:mb-4 leading-[1.15] sm:leading-tight break-words text-balance max-w-[500px] sm:max-w-[550px] md:max-w-full text-center md:text-left">
                                         {heroTextContent[index].title}
                                     </h1>
-                                    <p className="text-base sm:text-lg text-[#2a3443]/80 mb-6 md:mb-8 break-words text-balance max-w-[450px] sm:max-w-[500px] md:max-w-full leading-relaxed">
+                                    <p className="text-base sm:text-lg text-[#2a3443]/80 mb-6 md:mb-8 break-words text-balance max-w-[450px] sm:max-w-[500px] md:max-w-full leading-relaxed text-center md:text-left">
                                         {heroTextContent[index].subtitle}
                                     </p>
                                 </div>

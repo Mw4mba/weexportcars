@@ -48,9 +48,18 @@ const Showroom = memo(() => {
         </div>
 
         <div className="max-w-6xl mx-auto">
-          <div className="relative px-2 md:px-0">
+          <div className="relative flex items-center gap-3 sm:gap-4 md:gap-6">
+            {/* Previous Arrow - Outside card */}
+            <button
+              onClick={prevCar}
+              className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-[#d10e22] hover:bg-[#b00c1b] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110 z-10"
+              aria-label="Previous car"
+            >
+              <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 text-white" />
+            </button>
+
             {/* Main Carousel */}
-            <div className="relative overflow-hidden rounded-3xl shadow-2xl border-4 border-[#d10e22] bg-white">
+            <div className="flex-1 overflow-hidden rounded-3xl shadow-2xl border-4 border-[#d10e22] bg-white">
               <div className="flex transition-transform duration-700 ease-out"
                    style={{ transform: `translateX(-${currentCar * 100}%)` }}>
                 {featuredCars.map((car, index) => (
@@ -124,37 +133,29 @@ const Showroom = memo(() => {
               </div>
             </div>
 
-            {/* Navigation Arrows - Minimalistic Red Arrows */}
-            <button
-              onClick={prevCar}
-              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-[#d10e22] hover:bg-[#b00c1b] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110"
-              aria-label="Previous car"
-            >
-              <ChevronLeft className="h-5 w-5 md:h-6 md:w-6 text-white" />
-            </button>
-            
+            {/* Next Arrow - Outside card */}
             <button
               onClick={nextCar}
-              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-[#d10e22] hover:bg-[#b00c1b] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110"
+              className="flex-shrink-0 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-[#d10e22] hover:bg-[#b00c1b] transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-110 z-10"
               aria-label="Next car"
             >
-              <ChevronRight className="h-5 w-5 md:h-6 md:w-6 text-white" />
+              <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 text-white" />
             </button>
+          </div>
 
-            {/* Indicators - Slim Red Rectangles */}
-            <div className="flex justify-center space-x-3 mt-8">
-              {featuredCars.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentCar(index)}
-                  className={`h-1 rounded-full transition-all duration-300 ${
-                    index === currentCar 
-                      ? 'bg-[#d10e22] w-12' 
-                      : 'bg-[#2a3443]/30 w-8 hover:bg-[#2a3443]/50'
-                  }`}
-                />
-              ))}
-            </div>
+          {/* Indicators - Slim Red Rectangles */}
+          <div className="flex justify-center space-x-3 mt-8">
+            {featuredCars.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentCar(index)}
+                className={`h-1 rounded-full transition-all duration-300 ${
+                  index === currentCar 
+                    ? 'bg-[#d10e22] w-12' 
+                    : 'bg-[#2a3443]/30 w-8 hover:bg-[#2a3443]/50'
+                }`}
+              />
+            ))}
           </div>
 
           {/* View Complete Inventory Button */}

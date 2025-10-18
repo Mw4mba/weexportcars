@@ -99,20 +99,14 @@ const WhoWeAreAndOfferings: React.FC = memo(() => {
                         </div>
                       </div>
                     ) : (
-                      /* For Export Services - Keep original hover behavior */
-                      <div className="flex items-center justify-between">
+                      /* For Export Services - Show Learn More always visible */
+                      <div className="flex flex-col space-y-2">
                         <h4 className="text-2xl font-bold tracking-wide">
                           {offering.title}
                         </h4>
-                        
-                        {/* "Learn More" appears on hover */}
-                        <div className={`flex items-center gap-2 transition-all duration-300 ${
-                          hoveredCard === offering.title
-                            ? 'opacity-100 translate-x-0'
-                            : 'opacity-0 -translate-x-4'
-                        }`}>
-                          <span className="text-lg font-semibold">Learn More</span>
-                          <ArrowRight className="w-6 h-6" />
+                        <div className="flex items-center gap-2">
+                          <span className="text-base font-semibold">Learn More</span>
+                          <ArrowRight className="w-5 h-5" />
                         </div>
                       </div>
                     )}

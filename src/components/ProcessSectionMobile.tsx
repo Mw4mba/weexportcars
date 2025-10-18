@@ -165,7 +165,7 @@ const ProcessSectionMobile: React.FC = () => {
 
                     {/* Center Timeline Checkpoint Dot */}
                     <div 
-                      className="absolute left-1/2 top-6 transform -translate-x-1/2 w-4 sm:w-5 h-4 sm:h-5 rounded-full z-10 transition-all duration-500 shadow-lg border-4"
+                      className="absolute left-1/2 top-[52px] sm:top-14 transform -translate-x-1/2 w-4 sm:w-5 h-4 sm:h-5 rounded-full z-10 transition-all duration-500 shadow-lg border-4"
                       style={{ 
                         backgroundColor: isCurrent || isComplete 
                           ? COLORS.accent 
