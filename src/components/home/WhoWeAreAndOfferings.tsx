@@ -23,7 +23,7 @@ const OFFERINGS: Offering[] = [
     link: "#suvs"
   },
   {
-    title: "Classic / Retro Cars",
+    title: "Classics",
     image: "/we-export_2.jpg",
     link: "#classic-cars"
   },
