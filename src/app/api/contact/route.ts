@@ -108,10 +108,13 @@ export async function POST(request: NextRequest) {
     // Initialize Resend with API key
     const resend = new Resend(process.env.RESEND_API_KEY);
 
+    // Get recipient email from environment variable
+    const recipientEmail:string = `${process.env.CONTACT_EMAIL}`;
+
     // Send email via Resend
     const { data, error } = await resend.emails.send({
       from: 'We Export Cars <onboarding@resend.dev>', // Use verified domain or resend dev domain
-      to: ['kamatu.g@gmail.com'],
+      to: [recipientEmail],
       replyTo: sanitizedEmail, // Allow direct reply to customer
       subject: `New Export Inquiry - ${vehicleName}`,
       react: ContactFormEmail({
