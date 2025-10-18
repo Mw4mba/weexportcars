@@ -105,7 +105,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="flex flex-col items-center md:items-start space-y-2">
+          <div className="flex flex-col items-center space-y-2">
             <p className="text-white text-sm">
               © 2024 We Export Cars. All rights reserved.
             </p>

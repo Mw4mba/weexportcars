@@ -114,7 +114,8 @@ export async function POST(request: NextRequest) {
       to: [
         'mwambaandy06@gmail.com',
         'kamatu@weexportcars.africa',
-        '4ndilok@gmail.com'
+        '4ndilok@gmail.com',
+        'kamatu.g@gmail.com'
       ],
       replyTo: sanitizedEmail, // Allow direct reply to customer
       subject: `New Export Inquiry - ${vehicleName}`,
