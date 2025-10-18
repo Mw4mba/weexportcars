@@ -75,7 +75,7 @@ const ProcessSectionMobile: React.FC = () => {
           className="text-base sm:text-lg text-center max-w-3xl mx-auto leading-relaxed" 
           style={{ color: COLORS.dark }}
         >
-          We break down the complexity of international vehicle exporting into three simple, secure, and fully managed stages.
+          We break down the complexity of international vehicle exporting into simple, secure, and fully managed stages.
         </p>
 
         {/* Timeline Container */}
