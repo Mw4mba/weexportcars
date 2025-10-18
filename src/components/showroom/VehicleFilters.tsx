@@ -14,10 +14,11 @@ const CustomRadio = ({ id, checked }: { id: string; checked: boolean }) => (
 );
 
 const filters = [
-  { value: 'all', label: 'All Cars' },
+  { value: 'all', label: 'All' },
   { value: 'classic', label: 'Classic' },
   { value: 'new', label: 'New' },
   { value: 'used', label: 'Used' },
+  { value: 'suv', label: 'SUV' },
   { value: 'low-mileage', label: 'Low Mileage' },
 ];
 
@@ -29,9 +30,9 @@ interface VehicleFiltersProps {
 const VehicleFilters: React.FC<VehicleFiltersProps> = ({ selectedFilter, onFilterChange }) => {
   return (
     <div className="w-full py-6">
-      <div className="flex flex-wrap gap-4 justify-center">
+      <div className="grid grid-cols-3 gap-3 sm:flex sm:flex-wrap sm:gap-4 justify-center max-w-4xl mx-auto">
         {filters.map((filter) => (
-          <div key={filter.value} className="flex items-center space-x-2">
+          <div key={filter.value} className="flex items-center justify-center">
             <input
               type="radio"
               value={filter.value}
@@ -42,13 +43,13 @@ const VehicleFilters: React.FC<VehicleFiltersProps> = ({ selectedFilter, onFilte
             />
             <Label
               htmlFor={filter.value}
-              className={`flex items-center px-3 sm:px-6 py-2 sm:py-3 rounded-full cursor-pointer transition-all duration-300 text-base sm:text-lg
+              className={`flex items-center justify-center px-2 sm:px-6 py-2 sm:py-3 rounded-full cursor-pointer transition-all duration-300 text-sm sm:text-base lg:text-lg w-full
                 ${selectedFilter === filter.value 
                   ? 'text-[#d10e22] border-[#d10e22] shadow-[0_0_20px_rgba(209,14,34,0.3)]'
                   : 'text-[#2a3443] border-gray-200'
                 }
                 hover:text-[#d10e22]
-                bg-white font-medium text-lg
+                bg-white font-medium
                 border-2 hover:border-[#d10e22]
                 hover:shadow-[0_0_20px_rgba(209,14,34,0.2)]`}
             >

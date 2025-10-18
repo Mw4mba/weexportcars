@@ -4,13 +4,12 @@ import { useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Navigation from '@/components/home/navigation';
 import HeroSection from '../components/home/HeroSection';
-import AboutUsSection from '../components/home/AboutUsSection';
+import WhoWeAreAndOfferings from '../components/home/WhoWeAreAndOfferings';
 import OurProcessSection from '../components/home/OurProcessSection';
 import Hero2 from '@/components/home/Hero2';
 import OurProcess from '@/components/home/OurProcess';
 import Showroom from '@/components/home/Showroom';
 import WeServeSection from '@/components/home/WeServe';
-import WhoWeAre from '@/components/wec/WhoWeAre';
 import ResponsiveProcessSection from '@/components/home/ResponsiveProcessSection';
 
 // Lazy load heavy components that are below the fold
@@ -42,7 +41,7 @@ const InternationalMap = dynamic(() => import('@/components/home/InternationalMa
         <>
             <Navigation />
             <Hero2 />
-            <AboutUsSection />
+            <WhoWeAreAndOfferings />
             <Showroom />
             <ResponsiveProcessSection />
             <InternationalMap sectionRefs={{ international: undefined }} scrollToSection={scrollToSection} />

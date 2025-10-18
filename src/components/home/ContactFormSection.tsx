@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
-import { MessageSquare } from 'lucide-react';
+import { IoLogoWhatsapp } from 'react-icons/io5';
 import { vehicleData } from '@/lib/vehicleData';
 import { countries } from '@/lib/countries';
 import { useContactForm } from '@/contexts/ContactFormContext';
@@ -162,12 +162,12 @@ const ContactFormSection: React.FC = () => {
       {/* Overlay for better text readability */}
       <div className="absolute inset-0 bg-black/50"></div>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl lg:max-w-none mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <h2 className="text-5xl font-extrabold text-white mb-16 text-center tracking-tighter drop-shadow-lg">
           Get Started Today
         </h2>
-        <div className="flex justify-center lg:justify-end lg:pr-8 xl:pr-12">
-          <div className="w-full lg:w-[45%] xl:w-[42%] bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border-4 border-[#2a3443]/10">
+        <div className="flex justify-center lg:justify-end lg:pr-[5%] xl:pr-[8%]">
+          <div className="w-full max-w-md lg:max-w-none lg:w-[32vw] xl:w-[28vw] 2xl:w-[26vw] bg-white rounded-xl shadow-2xl overflow-hidden">
             {/* Contact Form */}
             <div className="p-8 sm:p-12">
               <form className="space-y-6" onSubmit={handleSubmit}>
@@ -335,9 +335,11 @@ const ContactFormSection: React.FC = () => {
                   href="https://wa.me/1234567890" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 text-lg font-semibold text-white bg-green-500 rounded-xl shadow-xl hover:bg-green-600 transition-all duration-300 transform hover:scale-[1.01]"
+                  className="inline-flex items-center justify-center w-14 h-14 mx-auto rounded-full bg-[#25D366] hover:bg-[#128C7E] text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110"
+                  title="Talk to an Expert on WhatsApp"
+                  aria-label="Contact us on WhatsApp"
                 >
-                  <MessageSquare className="w-6 h-6 mr-2" /> Talk to an Expert
+                  <IoLogoWhatsapp className="w-7 h-7" />
                 </a>
               </div>
             </div>

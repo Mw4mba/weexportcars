@@ -28,7 +28,7 @@ const VehicleCard: React.FC<{ vehicle: Vehicle; index?: number; visible?: boolea
         <CardContent className="p-6 space-y-4">
           <div>
             <h3 className="text-2xl font-bold text-[#2a3443]">
-              {vehicle.make} {vehicle.model}
+              {vehicle.tags.includes('Classic') ? 'Classic/Retro' : `${vehicle.make} ${vehicle.model}`}
             </h3>
             <p className="text-3xl font-bold text-[#d10e22] mt-2">{vehicle.price}</p>
           </div>

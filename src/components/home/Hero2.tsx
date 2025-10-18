@@ -77,7 +77,7 @@ export default function Hero ()  {
                     {/* Text Carousel - Left */}
                     <div className="
                     relative
-                    w-full md:w-1/2 text-left h-[320px] sm:h-[380px] md:h-[500px] flex flex-col justify-center items-start
+                    w-full md:w-2/5 lg:w-[32%] text-left h-[320px] sm:h-[380px] md:h-[500px] flex flex-col justify-center items-start
                     max-w-full
                     ">
                         <AnimatePresence initial={false} custom={1}>
@@ -112,7 +112,7 @@ export default function Hero ()  {
                     </div>
 
                     {/* Image Carousel - Right (Centered and fully visible on mobile) */}
-                    <div className="w-full md:w-1/2 order-first md:order-last flex justify-center items-center">
+                    <div className="w-full md:w-3/5 lg:w-[66%] order-first md:order-last flex justify-center items-center">
                         <div className="relative w-full flex justify-center items-center aspect-[16/9] md:aspect-[16/9] rounded-2xl shadow-2xl h-48 xs:h-56 sm:h-72 md:h-[500px] bg-white overflow-hidden">
                             <AnimatePresence initial={false} custom={1}>
                                 <motion.div

@@ -19,6 +19,8 @@ const VehicleGrid: React.FC = () => {
             return vehicle.condition === 'New';
           case 'used':
             return vehicle.condition === 'Used';
+          case 'suv':
+            return vehicle.bodyType === 'SUV';
           case 'low-mileage':
             const mileage = parseInt(vehicle.mileage.replace(/[^0-9]/g, ''));
             return mileage < 50000;

@@ -140,7 +140,7 @@ const ProcessSectionMobile: React.FC = () => {
                               : COLORS.light 
                           }}
                         >
-                          {renderProcessIcon(index, 'w-6 h-6', COLORS.dark)}
+                          {renderProcessIcon(index, 'w-6 h-6', 'white')}
                         </div>
                         <h3 
                           className="text-lg sm:text-xl md:text-2xl font-bold" 
