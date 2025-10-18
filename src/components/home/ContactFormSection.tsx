@@ -332,7 +332,7 @@ const ContactFormSection: React.FC = () => {
               <div className="mt-6 text-center">
                 <p className="text-[#2a3443] mb-3 font-medium">...or connect instantly via WhatsApp:</p>
                 <a 
-                  href="https://wa.me/1234567890" 
+                  href="https://wa.me/27100859932?text=Hello%20we%20export%20cars" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center w-14 h-14 mx-auto rounded-full bg-[#25D366] hover:bg-[#128C7E] text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110"
