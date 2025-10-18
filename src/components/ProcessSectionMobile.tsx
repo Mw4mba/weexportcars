@@ -69,7 +69,7 @@ const ProcessSectionMobile: React.FC = () => {
           className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center" 
           style={{ color: COLORS.accent }}
         >
-          Our Seamless Export Process
+          How it works
         </h2>
         <p 
           className="text-base sm:text-lg text-center max-w-3xl mx-auto leading-relaxed" 
@@ -104,7 +104,7 @@ const ProcessSectionMobile: React.FC = () => {
           />
 
           {/* Process Steps */}
-          <div className="space-y-8 sm:space-y-16">
+          <div className="space-y-0">
             {PROCESS_STEPS.map((step, index) => {
               const isCurrent = step.id === activeStep;
               const isComplete = index < activeIndex;
@@ -162,33 +162,23 @@ const ProcessSectionMobile: React.FC = () => {
                         {step.detail}
                       </div>
                     </div>
-
-                    {/* Center Timeline Checkpoint Dot */}
-                    <div 
-                      className="absolute left-1/2 top-[52px] sm:top-14 transform -translate-x-1/2 w-4 sm:w-5 h-4 sm:h-5 rounded-full z-10 transition-all duration-500 shadow-lg border-4"
-                      style={{ 
-                        backgroundColor: isCurrent || isComplete 
-                          ? COLORS.accent 
-                          : 'white', 
-                        borderColor: isCurrent || isComplete 
-                          ? COLORS.dark 
-                          : COLORS.light, 
-                        boxShadow: isCurrent 
-                          ? `0 0 0 7px ${COLORS.accent}60` 
-                          : 'none' 
-                      }}
-                    />
                   </div>
 
-                  {/* Spacing dot between steps (mobile only) */}
+                  {/* Timeline Checkpoint Dot - Between cards on mobile */}
                   {index < PROCESS_STEPS.length - 1 && (
-                    <div className="flex justify-center my-2">
+                    <div className="flex justify-center my-4 sm:my-6">
                       <div 
-                        className="w-3 h-3 rounded-full transition-all duration-500" 
+                        className="w-4 sm:w-5 h-4 sm:h-5 rounded-full z-10 transition-all duration-500 shadow-lg border-4"
                         style={{ 
                           backgroundColor: isCurrent || isComplete 
-                            ? COLORS.accent + '40' 
-                            : COLORS.light 
+                            ? COLORS.accent 
+                            : 'white', 
+                          borderColor: isCurrent || isComplete 
+                            ? COLORS.dark 
+                            : COLORS.light, 
+                          boxShadow: isCurrent 
+                            ? `0 0 0 7px ${COLORS.accent}60` 
+                            : 'none' 
                         }}
                       />
                     </div>

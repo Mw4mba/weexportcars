@@ -30,7 +30,7 @@ const OFFERINGS: Offering[] = [
   {
     title: "Export Services",
     image: "/we-export_3.jpg",
-    link: "#export",
+    link: "/#process",
     isWide: true // This one will be double width
   }
 ];

@@ -69,7 +69,7 @@ const ProcessSectionDesktop: React.FC = () => {
           className="text-5xl font-extrabold text-center" 
           style={{ color: COLORS.accent }}
         >
-          Our Seamless Export Process
+          How it works
         </h2>
         <p 
           className="text-lg text-center max-w-4xl mx-auto leading-relaxed" 

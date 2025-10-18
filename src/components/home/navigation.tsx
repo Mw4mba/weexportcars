@@ -78,14 +78,11 @@ const Navigation = () => {
             <a href="/about" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               About Us
             </a>
-            <a href="/services" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
-              Services
-            </a>
             <a href="/showroom" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               Showroom
             </a>
             <a href="/#process" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
-              Our Process
+              How it works
             </a>
             <a href="/#contact" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               Contact
@@ -152,9 +149,8 @@ const Navigation = () => {
               <div className="bg-white rounded-b-2xl border-b-2 border-[#e6e6e6] w-full max-w-full shadow-2xl flex flex-col items-center px-2 pt-8 pb-3 space-y-1">
             <a href="/" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Home</a>
             <a href="/about" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>About Us</a>
-            <a href="/services" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Services</a>
             <a href="/showroom" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Showroom</a>
-            <a href="/#process" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Our Process</a>
+            <a href="/#process" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>How it works</a>
             <a href="/#contact" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Contact</a>
           </div>
         </motion.div>
