@@ -27,9 +27,11 @@ const ShowroomHero: React.FC = () => {
           <img src="/car1.png" alt="Featured car" className="w-full h-full object-cover" />
 
           <div className={`absolute inset-0 flex items-end bg-gradient-to-t from-black/60 to-transparent ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} ref={ref}>
-            <div ref={textRef} className="p-6 md:p-10 max-w-3xl text-white">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold italic">Showroom</h1>
-              <p className="mt-3 text-lg md:text-xl text-[#d10e22] font-bold">Export Ready Cars - Luxury vehicles ready for export</p>
+            <div ref={textRef} className="p-6 md:p-10 max-w-3xl">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
+                <span className="text-[#d10e22]">Show</span><span className="text-[#2a3443]">room</span>
+              </h1>
+              <p className="mt-3 text-lg md:text-xl text-[#2a3443]/70">Export Ready Cars - Luxury vehicles ready for export</p>
             </div>
           </div>
         </div>

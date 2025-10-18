@@ -1,7 +1,18 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { COLORS, PROCESS_STEPS } from './constants';
 import { useScrollAnimation } from './useScrollAnimation';
-import { IconWrench, IconDocument, IconShip } from './Icons';
+import { 
+  IconCar, 
+  IconSearch, 
+  IconReceipt, 
+  IconMoney, 
+  IconShield, 
+  IconCheckCircle, 
+  IconClipboard, 
+  IconDocument, 
+  IconTruck, 
+  IconPackage 
+} from './Icons';
 
 const ProcessSection: React.FC = () => {
   const [activeStep, setActiveStep] = useState(PROCESS_STEPS[0].id);
@@ -43,9 +54,16 @@ const ProcessSection: React.FC = () => {
 
   const renderProcessIcon = (index: number, className?: string, color?: string) => {
     switch (index) {
-      case 0: return <IconWrench className={className} color={color} />;
-      case 1: return <IconDocument className={className} color={color} />;
-      case 2: return <IconShip className={className} color={color} />;
+      case 0: return <IconCar className={className} color={color} />;
+      case 1: return <IconSearch className={className} color={color} />;
+      case 2: return <IconReceipt className={className} color={color} />;
+      case 3: return <IconMoney className={className} color={color} />;
+      case 4: return <IconShield className={className} color={color} />;
+      case 5: return <IconCheckCircle className={className} color={color} />;
+      case 6: return <IconClipboard className={className} color={color} />;
+      case 7: return <IconDocument className={className} color={color} />;
+      case 8: return <IconTruck className={className} color={color} />;
+      case 9: return <IconPackage className={className} color={color} />;
       default: return null;
     }
   };
@@ -57,14 +75,14 @@ const ProcessSection: React.FC = () => {
           Our Seamless Export Process
         </h2>
         <p className="text-lg text-center max-w-4xl mx-auto leading-relaxed" style={{ color: COLORS.dark }}>
-          We break down the complexity of international vehicle exporting into three simple, secure, and fully managed stages.
+          From selecting your vehicle to receiving it at your destination, we handle every step with transparency and expertise. Our comprehensive 10-step process ensures a seamless export experience.
         </p>
         <div className="relative pt-16 pb-8">
           {/* Vertical Flowchart Line (Base) */}
           <div className="absolute left-1/2 transform -translate-x-1/2 w-1.5 rounded-full" style={{ top: 0, bottom: 0, backgroundColor: COLORS.dark + '30' }}></div>
           {/* Vertical Flowchart Line (Progress) */}
           <div className="absolute left-1/2 transform -translate-x-1/2 w-1.5 rounded-full transition-all duration-700 ease-out" style={{ top: 0, height: `calc(${lineProgress}% - 5px)`, backgroundColor: COLORS.accent, opacity: isVisible ? 1 : 0, transformOrigin: 'top', transitionDelay: '0.5s' }}></div>
-          <div className="space-y-24">
+          <div className="space-y-16 sm:space-y-24">
             {PROCESS_STEPS.map((step, index) => {
               const isCurrent = step.id === activeStep;
               const isComplete = index < activeIndex;
@@ -80,8 +98,8 @@ const ProcessSection: React.FC = () => {
                       opacity: isCurrent || isComplete ? 1 : 0.4,
                       border: isCurrent ? `3px solid ${COLORS.accent}` : `3px solid ${COLORS.light}`
                     }}>
-                      <div className="flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-3 mb-4 text-center sm:text-left">
-                        <div className="p-2 rounded-full transition-all duration-500 mb-1 sm:mb-0" style={{ backgroundColor: isCurrent || isComplete ? COLORS.accent : COLORS.light }}>
+                      <div className="flex flex-col sm:flex-row items-center sm:items-center gap-2 sm:gap-3 mb-4 text-center sm:text-left">
+                        <div className="p-3 rounded-full transition-all duration-500 mb-2 sm:mb-0" style={{ backgroundColor: isCurrent || isComplete ? COLORS.accent : COLORS.light }}>
                           {renderProcessIcon(index, 'w-6 h-6', COLORS.dark)}
                         </div>
                         <h3 className="text-base sm:text-xl md:text-2xl font-bold" style={{ color: COLORS.dark }}>{step.title}</h3>
@@ -92,10 +110,10 @@ const ProcessSection: React.FC = () => {
                       <div className={`absolute w-0 h-0 border-transparent border-[10px] top-6 transition-opacity duration-500 hidden sm:block`} style={{ right: index % 2 === 0 ? '-20px' : 'auto', left: index % 2 !== 0 ? '-20px' : 'auto', borderLeftColor: index % 2 === 0 ? 'white' : 'transparent', borderRightColor: index % 2 !== 0 ? 'white' : 'transparent', opacity: isCurrent || isComplete ? 1 : 0.5 }}></div>
                     </div>
                   </div>
-                  {/* Checkpoint dot between steps for mobile only */}
+                  {/* Checkpoint dot between steps for mobile only - positioned below the card */}
                   {index < PROCESS_STEPS.length - 1 && (
-                    <div className="flex sm:hidden justify-center my-2">
-                      <div className="w-5 h-5 rounded-full z-10 transition-all duration-500 shadow-lg border-4" style={{ backgroundColor: isCurrent || isComplete ? COLORS.accent : 'white', borderColor: isCurrent || isComplete ? COLORS.dark : COLORS.light, boxShadow: isCurrent ? `0 0 0 7px ${COLORS.accent}60` : 'none' }}></div>
+                    <div className="flex sm:hidden justify-center -my-8 relative z-0">
+                      <div className="w-5 h-5 rounded-full transition-all duration-500 shadow-lg border-4" style={{ backgroundColor: isCurrent || isComplete ? COLORS.accent : 'white', borderColor: isCurrent || isComplete ? COLORS.dark : COLORS.light, boxShadow: isCurrent ? `0 0 0 7px ${COLORS.accent}60` : 'none' }}></div>
                     </div>
                   )}
                 </React.Fragment>

@@ -35,7 +35,14 @@ export const FEATURED_CARS = [
 ];
 
 export const PROCESS_STEPS = [
-    { id: 'step-1', title: "1. Consultation & Quote", detail: "We discuss your dream car, destination, and provide a transparent, all-inclusive quote, ensuring clarity from the start. This includes all logistics, insurance, and duties assessments." },
-    { id: 'step-2', title: "2. Documentation & Purchase", detail: "We meticulously handle all local paperwork, including bank financing assistance, VAT exemption applications, and secure the final purchase of your vehicle, managing complexity for you. Full ownership transfer documentation is prepared." },
-    { id: 'step-3', title: "3. Logistics & Delivery", detail: "Expert, fully insured shipping, tracking, and final delivery, right to your selected port or door-to-door location worldwide. We manage customs clearance and final handover for a seamless experience." },
+    { id: 'step-1', title: "1. Selecting Your Vehicle", detail: "Choose your preferred vehicle from www.cars.co.za or www.autotrader.co.za and forward the link to us via WhatsApp or email." },
+    { id: 'step-2', title: "2. Due Diligence", detail: "We conduct thorough due diligence on both the vehicle and the seller. The vehicle's VIN number is processed through First Check to verify no accidents or theft reports." },
+    { id: 'step-3', title: "3. Invoicing", detail: "You receive a detailed invoice outlining all charges including vehicle inspection, police clearance, export permit, customs documentation, freight, and logistics services." },
+    { id: 'step-4', title: "4. Payment & Vehicle Collection", detail: "Upon confirmation of funds received, payment is remitted to the dealership, and arrangements are made to collect the vehicle." },
+    { id: 'step-5', title: "5. Police Clearance", detail: "The vehicle is presented to the South African Police Service for clearance. A certificate is issued confirming the vehicle has not been reported as stolen." },
+    { id: 'step-6', title: "6. Roadworthy Inspection", detail: "In certain countries, imported vehicles must be certified as roadworthy. We handle the inspection process through Dekra on your behalf." },
+    { id: 'step-7', title: "7. Export Permit", detail: "We handle the application for your vehicle's export permit through the International Trade Administration Commission of South Africa." },
+    { id: 'step-8', title: "8. Customs Documents", detail: "Final documents necessary for export are prepared and presented to the designated shipping line, airline, or border authorities." },
+    { id: 'step-9', title: "9. Delivery", detail: "We provide multiple delivery options including air, road, and sea transport. Our team offers expert recommendations tailored to your destination country." },
+    { id: 'step-10', title: "10. Receiving Your Vehicle", detail: "The vehicle is handled by your designated clearing agent, who will inspect and receive the vehicle on your behalf." },
 ];

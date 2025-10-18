@@ -54,3 +54,46 @@ export const IconShip = ({ className = 'w-6 h-6', color = COLORS.dark }: { class
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 19.5L14.5 5.25m5.75 0l-.82 1.429M6.5 19.5h11a2 2 0 002-2v-4a2 2 0 00-2-2h-11a2 2 0 00-2 2v4a2 2 0 002 2zm3-4.5h2m-2 4.5h2m-6-4.5h2m-2 4.5h2M15.5 15h2M15.5 19.5h2"/>
     </svg>
 );
+
+export const IconCar = ({ className = 'w-6 h-6', color = COLORS.dark }: { className?: string; color?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke={color} strokeWidth="1.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M8 17a2 2 0 100-4 2 2 0 000 4zm8 0a2 2 0 100-4 2 2 0 000 4zM2 12l2-5h16l2 5m-20 0h20m-20 0v5a2 2 0 002 2h16a2 2 0 002-2v-5"/>
+    </svg>
+);
+
+export const IconSearch = ({ className = 'w-6 h-6', color = COLORS.dark }: { className?: string; color?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke={color} strokeWidth="1.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+    </svg>
+);
+
+export const IconReceipt = ({ className = 'w-6 h-6', color = COLORS.dark }: { className?: string; color?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke={color} strokeWidth="1.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" />
+    </svg>
+);
+
+export const IconCheckCircle = ({ className = 'w-6 h-6', color = COLORS.dark }: { className?: string; color?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke={color} strokeWidth="1.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+);
+
+export const IconClipboard = ({ className = 'w-6 h-6', color = COLORS.dark }: { className?: string; color?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke={color} strokeWidth="1.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+    </svg>
+);
+
+export const IconTruck = ({ className = 'w-6 h-6', color = COLORS.dark }: { className?: string; color?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke={color} strokeWidth="1.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6 0a1 1 0 001 1h2a1 1 0 001-1m0 0h1a1 1 0 001-1v-1a1 1 0 00-1-1h-1m-6 0h6" />
+    </svg>
+);
+
+export const IconPackage = ({ className = 'w-6 h-6', color = COLORS.dark }: { className?: string; color?: string }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke={color} strokeWidth="1.5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+    </svg>
+);
+

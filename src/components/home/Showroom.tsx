@@ -33,14 +33,14 @@ const Showroom = memo(() => {
   return (
   <section id="showroom" className="py-20 bg-[#e6e6e6]" ref={sectionRef}>
       <div className="container mx-auto px-4">
-        {/* Title Section - Centered on mobile/tablet, bottom layout on large screens */}
-        <div className="text-center lg:text-left mb-16 lg:flex lg:items-end lg:justify-start lg:gap-6">
-          <h2 className={`text-4xl lg:text-5xl font-bold text-[#2a3443] mb-6 lg:mb-0 ${
+        {/* Title Section - Stacked vertically, centered */}
+        <div className="text-center mb-16">
+          <h2 className={`text-4xl lg:text-5xl font-bold mb-6 ${
             isVisible ? 'animate-fade-in-up' : 'opacity-0'
           }`}>
             Featured <span className="text-[#d10e22]">Showroom</span>
           </h2>
-          <p className={`text-xl text-[#2a3443]/70 max-w-3xl mx-auto lg:mx-0 lg:max-w-2xl lg:pb-1 ${
+          <p className={`text-xl text-[#2a3443]/70 max-w-3xl mx-auto ${
             isVisible ? 'animate-fade-in-up' : 'opacity-0'
           }`} style={{ animationDelay: '0.2s' }}>
             Discover our premium collection of export-ready vehicles, carefully selected and prepared for international delivery

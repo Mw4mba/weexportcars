@@ -1,7 +1,7 @@
 'use client';
 import Navigation from '@/components/home/navigation';
 import ShowroomHero from '@/components/showroom/ShowroomHero';
-import VehicleGrid from '@/components/showroom/VehicleGrid';
+import VehicleGridWrapper from '@/components/showroom/VehicleGridWrapper';
 import { useEffect } from 'react';
 
 // Client-side metadata update for showroom page
@@ -32,7 +32,7 @@ const ShowroomPage = () => {
         <ShowroomHero />
         <section className="py-20 bg-secondary/30">
           <div className="container mx-auto px-4">
-            <VehicleGrid />
+            <VehicleGridWrapper />
           </div>
         </section>
       </main>

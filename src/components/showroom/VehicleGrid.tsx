@@ -1,10 +1,21 @@
 import React from 'react';
+import { useSearchParams } from 'next/navigation';
 import VehicleCard from './VehicleCard';
 import VehicleFilters from './VehicleFilters';
 import { vehicleData } from '@/lib/vehicleData';
 
 const VehicleGrid: React.FC = () => {
+  const searchParams = useSearchParams();
+  const filterParam = searchParams.get('filter');
+  
   const [selectedFilter, setSelectedFilter] = React.useState('all');
+
+  // Set filter from URL parameter on mount
+  React.useEffect(() => {
+    if (filterParam) {
+      setSelectedFilter(filterParam);
+    }
+  }, [filterParam]);
 
   // Filter vehicles based on selected filter
   const filteredVehicles = React.useMemo(() => {

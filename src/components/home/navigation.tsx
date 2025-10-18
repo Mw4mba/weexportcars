@@ -2,10 +2,23 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  
+  // Determine if we're on the About page
+  const isAboutPage = pathname === '/about';
+  
+  // Determine text color based on About page status and scroll position
+  const getTextColor = () => {
+    if (isAboutPage && !scrolled) {
+      return 'text-white'; // White when on About page and not scrolled
+    }
+    return 'text-[#2a3443]'; // Dark text otherwise
+  };
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -59,22 +72,22 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8 justify-center flex-1">
-            <a href="/" className="text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium">
+            <a href="/" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               Home
             </a>
-            <a href="/about" className="text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium">
+            <a href="/about" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               About Us
             </a>
-            <a href="/services" className="text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium">
+            <a href="/services" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               Services
             </a>
-            <a href="/showroom" className="text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium">
+            <a href="/showroom" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               Showroom
             </a>
-            <a href="/#process" className="text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium">
+            <a href="/#process" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               Our Process
             </a>
-            <a href="/#contact" className="text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium">
+            <a href="/#contact" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               Contact
             </a>
           </div>

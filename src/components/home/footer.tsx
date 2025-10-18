@@ -105,9 +105,22 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-white text-sm">
-            © 2024 We Export Cars. All rights reserved.
-          </p>
+          <div className="flex flex-col items-center md:items-start space-y-2">
+            <p className="text-white text-sm">
+              © 2024 We Export Cars. All rights reserved.
+            </p>
+            <p className="text-white/70 text-xs">
+              Powered by{' '}
+              <a 
+                href="https://luboya.dev" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white hover:text-[#d10e22] transition-quick font-medium"
+              >
+                Luboya.dev
+              </a>
+            </p>
+          </div>
           <div className="flex space-x-6 text-sm">
             <a href="#" className="text-white hover:text-white/80 transition-quick">
               Privacy Policy
