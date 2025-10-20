@@ -22,6 +22,13 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.weexportcars.africa',
+        pathname: '/wp-content/uploads/**',
+      },
+    ],
   },
   
   // Compiler optimizations
