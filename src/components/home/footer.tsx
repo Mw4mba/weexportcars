@@ -104,11 +104,27 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="flex flex-col items-center space-y-2">
+        <div className="border-t border-white/20 pt-8">
+          {/* Copyright and Links Row */}
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 mb-4">
             <p className="text-white text-sm">
               © 2024 We Export Cars. All rights reserved.
             </p>
+            <div className="flex space-x-6 text-sm">
+              <a href="#" className="text-white hover:text-white/80 transition-quick">
+                Privacy Policy
+              </a>
+              <a href="#" className="text-white hover:text-white/80 transition-quick">
+                Terms of Service
+              </a>
+              <a href="#" className="text-white hover:text-white/80 transition-quick">
+                Cookie Policy
+              </a>
+            </div>
+          </div>
+          
+          {/* Centered Powered By Row */}
+          <div className="flex justify-center">
             <p className="text-white/70 text-xs">
               Powered by{' '}
               <a 
@@ -120,17 +136,6 @@ const Footer = () => {
                 Luboya.dev
               </a>
             </p>
-          </div>
-          <div className="flex space-x-6 text-sm">
-            <a href="#" className="text-white hover:text-white/80 transition-quick">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-white hover:text-white/80 transition-quick">
-              Terms of Service
-            </a>
-            <a href="#" className="text-white hover:text-white/80 transition-quick">
-              Cookie Policy
-            </a>
           </div>
         </div>
       </div>
