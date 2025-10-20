@@ -9,13 +9,14 @@ const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   
-  // Determine if we're on the About page
+  // Determine if we're on the About or Gallery page
   const isAboutPage = pathname === '/about';
+  const isGalleryPage = pathname === '/gallery';
   
-  // Determine text color based on About page status and scroll position
+  // Determine text color based on page status and scroll position
   const getTextColor = () => {
-    if (isAboutPage && !scrolled) {
-      return 'text-white'; // White when on About page and not scrolled
+    if ((isAboutPage || isGalleryPage) && !scrolled) {
+      return 'text-white'; // White when on About/Gallery page and not scrolled
     }
     return 'text-[#2a3443]'; // Dark text otherwise
   };
@@ -78,8 +79,8 @@ const Navigation = () => {
             <a href="/about" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               About Us
             </a>
-            <a href="/showroom" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
-              Showroom
+            <a href="/gallery" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
+              Gallery
             </a>
             <a href="/#process" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               How it works
@@ -149,7 +150,7 @@ const Navigation = () => {
               <div className="bg-white rounded-b-2xl border-b-2 border-[#e6e6e6] w-full max-w-full shadow-2xl flex flex-col items-center px-2 pt-8 pb-3 space-y-1">
             <a href="/" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Home</a>
             <a href="/about" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>About Us</a>
-            <a href="/showroom" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Showroom</a>
+            <a href="/gallery" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Gallery</a>
             <a href="/#process" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>How it works</a>
             <a href="/#contact" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Contact</a>
           </div>

@@ -1,0 +1,23 @@
+// Gallery images from weexport 2 folder
+export const GALLERY_IMAGES = [
+  '/weexport 2/IMG-20251020-WA0011.jpg',
+  '/weexport 2/IMG-20251020-WA0012.jpg',
+  '/weexport 2/IMG-20251020-WA0013.jpg',
+  '/weexport 2/IMG-20251020-WA0014.jpg',
+  '/weexport 2/IMG-20251020-WA0015.jpg',
+  '/weexport 2/IMG-20251020-WA0016.jpg',
+  '/weexport 2/IMG-20251020-WA0017.jpg',
+  '/weexport 2/IMG-20251020-WA0018.jpg',
+  '/weexport 2/IMG-20251020-WA0019.jpg',
+  '/weexport 2/IMG-20251020-WA0020.jpg',
+  '/weexport 2/IMG-20251020-WA0021.jpg',
+  '/weexport 2/IMG-20251020-WA0022.jpg',
+  '/weexport 2/IMG-20251020-WA0023.jpg',
+  '/weexport 2/IMG-20251020-WA0024.jpg',
+  '/weexport 2/IMG-20251020-WA0025.jpg',
+  '/weexport 2/IMG-20251020-WA0026.jpg',
+  '/weexport 2/IMG-20251020-WA0027.jpg',
+  '/weexport 2/IMG-20251020-WA0028.jpg',
+  '/weexport 2/IMG-20251020-WA0029.jpg',
+  '/weexport 2/IMG-20251020-WA0030.jpg',
+];

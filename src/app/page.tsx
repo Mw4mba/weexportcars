@@ -8,7 +8,7 @@ import WhoWeAreAndOfferings from '../components/home/WhoWeAreAndOfferings';
 import OurProcessSection from '../components/home/OurProcessSection';
 import Hero2 from '@/components/home/Hero2';
 import OurProcess from '@/components/home/OurProcess';
-import Showroom from '@/components/home/Showroom';
+import GalleryCarousel from '@/components/home/GalleryCarousel';
 import WeServeSection from '@/components/home/WeServe';
 import ResponsiveProcessSection from '@/components/home/ResponsiveProcessSection';
 
@@ -42,7 +42,7 @@ const InternationalMap = dynamic(() => import('@/components/home/InternationalMa
             <Navigation />
             <Hero2 />
             <WhoWeAreAndOfferings />
-            <Showroom />
+            <GalleryCarousel />
             <ResponsiveProcessSection />
             <InternationalMap sectionRefs={{ international: undefined }} scrollToSection={scrollToSection} />
             <ContactFormSection />
