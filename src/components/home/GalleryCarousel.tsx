@@ -57,7 +57,7 @@ const GalleryCarousel = memo(() => {
             </button>
 
             {/* Main Carousel */}
-            <div className="flex-1 overflow-hidden rounded-3xl shadow-2xl border-4 border-[#d10e22] bg-white">
+            <div className="flex-1 overflow-hidden rounded-3xl shadow-2xl bg-white">
               <div className="flex transition-transform duration-700 ease-out"
                    style={{ transform: `translateX(-${currentImage * 100}%)` }}>
                 {featuredImages.map((imageSrc, index) => (
@@ -96,7 +96,7 @@ const GalleryCarousel = memo(() => {
           </div>
 
           {/* Mobile: Full-width carousel */}
-          <div className="md:hidden overflow-hidden rounded-3xl shadow-2xl border-4 border-[#d10e22] bg-white">
+          <div className="md:hidden overflow-hidden rounded-3xl shadow-2xl bg-white">
             <div className="flex transition-transform duration-700 ease-out"
                  style={{ transform: `translateX(-${currentImage * 100}%)` }}>
               {featuredImages.map((imageSrc, index) => (
