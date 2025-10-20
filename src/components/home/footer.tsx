@@ -51,7 +51,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#process" className="text-white hover:text-white/80 transition-quick">
+                <a href="/#process" className="text-white hover:text-white/80 transition-quick">
                   How it works
                 </a>
               </li>

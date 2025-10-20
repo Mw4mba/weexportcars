@@ -1,6 +1,5 @@
 import React from 'react';
 import Navigation from '@/components/home/navigation';
-import Footer from '@/components/home/footer';
 import AboutContent from './components/AboutContent';
 import { Metadata } from 'next';
 
@@ -24,7 +23,6 @@ export default function AboutPage() {
     <main className="min-h-screen bg-[#f8f9fa] flex flex-col">
       <Navigation />
       <AboutContent />
-      <Footer />
     </main>
   );
 }
