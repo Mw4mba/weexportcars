@@ -69,15 +69,6 @@ const Footer = () => {
                 </a>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="h-4 w-4 text-white" />
-                <a 
-                  href="mailto:info@weexportcars.africa?subject=Inquiry%20about%20Vehicle%20Export&body=Hello%20We%20Export%20Cars%2C%0A%0AI%20am%20interested%20in%20your%20vehicle%20export%20services.%20Please%20provide%20more%20information.%0A%0ABest%20regards" 
-                  className="text-white hover:text-white/80 transition-quick"
-                >
-                  info@weexportcars.africa
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
                 <MapPin className="h-4 w-4 text-white" />
                 <a 
                   href="https://www.google.com/maps/search/?api=1&query=66+Park+Lane+Sandton+Johannesburg"
