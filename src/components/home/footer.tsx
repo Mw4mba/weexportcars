@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="gradient-hero pt-16 pb-8 bg-[#2a3443]">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
           
           {/* Company Info */}
           <div className="space-y-6">
@@ -58,17 +58,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Services */}
-          <div>
-            <h4 className="font-semibold mb-6 text-lg text-red-500">Services</h4>
-            <ul className="space-y-3">
-              <li className="text-white">VAT Free Export</li>
-              <li className="text-white">Bank Financing</li>
-              <li className="text-white">Full Insurance</li>
-              <li className="text-white">Global Shipping</li>
-            </ul>
-          </div>
-
           {/* Contact Info */}
           <div>
             <h4 className="font-semibold mb-6 text-lg text-red-500">Contact Info</h4>
@@ -82,10 +71,10 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 text-white" />
                 <a 
-                  href="mailto:kamatu@weexportcars.africa?subject=Inquiry%20about%20Vehicle%20Export&body=Hello%20We%20Export%20Cars%2C%0A%0AI%20am%20interested%20in%20your%20vehicle%20export%20services.%20Please%20provide%20more%20information.%0A%0ABest%20regards" 
+                  href="mailto:info@weexportcars.africa?subject=Inquiry%20about%20Vehicle%20Export&body=Hello%20We%20Export%20Cars%2C%0A%0AI%20am%20interested%20in%20your%20vehicle%20export%20services.%20Please%20provide%20more%20information.%0A%0ABest%20regards" 
                   className="text-white hover:text-white/80 transition-quick"
                 >
-                  kamatu@weexportcars.africa
+                  info@weexportcars.africa
                 </a>
               </div>
               <div className="flex items-center space-x-3">
