@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, easeInOut } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
+import { GALLERY_IMAGES } from '@/lib/galleryData';
 
 
 const heroTextContent = [
@@ -20,26 +22,35 @@ const heroTextContent = [
     },
 ];
 
+// Use images from gallery for the hero carousel (select 8 images)
 const heroImageContent = [
-    '/we-export_1.png',
-    '/we-export_2.jpg',
-    '/we-export_3.jpg',
-];
-
-// Fallbacks to external images if local ones are not provided in /public
-const heroImageFallback = [
-    "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    GALLERY_IMAGES[0],  // First image
+    GALLERY_IMAGES[4],  // Fifth image
+    GALLERY_IMAGES[8],  // Ninth image
+    GALLERY_IMAGES[12], // Thirteenth image
+    GALLERY_IMAGES[16], // Seventeenth image
+    GALLERY_IMAGES[2],  // Third image
+    GALLERY_IMAGES[10], // Eleventh image
+    GALLERY_IMAGES[18], // Nineteenth image
 ];
 
 export default function Hero ()  {
-    const [index, setIndex] = useState(0);
+    const [textIndex, setTextIndex] = useState(0);
+    const [imageIndex, setImageIndex] = useState(0);
 
+    // Text carousel changes every 5 seconds
     useEffect(() => {
         const interval = setInterval(() => {
-            setIndex(prevIndex => (prevIndex + 1) % heroTextContent.length);
+            setTextIndex(prevIndex => (prevIndex + 1) % heroTextContent.length);
         }, 5000);
+        return () => clearInterval(interval);
+    }, []);
+
+    // Image carousel changes every 3 seconds (independent from text)
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setImageIndex(prevIndex => (prevIndex + 1) % heroImageContent.length);
+        }, 3000);
         return () => clearInterval(interval);
     }, []);
 
@@ -83,7 +94,7 @@ export default function Hero ()  {
                     ">
                         <AnimatePresence initial={false} custom={1}>
                             <motion.div
-                                key={index}
+                                key={textIndex}
                                 custom={1}
                                 variants={textFadeUpVariants}
                                 initial="hidden"
@@ -94,10 +105,10 @@ export default function Hero ()  {
                                 <div className="flex flex-col items-center md:items-start w-full">
                                     <span className="text-[#d10e22] text-sm sm:text-base md:text-lg font-semibold uppercase tracking-widest mb-2 block break-words text-balance text-center md:text-left">Premium Vehicle Export</span>
                                     <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#2a3443] mb-3 md:mb-4 leading-[1.15] sm:leading-tight break-words text-balance max-w-[500px] sm:max-w-[550px] md:max-w-full text-center md:text-left">
-                                        {heroTextContent[index].title}
+                                        {heroTextContent[textIndex].title}
                                     </h1>
                                     <p className="text-base sm:text-lg text-[#2a3443]/80 mb-6 md:mb-8 break-words text-balance max-w-[450px] sm:max-w-[500px] md:max-w-full leading-relaxed text-center md:text-left">
-                                        {heroTextContent[index].subtitle}
+                                        {heroTextContent[textIndex].subtitle}
                                     </p>
                                 </div>
                             </motion.div>
@@ -114,10 +125,10 @@ export default function Hero ()  {
 
                     {/* Image Carousel - Right (Centered and fully visible on mobile) */}
                     <div className="w-full md:w-3/5 lg:w-[66%] order-first md:order-last flex justify-center items-center">
-                        <div className="relative w-full flex justify-center items-center aspect-[16/9] md:aspect-[16/9] rounded-2xl shadow-2xl h-48 xs:h-56 sm:h-72 md:h-[500px] bg-white overflow-hidden">
+                        <div className="relative w-full flex justify-center items-center aspect-[16/9] md:aspect-[16/9] rounded-2xl shadow-2xl h-48 xs:h-56 sm:h-72 md:h-[500px] bg-white overflow-hidden group">
                             <AnimatePresence initial={false} custom={1}>
                                 <motion.div
-                                    key={index}
+                                    key={imageIndex}
                                     custom={1}
                                     variants={slideVariants}
                                     initial="hidden"
@@ -126,18 +137,23 @@ export default function Hero ()  {
                                     className="w-full h-full relative"
                                 >
                                     <Image
-                                        src={heroImageContent[index]}
+                                        src={heroImageContent[imageIndex]}
                                         alt="Premium Car"
                                         fill
-                                        priority={index === 0}
+                                        priority={imageIndex === 0}
                                         sizes="(max-width: 768px) 100vw, 50vw"
                                         className="object-cover rounded-2xl"
-                                        onError={(e) => { 
-                                            const t = e.currentTarget as HTMLImageElement; 
-                                            t.onerror = null; 
-                                            t.src = heroImageFallback[index];
-                                        }}
                                     />
+                                    
+                                    {/* Overlay gradient for button visibility */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                    
+                                    {/* View Gallery Button */}
+                                    <Link href="/gallery">
+                                        <div className="absolute bottom-4 right-4 px-4 sm:px-6 py-2 sm:py-3 bg-[#d10e22] text-white text-sm sm:text-base font-semibold rounded-xl shadow-lg hover:bg-[#b00c1b] transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-105 cursor-pointer">
+                                            View More in Gallery
+                                        </div>
+                                    </Link>
                                 </motion.div>
                             </AnimatePresence>
                         </div>
