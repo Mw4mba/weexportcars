@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Navigation from '@/components/home/navigation';
-import Footer from '@/components/home/footer';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import { TESTIMONIALS } from '@/lib/testimonialsData';
 
@@ -154,8 +153,6 @@ const TestimonialsPage = () => {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 };
