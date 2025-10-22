@@ -1,5 +1,14 @@
-// Gallery images from weexport-2 folder
+// Gallery images from we_export_3 and weexport-2 folders
 export const GALLERY_IMAGES = [
+  '/we_export_3/IMG-20251022-WA0001.jpg',
+  '/we_export_3/IMG-20251022-WA0002.jpg',
+  '/we_export_3/IMG-20251022-WA0003.jpg',
+  '/we_export_3/IMG-20251022-WA0004.jpg',
+  '/we_export_3/IMG-20251022-WA0005.jpg',
+  '/we_export_3/IMG-20251022-WA0006.jpg',
+  '/we_export_3/IMG-20251022-WA0007.jpg',
+  '/we_export_3/IMG-20251022-WA0008.jpg',
+  '/we_export_3/IMG-20251022-WA0009.jpg',
   '/weexport-2/IMG-20251020-WA0011.jpg',
   '/weexport-2/IMG-20251020-WA0012.jpg',
   '/weexport-2/IMG-20251020-WA0013.jpg',
