@@ -61,10 +61,6 @@ const WhoWeAreAndOfferings: React.FC = memo(() => {
                     <h4 className="text-2xl font-bold tracking-wide">
                       {offering.title}
                     </h4>
-                    <div className="flex items-center gap-2">
-                      <span className="text-base font-semibold">Learn More</span>
-                      <ArrowRight className="w-5 h-5" />
-                    </div>
                   </div>
                 </div>
               </a>

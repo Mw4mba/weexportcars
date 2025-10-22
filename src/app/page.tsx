@@ -11,6 +11,7 @@ import OurProcess from '@/components/home/OurProcess';
 import GalleryCarousel from '@/components/home/GalleryCarousel';
 import WeServeSection from '@/components/home/WeServe';
 import ResponsiveProcessSection from '@/components/home/ResponsiveProcessSection';
+import TestimonialsSection from '@/components/home/TestimonialsSection';
 
 // Lazy load heavy components that are below the fold
 const ContactFormSection = dynamic(() => import('@/components/home/ContactFormSection'), {
@@ -44,6 +45,7 @@ const InternationalMap = dynamic(() => import('@/components/home/InternationalMa
             <WhoWeAreAndOfferings />
             <GalleryCarousel />
             <ResponsiveProcessSection />
+            <TestimonialsSection />
             <InternationalMap sectionRefs={{ international: undefined }} scrollToSection={scrollToSection} />
             <ContactFormSection />
         </>

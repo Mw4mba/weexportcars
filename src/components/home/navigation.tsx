@@ -9,16 +9,26 @@ const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   
-  // Determine if we're on the About or Gallery page
+  // Determine if we're on the About, Gallery, or Testimonials page
   const isAboutPage = pathname === '/about';
   const isGalleryPage = pathname === '/gallery';
+  const isTestimonialsPage = pathname === '/testimonials';
+  
+  // navbg_dark() - Called whenever the background is dark to the point that it affects visibility
+  // Makes text white when background is dark, returns to natural color when background becomes white
+  const navbg_dark = () => {
+    if ((isAboutPage || isGalleryPage || isTestimonialsPage) && !scrolled) {
+      return true; // Dark background - use white text
+    }
+    return false; // Light background - use natural dark text
+  };
   
   // Determine text color based on page status and scroll position
   const getTextColor = () => {
-    if ((isAboutPage || isGalleryPage) && !scrolled) {
-      return 'text-white'; // White when on About/Gallery page and not scrolled
+    if (navbg_dark()) {
+      return 'text-white'; // White when on pages with dark background and not scrolled
     }
-    return 'text-[#2a3443]'; // Dark text otherwise
+    return 'text-[#2a3443]'; // Dark text otherwise (natural color)
   };
 
   useEffect(() => {
@@ -82,6 +92,9 @@ const Navigation = () => {
             <a href="/gallery" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               Gallery
             </a>
+            <a href="/testimonials" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
+              Testimonials
+            </a>
             <a href="/#process" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               How it works
             </a>
@@ -125,7 +138,7 @@ const Navigation = () => {
               className="p-2 rounded-full bg-transparent"
               onClick={() => setIsOpen(!isOpen)}
             >
-              {isOpen ? <X className="h-6 w-6 text-[#2a3443]" /> : <Menu className="h-6 w-6 text-[#2a3443]" />}
+              {isOpen ? <X className={`h-6 w-6 ${getTextColor()}`} /> : <Menu className={`h-6 w-6 ${getTextColor()}`} />}
             </button>
           </div>
         </div>
@@ -151,6 +164,7 @@ const Navigation = () => {
             <a href="/" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Home</a>
             <a href="/about" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>About Us</a>
             <a href="/gallery" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Gallery</a>
+            <a href="/testimonials" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Testimonials</a>
             <a href="/#process" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>How it works</a>
             <a href="/#contact" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Contact</a>
           </div>
