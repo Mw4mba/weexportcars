@@ -6,9 +6,9 @@ const DARK_TEXT_COLOR = '#2a3443';
 const ACCENT_COLOR = '#d10e22';
 const BG_LIGHT_COLOR = '#e6e6e6';
 const HERO_SLIDES = [
-  { id: 1, text: "Global Export Simplified", subtext: "Experience seamless vehicle exportation from start to finish. We handle the logistics so you can focus on the destination.", image: `https://placehold.co/800x600/${DARK_TEXT_COLOR.substring(1)}/${BG_LIGHT_COLOR.substring(1)}?text=Modern+Performance+Car`, imageAlt: "Modern performance car ready for export" },
-  { id: 2, text: "Trusted Worldwide Network", subtext: "Our extensive partner network ensures safe, timely, and compliant delivery to over 50 countries.", image: `https://placehold.co/800x600/${DARK_TEXT_COLOR.substring(1)}/${BG_LIGHT_COLOR.substring(1)}?text=Car+on+Container+Ship`, imageAlt: "Car secured on a container ship for international transport" },
-  { id: 3, text: "Custom Solutions, Zero Stress", subtext: "From documentation to VAT refunds, we offer bespoke export solutions tailored to your specific needs.", image: `https://placehold.co/800x600/${DARK_TEXT_COLOR.substring(1)}/${BG_LIGHT_COLOR.substring(1)}?text=Detailed+Shipping+Documents`, imageAlt: "Close-up of shipping documents and vehicle keys" },
+  { id: 1, text: "Global Export Simplified", subtext: "Experience seamless vehicle exportation from start to finish. We handle the logistics so you can focus on the destination.", image: '/hero-car-1.jpg', imageAlt: "Modern performance car ready for export" },
+  { id: 2, text: "Trusted Worldwide Network", subtext: "Our extensive partner network ensures safe, timely, and compliant delivery to over 50 countries.", image: '/hero-car-2.jpg', imageAlt: "Car secured on a container ship for international transport" },
+  { id: 3, text: "Custom Solutions, Zero Stress", subtext: "From documentation to VAT refunds, we offer bespoke export solutions tailored to your specific needs.", image: '/hero-car-3.jpg', imageAlt: "Close-up of shipping documents and vehicle keys" },
 ];
 
 const HeroSection: React.FC = () => {

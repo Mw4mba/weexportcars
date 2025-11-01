@@ -98,7 +98,7 @@ const Navigation = () => {
           {/* Logo - Clickable home button */}
           <a href="/" className="flex items-center space-x-4 hover:opacity-80 transition-opacity" aria-label="Go to homepage">
             <NextImage 
-              src="https://www.weexportcars.africa/wp-content/uploads/2024/04/logo-dark.png" 
+              src="/logo-dark.png" 
               alt="We Export Cars"
               width={150}
               height={48}

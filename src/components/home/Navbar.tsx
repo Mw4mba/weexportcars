@@ -2,7 +2,7 @@ import React from 'react';
 import { X, Menu } from 'lucide-react';
 import Image from 'next/image';
 
-const LOGO_URL = 'https://www.weexportcars.africa/wp-content/uploads/2024/04/logo-dark.p';
+const LOGO_URL = '/logo-dark.png';
 const BG_LIGHT_COLOR = '#e6e6e6';
 const DARK_TEXT_COLOR = '#2a3443';
 const ACCENT_COLOR = '#d10e22';
@@ -20,12 +20,7 @@ const Navbar: React.FC = () => {
             alt="We Export Cars Logo" 
             width={150}
             height={40}
-            className="h-10 w-auto" 
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.onerror = null;
-              target.src = `https://placehold.co/200x40/${DARK_TEXT_COLOR.substring(1)}/${BG_LIGHT_COLOR.substring(1)}?text=LOGO`;
-            }} // Fallback
+            className="h-10 w-auto"
           />
         </div>
         {/* Desktop Navigation Links */}

@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="space-y-6">
             <a href="/" className="inline-block hover:opacity-80 transition-opacity" aria-label="Go to homepage">
               <Image 
-                src="https://www.weexportcars.africa/wp-content/uploads/2024/04/logo-dark.png" 
+                src="/logo-dark.png" 
                 alt="We Export Cars"
                 width={150}
                 height={48}

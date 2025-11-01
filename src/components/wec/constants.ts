@@ -6,32 +6,33 @@ export const COLORS = {
   accent: '#d10e22',
 };
 
-export const LOGO_URL = 'https://www.weexportcars.africa/wp-content/uploads/2024/04/logo-dark.p';
-export const NAV_LINKS = ['Home', 'About Us', 'Services', 'Showroom', 'Process', 'Contact'];
+export const NAV_LINKS = ['Home', 'About', 'Services', 'Process', 'Showroom', 'Contact'];
+
+export const LOGO_URL = '/logo-dark.png';
 
 export const CAROUSEL_SLIDES = [
   {
-    image: 'https://placehold.co/800x600/2a3443/e6e6e6?text=The+Best+of+SA+Exports',
-    textTitle: 'Exporting Premium Cars, Simplified.',
-    textSubtitle: 'Sourcing and shipping luxury vehicles from South Africa to the world, seamlessly and securely.',
+    textTitle: 'The Best of SA Exports',
+    textSubtitle: 'Experience seamless vehicle exportation from South Africa with our trusted team of professionals.',
+    image: '/hero-car-1.jpg',
   },
   {
-    image: 'https://placehold.co/800x600/d10e22/e6e6e6?text=Global+Reach+Expertise',
-    textTitle: 'Global Reach, Local Expertise.',
-    textSubtitle: 'Trusted logistics, comprehensive insurance, and worldwide delivery handled by professionals.',
+    textTitle: 'Global Reach & Expertise',
+    textSubtitle: 'Partnering with reliable logistics networks to deliver excellence across continents.',
+    image: '/hero-car-2.jpg',
   },
   {
-    image: 'https://placehold.co/800x600/2a3443/e6e6e6?text=VAT+FREE+Shipping',
-    textTitle: 'VAT Free Exporting.',
-    textSubtitle: 'Maximize your investment with our VAT-free export process and competitive financing options.',
+    textTitle: 'VAT FREE Shipping',
+    textSubtitle: 'Get maximum value on your export with our VAT-free shipping solutions.',
+    image: '/hero-car-3.jpg',
   },
 ];
 
 export const FEATURED_CARS = [
-    { model: 'Mercedes-Benz S-Class', year: 2023, price: 'P.O.A', img: 'https://placehold.co/400x300/a3a3a3/2a3443?text=S-Class' },
-    { model: 'Range Rover Velar', year: 2024, price: 'P.O.A', img: 'https://placehold.co/400x300/b3b3b3/2a3443?text=Velar' },
-    { model: 'Porsche 911', year: 2022, price: 'P.O.A', img: 'https://placehold.co/400x300/c3c3c3/2a3443?text=911+GT3' },
-    { model: 'BMW X7', year: 2023, price: 'P.O.A', img: 'https://placehold.co/400x300/d3d3d3/2a3443?text=BMW+X7' },
+    { model: 'Mercedes-Benz S-Class', year: 2023, price: 'P.O.A', img: '/vehicles/mercedes-amg.jpg' },
+    { model: 'Range Rover Velar', year: 2024, price: 'P.O.A', img: '/vehicles/range-rover.jpg' },
+    { model: 'Porsche 911', year: 2022, price: 'P.O.A', img: '/vehicles/porsche.jpg' },
+    { model: 'BMW X7', year: 2023, price: 'P.O.A', img: '/vehicles/bmw-x7.jpg' },
 ];
 
 export const PROCESS_STEPS = [

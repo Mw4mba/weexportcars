@@ -25,11 +25,6 @@ const Navbar: React.FC = () => {
             width={150}
             height={40}
             className="h-8 md:h-10 cursor-pointer"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.onerror = null;
-              target.src = "https://placehold.co/200x40/e6e6e6/2a3443?text=WEC+Logo";
-            }}
           />
         </div>
         {/* Nav Links (Hidden on Mobile, shown on MD) */}

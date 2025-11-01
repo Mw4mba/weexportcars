@@ -91,7 +91,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = () => {
           <div className="flex flex-col space-y-6">
             <div className="relative w-full aspect-[4/3] rounded-3xl shadow-xl overflow-hidden">
               <NextImage 
-                src="https://placehold.co/800x600/2a3443/e6e6e6?text=Ready+to+Ship+Vehicle" 
+                src="/contact-car.jpg" 
                 alt="Car next to Contact Form"
                 fill
                 className="object-cover"
