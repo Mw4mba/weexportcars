@@ -102,13 +102,14 @@ export default function OurProcess ()  {
                         >
                             <div className="flex items-start gap-6">
                                 {/* Expandable Red Dot */}
-                                <div className="flex-shrink-0 pt-2">
+                                <div className="flex-shrink-0 pt-2 border-0 outline-none">
                                     <div 
-                                        className={`rounded-full bg-[#d10e22] transition-all duration-500 ${
+                                        className={`rounded-full bg-[#d10e22] transition-all duration-500 border-0 outline-none shadow-none ring-0 ${
                                             activeStep === index 
                                                 ? 'w-6 h-6 scale-110' 
                                                 : 'w-3 h-3'
                                         }`}
+                                        style={{ border: 'none', outline: 'none', boxShadow: 'none' }}
                                     />
                                 </div>
                                 

@@ -136,15 +136,13 @@ const ProcessSectionDesktop: React.FC = () => {
                     {/* Card Header with Icon */}
                     <div className="flex items-center gap-3 mb-4">
                       <div 
-                        className="p-2 rounded-full transition-all duration-500" 
+                        className="w-3 h-3 rounded-full transition-all duration-500" 
                         style={{ 
                           backgroundColor: isCurrent || isComplete 
                             ? COLORS.accent 
                             : COLORS.light 
                         }}
-                      >
-                        {renderProcessIcon(index, 'w-6 h-6', 'white')}
-                      </div>
+                      />
                       <h3 
                         className="text-2xl font-bold" 
                         style={{ color: COLORS.dark }}
@@ -164,33 +162,17 @@ const ProcessSectionDesktop: React.FC = () => {
                     >
                       {step.detail}
                     </div>
-
-                    {/* Arrow Pointer to Timeline */}
-                    <div 
-                      className="absolute w-0 h-0 border-transparent border-[10px] top-6 transition-opacity duration-500"
-                      style={{ 
-                        right: isLeftSide ? '-20px' : 'auto', 
-                        left: isLeftSide ? 'auto' : '-20px', 
-                        borderLeftColor: isLeftSide ? 'white' : 'transparent', 
-                        borderRightColor: isLeftSide ? 'transparent' : 'white', 
-                        opacity: isCurrent || isComplete ? 1 : 0.5 
-                      }}
-                    />
                   </div>
 
                   {/* Center Timeline Checkpoint Dot */}
                   <div 
-                    className="absolute left-1/2 top-6 transform -translate-x-1/2 w-5 h-5 rounded-full z-10 transition-all duration-500 shadow-lg"
+                    className="absolute left-1/2 top-6 transform -translate-x-1/2 w-5 h-5 rounded-full z-10 transition-all duration-500"
                     style={{ 
                       backgroundColor: isCurrent || isComplete 
                         ? COLORS.accent 
-                        : 'white', 
-                      border: isCurrent || isComplete 
-                        ? `4px solid ${COLORS.dark}` 
-                        : `4px solid ${COLORS.light}`, 
-                      boxShadow: isCurrent 
-                        ? `0 0 0 7px ${COLORS.accent}60` 
-                        : 'none' 
+                        : 'white',
+                      border: 'none',
+                      boxShadow: 'none'
                     }}
                   />
                 </div>

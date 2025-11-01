@@ -133,15 +133,13 @@ const ProcessSectionMobile: React.FC = () => {
                       {/* Card Header with Icon */}
                       <div className="flex flex-col sm:flex-row items-center sm:items-center gap-2 sm:gap-3 mb-4 text-center sm:text-left">
                         <div 
-                          className="p-2 rounded-full transition-all duration-500 mb-1 sm:mb-0" 
+                          className="w-3 h-3 rounded-full transition-all duration-500 mb-1 sm:mb-0" 
                           style={{ 
                             backgroundColor: isCurrent || isComplete 
                               ? COLORS.accent 
                               : COLORS.light 
                           }}
-                        >
-                          {renderProcessIcon(index, 'w-6 h-6', 'white')}
-                        </div>
+                        />
                         <h3 
                           className="text-lg sm:text-xl md:text-2xl font-bold" 
                           style={{ color: COLORS.dark }}
@@ -168,17 +166,13 @@ const ProcessSectionMobile: React.FC = () => {
                   {index < PROCESS_STEPS.length - 1 && (
                     <div className="flex justify-center my-4 sm:my-6">
                       <div 
-                        className="w-4 sm:w-5 h-4 sm:h-5 rounded-full z-10 transition-all duration-500 shadow-lg border-4"
+                        className="w-4 sm:w-5 h-4 sm:h-5 rounded-full z-10 transition-all duration-500"
                         style={{ 
                           backgroundColor: isCurrent || isComplete 
                             ? COLORS.accent 
-                            : 'white', 
-                          borderColor: isCurrent || isComplete 
-                            ? COLORS.dark 
-                            : COLORS.light, 
-                          boxShadow: isCurrent 
-                            ? `0 0 0 7px ${COLORS.accent}60` 
-                            : 'none' 
+                            : 'white',
+                          border: 'none',
+                          boxShadow: 'none'
                         }}
                       />
                     </div>

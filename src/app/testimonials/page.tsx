@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Navigation from '@/components/home/navigation';
-import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { TESTIMONIALS } from '@/lib/testimonialsData';
 
 const TestimonialsPage = () => {
@@ -16,6 +16,15 @@ const TestimonialsPage = () => {
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev === TESTIMONIALS.length - 1 ? 0 : prev + 1));
+  };
+
+  // Helper function to get initials from name
+  const getInitials = (name: string) => {
+    const names = name.split(' ');
+    if (names.length >= 2) {
+      return `${names[0][0]}${names[1][0]}`.toUpperCase();
+    }
+    return name.substring(0, 2).toUpperCase();
   };
 
   return (
@@ -34,121 +43,154 @@ const TestimonialsPage = () => {
         </div>
       </section>
 
-      {/* Main Testimonials Section - Similar to About Page Layout */}
-      <section className="py-20 bg-[#f8f9fa]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            
-            {/* Left Side - Testimonial Text */}
-            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 relative">
-              <Quote className="absolute top-8 left-8 w-12 h-12 text-[#d10e22]/20" />
+      {/* Main Testimonials Section - Dark Theme with Glassmorphism */}
+      <section className="py-20 bg-[#2a3443]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Active Review - Large Card */}
+          <div className="bg-white/5 backdrop-blur-sm border-2 border-[#d10e22] rounded-2xl p-8 md:p-12 shadow-xl shadow-[#d10e22]/20 mb-12">
+            <div className="flex items-center gap-4 mb-6">
+              {/* Avatar Circle */}
+              <div className="w-16 h-16 rounded-full bg-[#d10e22] flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                {getInitials(currentTestimonial.name)}
+              </div>
               
-              <div className="relative z-10 pt-8">
-                {/* Rating Stars */}
-                <div className="flex gap-1 mb-6">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-6 h-6 ${
-                        i < currentTestimonial.rating
-                          ? 'fill-[#d10e22] text-[#d10e22]'
-                          : 'text-gray-300'
-                      }`}
-                    />
-                  ))}
-                </div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold text-white mb-1">
+                  {currentTestimonial.name}
+                </h3>
+                {currentTestimonial.location && (
+                  <p className="text-white/60 text-sm">
+                    {currentTestimonial.location}
+                  </p>
+                )}
+              </div>
 
-                {/* Testimonial Text */}
-                <p className="text-xl text-[#2a3443] leading-relaxed mb-8 min-h-[200px]">
-                  "{currentTestimonial.text}"
-                </p>
-
-                {/* Navigation Arrows */}
-                <div className="flex items-center gap-4 pt-6 border-t border-gray-200">
-                  <button
-                    onClick={handlePrevious}
-                    className="flex items-center justify-center w-12 h-12 rounded-full bg-[#d10e22] hover:bg-[#b00c1b] text-white transition-all duration-300 hover:scale-110"
-                    aria-label="Previous testimonial"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-                  
-                  <span className="text-sm text-gray-600">
-                    {currentIndex + 1} of {TESTIMONIALS.length}
-                  </span>
-                  
-                  <button
-                    onClick={handleNext}
-                    className="flex items-center justify-center w-12 h-12 rounded-full bg-[#d10e22] hover:bg-[#b00c1b] text-white transition-all duration-300 hover:scale-110"
-                    aria-label="Next testimonial"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
-                </div>
+              {/* Rating Stars */}
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className={`w-5 h-5 ${
+                      i < currentTestimonial.rating
+                        ? 'fill-[#d10e22] text-[#d10e22]'
+                        : 'text-white/30'
+                    }`}
+                  />
+                ))}
               </div>
             </div>
 
-            {/* Right Side - Client Info Cards */}
-            <div className="space-y-4">
-              <h3 className="text-3xl font-bold text-[#2a3443] mb-6">
-                Featured Reviews
-              </h3>
-              
-              {/* Scrollable list of testimonial cards */}
-              <div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
-                {TESTIMONIALS.map((testimonial, index) => (
+            {/* Testimonial Text */}
+            <p className="text-white/90 text-lg md:text-xl leading-relaxed mb-6 min-h-[120px]">
+              "{currentTestimonial.text}"
+            </p>
+
+            {/* Date */}
+            <p className="text-white/50 text-sm">
+              {currentTestimonial.date}
+            </p>
+
+            {/* Navigation Controls */}
+            <div className="flex items-center justify-between mt-8 pt-6 border-t border-white/10">
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={handlePrevious}
+                  className="flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white transition-all duration-300 hover:scale-110"
+                  aria-label="Previous testimonial"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                
+                <button
+                  onClick={handleNext}
+                  className="flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white transition-all duration-300 hover:scale-110"
+                  aria-label="Next testimonial"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Carousel Indicators - 3 static dots */}
+              <div className="flex gap-2">
+                {[0, 1, 2].map((i) => (
+                  <div
+                    key={i}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      i === 1
+                        ? 'w-8 bg-[#d10e22]'
+                        : 'w-2 bg-white/30'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <span className="text-white/60 text-sm">
+                {currentIndex + 1} of {TESTIMONIALS.length}
+              </span>
+            </div>
+          </div>
+
+          {/* Featured Reviews - Under Active Review */}
+          <div>
+            <h3 className="text-3xl font-bold text-white mb-6">
+              Featured Reviews
+            </h3>
+            
+            {/* Grid of testimonial cards */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {TESTIMONIALS.filter((_, index) => index !== currentIndex).slice(0, 6).map((testimonial, index) => {
+                const actualIndex = TESTIMONIALS.findIndex(t => t.id === testimonial.id);
+                return (
                   <button
                     key={testimonial.id}
-                    onClick={() => setCurrentIndex(index)}
-                    className={`w-full text-left p-6 rounded-xl transition-all duration-300 ${
-                      index === currentIndex
-                        ? 'bg-[#d10e22] text-white shadow-xl scale-[1.02]'
-                        : 'bg-white text-[#2a3443] hover:bg-gray-50 shadow-md hover:shadow-lg'
-                    }`}
+                    onClick={() => setCurrentIndex(actualIndex)}
+                    className="text-left p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#d10e22]/50 hover:bg-white/10 transition-all duration-300 group"
                   >
-                    <div className="flex items-start justify-between mb-3">
-                      <div>
-                        <h4 className="font-bold text-lg">{testimonial.name}</h4>
+                    <div className="flex items-center gap-3 mb-4">
+                      {/* Avatar Circle */}
+                      <div className="w-12 h-12 rounded-full bg-[#d10e22] flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                        {getInitials(testimonial.name)}
+                      </div>
+                      
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-bold text-white truncate">
+                          {testimonial.name}
+                        </h4>
                         {testimonial.location && (
-                          <p className={`text-sm ${
-                            index === currentIndex ? 'text-white/80' : 'text-gray-600'
-                          }`}>
+                          <p className="text-white/60 text-sm truncate">
                             {testimonial.location}
                           </p>
                         )}
                       </div>
-                      <div className="flex gap-0.5">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className={`w-4 h-4 ${
-                              i < testimonial.rating
-                                ? index === currentIndex
-                                  ? 'fill-white text-white'
-                                  : 'fill-[#d10e22] text-[#d10e22]'
-                                : index === currentIndex
-                                ? 'text-white/30'
-                                : 'text-gray-300'
-                            }`}
-                          />
-                        ))}
-                      </div>
+                    </div>
+
+                    {/* Rating Stars */}
+                    <div className="flex gap-0.5 mb-3">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-4 h-4 ${
+                            i < testimonial.rating
+                              ? 'fill-[#d10e22] text-[#d10e22]'
+                              : 'text-white/30'
+                          }`}
+                        />
+                      ))}
                     </div>
                     
-                    <p className={`text-sm ${
-                      index === currentIndex ? 'text-white/90' : 'text-gray-600'
-                    }`}>
+                    {/* Testimonial Preview */}
+                    <p className="text-white/80 text-sm line-clamp-3 mb-3">
+                      "{testimonial.text}"
+                    </p>
+
+                    {/* Date */}
+                    <p className="text-white/50 text-xs">
                       {testimonial.date}
                     </p>
-                    
-                    <p className={`mt-3 text-sm line-clamp-2 ${
-                      index === currentIndex ? 'text-white/90' : 'text-gray-700'
-                    }`}>
-                      {testimonial.text}
-                    </p>
                   </button>
-                ))}
-              </div>
+                );
+              })}
             </div>
           </div>
         </div>

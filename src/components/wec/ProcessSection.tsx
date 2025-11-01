@@ -113,7 +113,7 @@ const ProcessSection: React.FC = () => {
                   {/* Checkpoint dot between steps for mobile only - positioned below the card */}
                   {index < PROCESS_STEPS.length - 1 && (
                     <div className="flex sm:hidden justify-center -my-8 relative z-0">
-                      <div className="w-5 h-5 rounded-full transition-all duration-500 shadow-lg border-4" style={{ backgroundColor: isCurrent || isComplete ? COLORS.accent : 'white', borderColor: isCurrent || isComplete ? COLORS.dark : COLORS.light, boxShadow: isCurrent ? `0 0 0 7px ${COLORS.accent}60` : 'none' }}></div>
+                      <div className="w-5 h-5 rounded-full transition-all duration-500" style={{ backgroundColor: isCurrent || isComplete ? COLORS.accent : 'white', border: 'none', boxShadow: 'none' }}></div>
                     </div>
                   )}
                 </React.Fragment>
