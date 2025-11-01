@@ -28,6 +28,14 @@ const nextConfig: NextConfig = {
         hostname: 'www.weexportcars.africa',
         pathname: '/wp-content/uploads/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
     ],
   },
   

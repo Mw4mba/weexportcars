@@ -68,10 +68,13 @@ const Showroom = memo(() => {
                     <div className="grid lg:grid-cols-2 gap-0">
                       {/* Car Image */}
                       <div className="relative aspect-[4/3] lg:aspect-square bg-[#e6e6e6] overflow-hidden">
-                        <img
+                        <Image
                           src={car.image}
                           alt={`${car.make} ${car.model}`}
-                          className="absolute inset-0 w-full h-full object-cover"
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                          priority={index === 0}
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-[#d10e22]/10 to-transparent" />
                       </div>
@@ -153,10 +156,13 @@ const Showroom = memo(() => {
                   <div className="grid lg:grid-cols-2 gap-0">
                     {/* Car Image */}
                     <div className="relative aspect-[4/3] lg:aspect-square bg-[#e6e6e6] overflow-hidden">
-                      <img
+                      <Image
                         src={car.image}
                         alt={`${car.make} ${car.model}`}
-                        className="absolute inset-0 w-full h-full object-cover"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        priority={index === 0}
                       />
                       <div className="absolute inset-0 bg-gradient-to-r from-[#d10e22]/10 to-transparent" />
                     </div>

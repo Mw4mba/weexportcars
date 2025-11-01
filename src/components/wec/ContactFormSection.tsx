@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { COLORS } from './constants';
 import AccentButton from './AccentButton';
+import NextImage from 'next/image';
 
 interface ContactFormSectionProps {}
 
@@ -88,11 +89,15 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = () => {
             </AccentButton>
           </form>
           <div className="flex flex-col space-y-6">
-            <img 
-              src="https://placehold.co/800x600/2a3443/e6e6e6?text=Ready+to+Ship+Vehicle" 
-              alt="Car next to Contact Form" 
-              className="w-full h-auto object-cover rounded-3xl shadow-xl flex-grow"
-            />
+            <div className="relative w-full aspect-[4/3] rounded-3xl shadow-xl overflow-hidden">
+              <NextImage 
+                src="https://placehold.co/800x600/2a3443/e6e6e6?text=Ready+to+Ship+Vehicle" 
+                alt="Car next to Contact Form"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
             <AccentButton onClick={openWhatsApp} className="w-full flex items-center justify-center space-x-2"
               style={{ backgroundColor: '#25D366' }}
             >

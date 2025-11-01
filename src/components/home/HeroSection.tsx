@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
-
+import Image from 'next/image';
 
 const DARK_TEXT_COLOR = '#2a3443';
 const ACCENT_COLOR = '#d10e22';
@@ -48,11 +48,14 @@ const HeroSection: React.FC = () => {
           </div>
           {/* Right: Image Carousel */}
           <div className="relative aspect-video max-h-[600px] overflow-hidden rounded-3xl shadow-2xl border-4 border-[#2a3443]/10">
-            <img
+            <Image
               key={slide.id}
               src={slide.image}
               alt={slide.imageAlt}
-              className="w-full h-full object-cover animate-slideInImage transition-transform duration-1000 ease-in-out"
+              fill
+              className="object-cover animate-slideInImage transition-transform duration-1000 ease-in-out"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority={currentSlide === 0}
             />
             {/* Slide Indicators */}
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { X, Menu } from 'lucide-react';
-
+import Image from 'next/image';
 
 const LOGO_URL = 'https://www.weexportcars.africa/wp-content/uploads/2024/04/logo-dark.p';
 const BG_LIGHT_COLOR = '#e6e6e6';
@@ -15,9 +15,11 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Logo */}
         <div className="flex-shrink-0">
-          <img 
+          <Image 
             src={LOGO_URL} 
             alt="We Export Cars Logo" 
+            width={150}
+            height={40}
             className="h-10 w-auto" 
             onError={(e) => {
               const target = e.target as HTMLImageElement;

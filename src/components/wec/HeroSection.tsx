@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { COLORS, CAROUSEL_SLIDES } from './constants';
 import AccentButton from './AccentButton';
+import Image from 'next/image';
 
 const HeroSection: React.FC = () => {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -25,12 +26,14 @@ const HeroSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center justify-center">
           {/* Right: Image Carousel (On top for mobile) */}
           <div className="w-full h-80 md:h-[500px] relative overflow-hidden order-first lg:order-2 md:[width:60vw]">
-            <img
+            <Image
               key={slideIndex}
               src={CAROUSEL_SLIDES[slideIndex].image}
               alt={CAROUSEL_SLIDES[slideIndex].textTitle}
-              className="w-full h-full object-cover rounded-2xl shadow-2xl animate-slideInImage transition-transform duration-1000 ease-in-out"
-              style={{ position: 'static' }}
+              fill
+              className="object-cover rounded-2xl shadow-2xl animate-slideInImage transition-transform duration-1000 ease-in-out"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority={slideIndex === 0}
             />
           </div>
           {/* Left: Text Carousel & Button (Under image for mobile) */}

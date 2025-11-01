@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { Menu, X, Phone } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { handleSmoothScroll } from '@/utils/smoothScroll';
+import NextImage from 'next/image';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -96,10 +97,13 @@ const Navigation = () => {
   <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo - Clickable home button */}
           <a href="/" className="flex items-center space-x-4 hover:opacity-80 transition-opacity" aria-label="Go to homepage">
-            <img 
+            <NextImage 
               src="https://www.weexportcars.africa/wp-content/uploads/2024/04/logo-dark.png" 
               alt="We Export Cars"
+              width={150}
+              height={48}
               className="h-12 w-auto"
+              priority
             />
           </a>
 

@@ -3,6 +3,7 @@
 import { useRef, memo, useMemo, useCallback } from "react";
 import { motion } from "motion/react";
 import DottedMap from "dotted-map";
+import NextImage from 'next/image';
 
 import { useEffect, useState } from 'react';
 
@@ -125,16 +126,15 @@ function WorldMap({
 
   return (
     <div className="w-full aspect-square md:aspect-[2/1] bg-transparent rounded-lg relative font-sans overflow-hidden">
-      <img
+      <NextImage
         src={svgDataUrl}
-        className="h-full w-full object-cover pointer-events-none select-none"
-        style={transformStyle ? { transform: transformStyle, transformOrigin: '50% 50%' } : undefined}
         alt="world map"
-        height="495"
-        width="1056"
+        fill
+        className="object-cover pointer-events-none select-none"
+        style={transformStyle ? { transform: transformStyle, transformOrigin: '50% 50%' } : undefined}
         draggable={false}
-        loading="eager"
-        decoding="async"
+        priority
+        unoptimized
       />
       <svg
         ref={svgRef}

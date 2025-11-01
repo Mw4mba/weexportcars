@@ -3,6 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Car, Gauge, Fuel, Calendar } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Vehicle } from '@/lib/vehicleData';
 
 const VehicleCard: React.FC<{ vehicle: Vehicle; index?: number; visible?: boolean }> = ({ vehicle, index = 0, visible = true }) => {
@@ -15,12 +16,12 @@ const VehicleCard: React.FC<{ vehicle: Vehicle; index?: number; visible?: boolea
         style={{ animationDelay: `${index * 0.1}s` }}
       >
         <div className="relative h-64 overflow-hidden">
-          <img 
+          <Image 
             src={vehicle.image} 
             alt={`${vehicle.make} ${vehicle.model}`}
-            loading="lazy"
-            decoding="async"
-            className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-all duration-500 transform" 
+            fill
+            className="object-cover group-hover:scale-110 transition-all duration-500 transform"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <Badge className="absolute top-4 right-4 bg-[#d10e22] text-white px-2 py-1 rounded z-10">{vehicle.condition}</Badge>
         </div>

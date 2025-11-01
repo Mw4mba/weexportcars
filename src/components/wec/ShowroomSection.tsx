@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { COLORS, FEATURED_CARS } from './constants';
 import AccentButton from './AccentButton';
+import Image from 'next/image';
 
 const ShowroomSection: React.FC = () => {
   const [currentCarIndex, setCurrentCarIndex] = useState(0);
@@ -27,11 +28,14 @@ const ShowroomSection: React.FC = () => {
                 className="min-w-full p-8 md:p-16 flex flex-col md:flex-row items-center gap-10"
                 style={{ backgroundColor: 'white' }}
               >
-                <div className="w-full md:w-1/2">
-                  <img 
+                <div className="w-full md:w-1/2 relative aspect-video">
+                  <Image 
                     src={car.img} 
-                    alt={car.model} 
-                    className="w-full h-auto object-cover rounded-2xl shadow-xl"
+                    alt={car.model}
+                    fill
+                    className="object-cover rounded-2xl shadow-xl"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority={index === 0}
                   />
                 </div>
                 <div className="w-full md:w-1/2 space-y-4" style={{ color: COLORS.dark }}>

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useOptimizedScrollAnimation } from '@/utils/useOptimizedScrollAnimation';
+import Image from 'next/image';
 
 const ShowroomHero: React.FC = () => {
   const [ref, isVisible] = useOptimizedScrollAnimation({ threshold: 'early' });
@@ -24,7 +25,14 @@ const ShowroomHero: React.FC = () => {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div ref={containerRef} className="w-full rounded-3xl shadow-lg relative transition-all duration-300 overflow-hidden">
-          <img src="/car1.png" alt="Featured car" className="w-full h-full object-cover" />
+          <Image 
+            src="/car1.png" 
+            alt="Featured car" 
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 90vw"
+            priority
+          />
 
           <div className={`absolute inset-0 flex items-end bg-gradient-to-t from-black/60 to-transparent ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} ref={ref}>
             <div ref={textRef} className="p-6 md:p-10 max-w-3xl">

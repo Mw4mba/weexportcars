@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { COLORS, LOGO_URL, NAV_LINKS } from './constants';
+import Image from 'next/image';
 
 const Navbar: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -18,9 +19,11 @@ const Navbar: React.FC = () => {
         <div 
           className={`transform transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}
         >
-          <img 
+          <Image 
             src={LOGO_URL} 
             alt="We Export Cars Africa Logo" 
+            width={150}
+            height={40}
             className="h-8 md:h-10 cursor-pointer"
             onError={(e) => {
               const target = e.target as HTMLImageElement;

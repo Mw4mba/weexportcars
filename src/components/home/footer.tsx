@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+import Image from 'next/image';
 
 const Footer = () => {
   return (
@@ -9,9 +10,11 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <a href="/" className="inline-block hover:opacity-80 transition-opacity" aria-label="Go to homepage">
-              <img 
+              <Image 
                 src="https://www.weexportcars.africa/wp-content/uploads/2024/04/logo-dark.png" 
                 alt="We Export Cars"
+                width={150}
+                height={48}
                 className="h-12 w-auto brightness-0 invert"
               />
             </a>
