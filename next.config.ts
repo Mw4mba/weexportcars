@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   // Performance optimizations
   experimental: {
     optimizePackageImports: [
-      'framer-motion',
+      'gsap',
       '@radix-ui/react-select',
       '@radix-ui/react-dialog',
       '@radix-ui/react-popover',

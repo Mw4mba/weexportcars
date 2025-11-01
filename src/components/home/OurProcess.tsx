@@ -1,22 +1,43 @@
 import React, { useRef, useState, useCallback, useEffect, type ReactNode } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register GSAP plugins
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 interface AnimatedSectionProps {
     children: ReactNode;
     className?: string;
 }
+
 const AnimatedSection = ({ children, className }: AnimatedSectionProps) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px 0px" });
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    
+    gsap.fromTo(
+      ref.current,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: ref.current,
+          start: 'top bottom-=100',
+          once: true
+        }
+      }
+    );
+  }, []);
 
   return (
     <section ref={ref} className={className}>
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        {children}
-      </motion.div>
+      {children}
     </section>
   );
 };
@@ -67,33 +88,48 @@ export default function OurProcess ()  {
                     </p>
                 </div>
 
-                <div className="flex flex-col md:flex-row gap-8 md:gap-16">
-                    {/* Sticky Stepper */}
-                    <div className="md:w-1/3 md:sticky md:top-32 self-start">
-                        <div className="flex md:flex-col gap-4">
-                            {steps.map((step, index) => (
-                                <div key={index} className="flex items-center gap-4 transition-opacity duration-300"
-                                     style={{ opacity: activeStep === index ? 1 : 0.4 }}>
-                                    <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl transition-colors duration-300 ${activeStep === index ? 'bg-[#d10e22]' : 'bg-white/20'}`}>
-                                        {index + 1}
-                                    </div>
-                                    <h3 className="text-lg font-semibold hidden md:block">{step.title.split('. ')[1]}</h3>
+                {/* Cards Layout */}
+                <div className="max-w-5xl mx-auto space-y-6">
+                    {steps.map((step, index) => (
+                        <div 
+                            ref={stepRefs[index]} 
+                            key={index}
+                            className={`rounded-2xl p-8 transition-all duration-500 ${
+                                activeStep === index 
+                                    ? 'bg-white/10 text-white' 
+                                    : 'bg-white/5 text-white'
+                            }`}
+                        >
+                            <div className="flex items-start gap-6">
+                                {/* Expandable Red Dot */}
+                                <div className="flex-shrink-0 pt-2">
+                                    <div 
+                                        className={`rounded-full bg-[#d10e22] transition-all duration-500 ${
+                                            activeStep === index 
+                                                ? 'w-6 h-6 scale-110' 
+                                                : 'w-3 h-3'
+                                        }`}
+                                    />
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Steps Content */}
-                    <div className="md:w-2/3">
-                        <div className="space-y-24">
-                            {steps.map((step, index) => (
-                                <div ref={stepRefs[index]} key={index}>
-                                    <h3 className="text-3xl font-bold text-[#d10e22] mb-4">{step.title}</h3>
-                                    <p className="text-white/80 leading-relaxed">{step.description}</p>
+                                
+                                {/* Content */}
+                                <div className="flex-1">
+                                    <h3 className={`font-bold mb-4 transition-all duration-500 ${
+                                        activeStep === index 
+                                            ? 'text-3xl md:text-4xl text-[#d10e22]' 
+                                            : 'text-2xl md:text-3xl text-white'
+                                    }`}>
+                                        {step.title}
+                                    </h3>
+                                    <p className={`leading-relaxed text-base md:text-lg ${
+                                        activeStep === index ? 'text-white/90' : 'text-white/70'
+                                    }`}>
+                                        {step.description}
+                                    </p>
                                 </div>
-                            ))}
+                            </div>
                         </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </AnimatedSection>

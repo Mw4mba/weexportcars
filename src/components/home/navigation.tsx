@@ -1,13 +1,15 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { gsap } from 'gsap';
 import { Menu, X, Phone } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import { handleSmoothScroll } from '@/utils/smoothScroll';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const mobileNavRef = useRef<HTMLDivElement>(null);
   
   // Determine if we're on the About, Gallery, or Testimonials page
   const isAboutPage = pathname === '/about';
@@ -42,6 +44,26 @@ const Navigation = () => {
   }, []);
 
   const toggleRef = useRef<HTMLButtonElement | null>(null);
+
+  // GSAP animation for mobile menu
+  useEffect(() => {
+    if (!mobileNavRef.current) return;
+    
+    if (isOpen) {
+      gsap.fromTo(
+        mobileNavRef.current,
+        { y: '-100%', opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.28, ease: 'power2.out' }
+      );
+    } else {
+      gsap.to(mobileNavRef.current, {
+        y: '-100%',
+        opacity: 0,
+        duration: 0.28,
+        ease: 'power2.in'
+      });
+    }
+  }, [isOpen]);
 
   // Close on Escape and lock body scroll when menu is open
   useEffect(() => {
@@ -95,10 +117,10 @@ const Navigation = () => {
             <a href="/testimonials" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               Testimonials
             </a>
-            <a href="/#process" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
+            <a href="/#process" onClick={handleSmoothScroll} className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               How it works
             </a>
-            <a href="/#contact" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
+            <a href="/#contact" onClick={handleSmoothScroll} className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               Contact
             </a>
           </div>
@@ -147,30 +169,25 @@ const Navigation = () => {
     </nav>
 
     {/* Mobile Navigation as sibling to prevent stacking-context issues */}
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          id="mobile-nav"
-          role="menu"
-          aria-hidden={!isOpen}
-          initial={{ y: '-100%', opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: '-100%', opacity: 0 }}
-          transition={{ type: 'tween', duration: 0.28 }}
-          className="fixed left-0 right-0 z-40 md:hidden flex justify-center"
-          style={{ top: '4rem' }} // 4rem = 64px = h-16, mobile navbar height
-        >
-              <div className="bg-white rounded-b-2xl border-b-2 border-[#e6e6e6] w-full max-w-full shadow-2xl flex flex-col items-center px-2 pt-8 pb-3 space-y-1">
-            <a href="/" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Home</a>
-            <a href="/about" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>About Us</a>
-            <a href="/gallery" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Gallery</a>
-            <a href="/testimonials" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Testimonials</a>
-            <a href="/#process" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>How it works</a>
-            <a href="/#contact" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Contact</a>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    {isOpen && (
+      <div
+        ref={mobileNavRef}
+        id="mobile-nav"
+        role="menu"
+        aria-hidden={!isOpen}
+        className="fixed left-0 right-0 z-40 md:hidden flex justify-center"
+        style={{ top: '4rem' }} // 4rem = 64px = h-16, mobile navbar height
+      >
+        <div className="bg-white rounded-b-2xl border-b-2 border-[#e6e6e6] w-full max-w-full shadow-2xl flex flex-col items-center px-2 pt-8 pb-3 space-y-1">
+          <a href="/" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Home</a>
+          <a href="/about" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>About Us</a>
+          <a href="/gallery" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Gallery</a>
+          <a href="/testimonials" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Testimonials</a>
+          <a href="/#process" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={(e) => { handleSmoothScroll(e); setIsOpen(false); }}>How it works</a>
+          <a href="/#contact" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={(e) => { handleSmoothScroll(e); setIsOpen(false); }}>Contact</a>
+        </div>
+      </div>
+    )}
     </>
   );
 };
