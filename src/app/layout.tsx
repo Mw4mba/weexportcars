@@ -90,7 +90,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code', // Replace with actual code
+    google: 'cLBhqQvepdR1sporeecE68TEPdIku5PjpbIfH2ioWjY', // Google site verification
   },
 };
 
@@ -107,6 +107,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://api.whatsapp.com" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#d10e22" />
+        <meta name="google-site-verification" content="cLBhqQvepdR1sporeecE68TEPdIku5PjpbIfH2ioWjY" />
       </head>
       <body
         className={`${urbanist.variable} ${bebasNeue.variable} antialiased`}
