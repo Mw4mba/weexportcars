@@ -12,7 +12,7 @@ const ShowroomSection: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
   return (
-    <section id="showroom" className="py-24 md:py-32" style={{ backgroundColor: COLORS.dark }}>
+    <section className="py-24 md:py-32" style={{ backgroundColor: COLORS.dark }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         <h2 className="text-5xl font-extrabold text-center" style={{ color: COLORS.light }}>
           Featured Showroom

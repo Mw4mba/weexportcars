@@ -6,7 +6,7 @@ export const COLORS = {
   accent: '#d10e22',
 };
 
-export const NAV_LINKS = ['Home', 'About', 'Services', 'Process', 'Showroom', 'Contact'];
+export const NAV_LINKS = ['Home', 'About', 'Services', 'Process', 'Contact'];
 
 export const LOGO_URL = '/logo-dark.png';
 

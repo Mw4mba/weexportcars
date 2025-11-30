@@ -23,14 +23,6 @@ export function middleware(request: NextRequest) {
     );
   }
   
-  // Cache car detail pages for 1 hour
-  if (url.startsWith('/car/')) {
-    response.headers.set(
-      'Cache-Control',
-      'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400'
-    );
-  }
-  
   return response;
 }
 

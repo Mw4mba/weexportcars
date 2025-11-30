@@ -28,7 +28,7 @@ const GalleryCarousel = memo(() => {
   };
 
   return (
-    <section id="showroom" className="py-20 bg-[#e6e6e6]" ref={sectionRef}>
+    <section className="py-20 bg-[#e6e6e6]" ref={sectionRef}>
       <div className="container mx-auto px-4">
         {/* Title Section */}
         <div className="text-center mb-16">
