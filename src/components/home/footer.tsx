@@ -108,7 +108,7 @@ const Footer = () => {
           
           {/* Centered Powered By Row */}
           <div className="flex justify-center">
-            <p className="text-white/70 text-xs">
+            <p className="text-white/80 text-xs">
               Powered by{' '}
               <a 
                 href="https://luboya.dev" 

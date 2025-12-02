@@ -37,7 +37,7 @@ const GalleryCarousel = memo(() => {
           }`}>
             Featured from our <span className="text-[#d10e22]">Gallery</span>
           </h2>
-          <p className={`text-xl text-[#2a3443]/70 max-w-3xl mx-auto ${
+          <p className={`text-xl text-[#2a3443]/80 max-w-3xl mx-auto ${
             isVisible ? 'animate-fade-in-up' : 'opacity-0'
           }`} style={{ animationDelay: '0.2s' }}>
             Explore stunning photographs of premium vehicles we've exported from South Africa. Each image represents quality, luxury, and successful delivery to destinations worldwide.
@@ -61,6 +61,7 @@ const GalleryCarousel = memo(() => {
                         className="object-cover group-hover:scale-105 transition-transform duration-700"
                         sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1200px"
                         priority={index === 0}
+                        quality={75}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                       
@@ -110,6 +111,7 @@ const GalleryCarousel = memo(() => {
                         className="object-cover group-hover:scale-105 transition-transform duration-700"
                         sizes="100vw"
                         priority={index === 0}
+                        quality={75}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                       

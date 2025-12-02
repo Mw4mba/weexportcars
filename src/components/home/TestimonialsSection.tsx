@@ -45,7 +45,7 @@ const TestimonialsSection = memo(() => {
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">
             What Our <span className="text-[#d10e22]">Clients Say</span>
           </h2>
-          <p className="text-xl text-white/70 max-w-3xl mx-auto">
+          <p className="text-xl text-white/80 max-w-3xl mx-auto">
             Don't just take our word for it - hear from clients who have successfully exported their vehicles with us
           </p>
         </div>

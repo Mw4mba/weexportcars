@@ -30,7 +30,7 @@ const AboutUsSection: React.FC = memo(() => (
         <AnimatedTitle id="who-we-are" className="text-white">
           Who We Are
         </AnimatedTitle>
-        <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
             <br/>
          We Export Cars.Africa is a one-stop vehicle exporter specialising in new and quality pre-owned cars from South Africa and the UK.
           We offer a Showroom to Door solution.
@@ -45,9 +45,9 @@ const AboutUsSection: React.FC = memo(() => (
         <div className="grid md:grid-cols-3 gap-8">
           {SERVICE_ITEMS.map((item, index) => (
             <div key={item.title} className="p-8 rounded-2xl shadow-xl bg-white transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] border-t-4 border-[#d10e22]">
-              <item.icon size={36} className="text-[#d10e22] mb-4" />
+              <item.icon size={36} className="text-[#d10e22] mb-4" aria-hidden="true" />
               <h4 className="text-2xl font-semibold text-[#2a3443] mb-3">{item.title}</h4>
-              <p className="text-[#2a3443]/70">{item.description}</p>
+              <p className="text-[#2a3443]/80">{item.description}</p>
             </div>
           ))}
         </div>
@@ -70,10 +70,10 @@ const AboutUsSection: React.FC = memo(() => (
           {WHY_CHOOSE_ITEMS.map((item) => (
             <div key={item.title} className="flex flex-col items-center text-center p-6 bg-[#f8fafc] rounded-xl transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group">
               <div className="p-4 mb-4 rounded-full bg-[#d10e22]/10 transition-colors duration-300 group-hover:bg-[#d10e22]/20">
-                <item.icon size={32} className="text-[#d10e22] transform transition-transform duration-500 group-hover:scale-110" />
+                <item.icon size={32} className="text-[#d10e22] transform transition-transform duration-500 group-hover:scale-110" aria-hidden="true" />
               </div>
               <h4 className="text-xl font-bold text-[#2a3443] mb-1">{item.title}</h4>
-              <p className="text-[#2a3443]/70 text-sm">{item.detail}</p>
+              <p className="text-[#2a3443]/80 text-sm">{item.detail}</p>
             </div>
           ))}
         </div>

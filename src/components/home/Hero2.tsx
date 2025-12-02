@@ -161,7 +161,8 @@ export default function Hero() {
                                     alt="Premium Car"
                                     fill
                                     priority={currentIndex === 0}
-                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                    sizes="(max-width: 768px) 100vw, 750px"
+                                    quality={75}
                                     className="object-cover rounded-2xl"
                                 />
 

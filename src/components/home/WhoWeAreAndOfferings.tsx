@@ -48,8 +48,11 @@ const WhoWeAreAndOfferings: React.FC = memo(() => {
                   src={offering.image}
                   alt={offering.title}
                   fill
+                  priority
+                  loading="eager"
+                  quality={75}
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 100vw, 672px"
                 />
                 
                 {/* Dark Gradient Overlay */}

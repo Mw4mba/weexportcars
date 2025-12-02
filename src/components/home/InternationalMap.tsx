@@ -54,7 +54,7 @@ const InternationalMap: React.FC = () => {
             <Globe size={44} className="mr-3" style={{ color: ACCENT_COLOR }} />
             International Import
           </h2>
-          <p className="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="mt-4 text-lg text-gray-200 max-w-3xl mx-auto">
             We handle international vehicle imports with care — from inspection to shipping, customs clearance and final delivery.
           </p>
         </div>
