@@ -121,7 +121,7 @@ const InternationalMap: React.FC = () => {
               className="mt-4 inline-flex items-center gap-3 px-8 py-3 text-white rounded-xl shadow-2xl shadow-[#d10e22]/40 hover:bg-[#b00c1b] transition-all duration-300 transform hover:scale-[1.03] active:scale-[0.98] focus:ring-4 focus:ring-[#d10e22]/60"
               style={{ backgroundColor: ACCENT_COLOR }}
             >
-              Get shipping to your country
+              Get a Quote
             </a>
           </div>
         </div>

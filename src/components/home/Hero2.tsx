@@ -160,7 +160,8 @@ export default function Hero() {
                                     src={heroImageContent[currentIndex]}
                                     alt="Premium Car"
                                     fill
-                                    priority={currentIndex === 0}
+                                    priority
+                                    fetchPriority="high"
                                     sizes="(max-width: 768px) 100vw, 750px"
                                     quality={75}
                                     className="object-cover rounded-2xl"
@@ -172,7 +173,7 @@ export default function Hero() {
                                 {/* View Gallery Button */}
                                 <Link href="/gallery">
                                     <div className="absolute bottom-4 right-4 px-4 sm:px-6 py-2 sm:py-3 bg-[#d10e22] text-white text-sm sm:text-base font-semibold rounded-xl shadow-lg hover:bg-[#b00c1b] transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-105 cursor-pointer">
-                                        View More in Gallery
+                                        View Gallery
                                     </div>
                                 </Link>
                             </div>

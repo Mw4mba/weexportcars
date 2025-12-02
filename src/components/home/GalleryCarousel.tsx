@@ -68,7 +68,7 @@ const GalleryCarousel = memo(() => {
                       {/* Gallery link overlay */}
                       <Link href="/gallery">
                         <div className="absolute bottom-6 right-6 px-6 py-3 bg-[#d10e22] text-white font-semibold rounded-xl shadow-lg hover:bg-[#b00c1b] transition-all duration-300 hover:scale-105">
-                          View Full Gallery
+                          View Gallery
                         </div>
                       </Link>
                     </div>
@@ -118,7 +118,7 @@ const GalleryCarousel = memo(() => {
                       {/* Gallery link overlay */}
                       <Link href="/gallery">
                         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-6 py-3 bg-[#d10e22] text-white font-semibold rounded-xl shadow-lg hover:bg-[#b00c1b] transition-all duration-300">
-                          View Full Gallery
+                          View Gallery
                         </div>
                       </Link>
                     </div>

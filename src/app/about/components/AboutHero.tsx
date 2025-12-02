@@ -34,17 +34,20 @@ const AboutHero: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const updateHeight = () => {
-      if (textRef.current && containerRef.current) {
-        const textHeight = textRef.current.offsetHeight;
-        const newHeight = textHeight * 1.1; // 110% of text height
-        containerRef.current.style.height = `${Math.max(newHeight, 300)}px`; // Minimum height of 300px
+    if (!textRef.current || !containerRef.current) return;
+    
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const textHeight = entry.contentRect.height;
+        const newHeight = textHeight * 1.1;
+        if (containerRef.current) {
+          containerRef.current.style.height = `${Math.max(newHeight, 300)}px`;
+        }
       }
-    };
+    });
 
-    updateHeight();
-    window.addEventListener('resize', updateHeight);
-    return () => window.removeEventListener('resize', updateHeight);
+    resizeObserver.observe(textRef.current);
+    return () => resizeObserver.disconnect();
   }, []);
 
   return (

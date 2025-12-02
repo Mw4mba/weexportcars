@@ -141,7 +141,7 @@ const TestimonialsSection = memo(() => {
             href="/testimonials"
             className="inline-block px-8 py-4 text-lg font-semibold text-white bg-[#d10e22] rounded-xl shadow-lg hover:bg-[#b00c1b] transition-all duration-300 transform hover:scale-105"
           >
-            View All Testimonials
+            All Reviews
           </Link>
         </div>
       </div>
