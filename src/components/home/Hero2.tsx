@@ -1,11 +1,13 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
 import Image from 'next/image';
 import Link from 'next/link';
 import { GALLERY_IMAGES } from '@/lib/galleryData';
 import { handleSmoothScroll } from '@/utils/smoothScroll';
+
+// Lazy load GSAP only when carousel transitions happen (after initial load)
+const loadGsap = () => import('gsap').then(mod => mod.gsap);
 
 
 const heroTextContent = [
@@ -58,13 +60,14 @@ export default function Hero() {
     }, []);
     */
 
-    // Synchronized carousel animation whenever currentIndex changes
+    // Synchronized carousel animation whenever currentIndex changes - lazy loads GSAP
     useEffect(() => {
-        if (previousIndexRef.current !== currentIndex) {
-            const tl = gsap.timeline();
+        if (previousIndexRef.current !== currentIndex && textRef.current && imageRef.current) {
+            // Lazy load GSAP only when needed for carousel transitions
+            loadGsap().then(gsap => {
+                const tl = gsap.timeline();
 
-            // Animate both text and image simultaneously
-            if (textRef.current && imageRef.current) {
+                // Animate both text and image simultaneously
                 // Exit animations (parallel)
                 tl.to(textRef.current, {
                     opacity: 0,
@@ -90,9 +93,9 @@ export default function Hero() {
                         { x: '0%', opacity: 1, duration: 0.8, ease: 'power2.out' },
                         '<' // Start at the same time as text enter animation
                     );
-            }
 
-            previousIndexRef.current = currentIndex;
+                previousIndexRef.current = currentIndex;
+            });
         }
     }, [currentIndex]);
 

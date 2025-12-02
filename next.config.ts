@@ -29,8 +29,7 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   
-  // Modern browser support - reduces legacy JavaScript
-  swcMinify: true,
+  // Note: swcMinify is now enabled by default in Next.js 15+
 };
 
 export default withBundleAnalyzer(nextConfig);

@@ -31,7 +31,7 @@ const WhoWeAreAndOfferings: React.FC = memo(() => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Core Offerings - Centered */}
         <div className="max-w-2xl mx-auto">
-          <h3 className="text-4xl font-bold text-white mb-8 text-center">Our Core Offerings</h3>
+          <h2 className="text-4xl font-bold text-white mb-8 text-center">Our Core Offerings</h2>
           
           {/* Single Export Services Card */}
           <div className="flex justify-center">
@@ -58,9 +58,9 @@ const WhoWeAreAndOfferings: React.FC = memo(() => {
                 {/* Title and Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                   <div className="flex flex-col space-y-2">
-                    <h4 className="text-2xl font-bold tracking-wide">
+                    <h3 className="text-2xl font-bold tracking-wide">
                       {offering.title}
-                    </h4>
+                    </h3>
                   </div>
                 </div>
               </a>
