@@ -35,16 +35,18 @@ const heroImageContent = [
     GALLERY_IMAGES[18], // Nineteenth image
 ];
 
-export default function Hero ()  {
+export default function Hero() {
     const [currentIndex, setCurrentIndex] = useState(0);
-    
+
     // Refs for GSAP animations
     const heroRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
     const imageRef = useRef<HTMLDivElement>(null);
     const previousIndexRef = useRef(0);
 
-    // Initial load animation
+    // Initial load animation - REMOVED to improve LCP
+    // Replaced with CSS animation .animate-fade-in-up
+    /*
     useEffect(() => {
         if (heroRef.current) {
             gsap.fromTo(
@@ -54,12 +56,13 @@ export default function Hero ()  {
             );
         }
     }, []);
+    */
 
     // Synchronized carousel animation whenever currentIndex changes
     useEffect(() => {
         if (previousIndexRef.current !== currentIndex) {
             const tl = gsap.timeline();
-            
+
             // Animate both text and image simultaneously
             if (textRef.current && imageRef.current) {
                 // Exit animations (parallel)
@@ -69,26 +72,26 @@ export default function Hero ()  {
                     duration: 0.5,
                     ease: 'power2.in'
                 }, 0)
-                .to(imageRef.current, {
-                    x: '-100%',
-                    opacity: 0,
-                    duration: 0.5,
-                    ease: 'power2.in'
-                }, 0)
-                // Enter animations (parallel)
-                .fromTo(
-                    textRef.current,
-                    { opacity: 0, y: 40 },
-                    { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
-                )
-                .fromTo(
-                    imageRef.current,
-                    { x: '100%', opacity: 0 },
-                    { x: '0%', opacity: 1, duration: 0.8, ease: 'power2.out' },
-                    '<' // Start at the same time as text enter animation
-                );
+                    .to(imageRef.current, {
+                        x: '-100%',
+                        opacity: 0,
+                        duration: 0.5,
+                        ease: 'power2.in'
+                    }, 0)
+                    // Enter animations (parallel)
+                    .fromTo(
+                        textRef.current,
+                        { opacity: 0, y: 40 },
+                        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
+                    )
+                    .fromTo(
+                        imageRef.current,
+                        { x: '100%', opacity: 0 },
+                        { x: '0%', opacity: 1, duration: 0.8, ease: 'power2.out' },
+                        '<' // Start at the same time as text enter animation
+                    );
             }
-            
+
             previousIndexRef.current = currentIndex;
         }
     }, [currentIndex]);
@@ -108,7 +111,7 @@ export default function Hero ()  {
         >
             <div
                 ref={heroRef}
-                className="w-full max-w-7xl mx-auto px-4 sm:px-6"
+                className="w-full max-w-7xl mx-auto px-4 sm:px-6 animate-fade-in-up"
             >
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 lg:gap-12">
                     {/* Text Carousel - Left */}
@@ -158,10 +161,10 @@ export default function Hero ()  {
                                     sizes="(max-width: 768px) 100vw, 50vw"
                                     className="object-cover rounded-2xl"
                                 />
-                                
+
                                 {/* Overlay gradient for button visibility */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                
+
                                 {/* View Gallery Button */}
                                 <Link href="/gallery">
                                     <div className="absolute bottom-4 right-4 px-4 sm:px-6 py-2 sm:py-3 bg-[#d10e22] text-white text-sm sm:text-base font-semibold rounded-xl shadow-lg hover:bg-[#b00c1b] transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-105 cursor-pointer">
