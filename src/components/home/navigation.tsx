@@ -1,10 +1,12 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
 import { Menu, X, Phone } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { handleSmoothScroll } from '@/utils/smoothScroll';
 import NextImage from 'next/image';
+
+// Lazy load GSAP only when needed for mobile menu animation
+const loadGsap = () => import('gsap').then(mod => mod.gsap);
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,24 +49,26 @@ const Navigation = () => {
 
   const toggleRef = useRef<HTMLButtonElement | null>(null);
 
-  // GSAP animation for mobile menu
+  // GSAP animation for mobile menu - lazy loaded
   useEffect(() => {
     if (!mobileNavRef.current) return;
     
-    if (isOpen) {
-      gsap.fromTo(
-        mobileNavRef.current,
-        { y: '-100%', opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.28, ease: 'power2.out' }
-      );
-    } else {
-      gsap.to(mobileNavRef.current, {
-        y: '-100%',
-        opacity: 0,
-        duration: 0.28,
-        ease: 'power2.in'
-      });
-    }
+    loadGsap().then(gsap => {
+      if (isOpen) {
+        gsap.fromTo(
+          mobileNavRef.current,
+          { y: '-100%', opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.28, ease: 'power2.out' }
+        );
+      } else {
+        gsap.to(mobileNavRef.current, {
+          y: '-100%',
+          opacity: 0,
+          duration: 0.28,
+          ease: 'power2.in'
+        });
+      }
+    });
   }, [isOpen]);
 
   // Close on Escape and lock body scroll when menu is open

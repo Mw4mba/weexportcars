@@ -324,7 +324,7 @@ const ContactFormSection: React.FC = () => {
                       </svg>
                       Sending...
                     </span>
-                  ) : 'Submit Request'}
+                  ) : 'Send'}
                 </button>
               </form>
 

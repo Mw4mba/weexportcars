@@ -22,13 +22,13 @@ const Footer = () => {
               South Africa's premier vehicle export specialist, connecting automotive excellence with global markets since 1998.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-white hover:text-white/80 transition-quick">
+              <a href="#" className="text-white hover:text-white/80 transition-quick" aria-label="Follow us on Facebook">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-white hover:text-white/80 transition-quick">
+              <a href="#" className="text-white hover:text-white/80 transition-quick" aria-label="Follow us on Instagram">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-white hover:text-white/80 transition-quick">
+              <a href="#" className="text-white hover:text-white/80 transition-quick" aria-label="Follow us on Twitter">
                 <Twitter className="h-5 w-5" />
               </a>
             </div>
@@ -36,7 +36,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-6 text-lg text-red-500">Quick Links</h4>
+            <h4 className="font-semibold mb-6 text-lg text-white">Quick Links</h4>
             <ul className="space-y-3">
               <li>
                 <a href="#home" className="text-white hover:text-white/80 transition-quick">
@@ -63,7 +63,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-semibold mb-6 text-lg text-red-500">Contact Info</h4>
+            <h4 className="font-semibold mb-6 text-lg text-white">Contact Info</h4>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <Phone className="h-4 w-4 text-white" />
@@ -108,7 +108,7 @@ const Footer = () => {
           
           {/* Centered Powered By Row */}
           <div className="flex justify-center">
-            <p className="text-white/70 text-xs">
+            <p className="text-white/80 text-xs">
               Powered by{' '}
               <a 
                 href="https://luboya.dev" 

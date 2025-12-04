@@ -18,10 +18,12 @@ const nextConfig: NextConfig = {
     ],
   },
   
-  // Image optimization
+  // Image optimization - Vercel CDN handles this automatically
   images: {
     formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 60,
+    minimumCacheTTL: 31536000,
+    deviceSizes: [640, 750, 828, 1080, 1200],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
   },
   
   // Compiler optimizations
@@ -29,8 +31,10 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   
-  // Modern browser support - reduces legacy JavaScript
-  swcMinify: true,
+  // Modern JavaScript output - reduces polyfills for modern browsers
+  transpilePackages: [],
+  
+  // Note: swcMinify is now enabled by default in Next.js 15+
 };
 
 export default withBundleAnalyzer(nextConfig);

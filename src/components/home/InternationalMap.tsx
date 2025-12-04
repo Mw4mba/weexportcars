@@ -1,24 +1,19 @@
-import React, { RefObject, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { Globe, ArrowRightCircle } from 'lucide-react';
 import { useOptimizedScrollAnimation } from '@/utils/useOptimizedScrollAnimation';
+import { handleSmoothScroll } from '@/utils/smoothScroll';
 
 // Lazy load WorldMap for better performance
 const WorldMap = dynamic(() => import('@/components/ui/world-map'), {
-  loading: () => <div className="w-full h-full bg-gray-100 animate-pulse rounded-lg" />,
+  loading: () => <div className="w-full h-full bg-gray-100 animate-pulse rounded-lg" aria-label="Loading world map" />,
   ssr: false,
 });
 
 const DARK_TEXT_COLOR = '#2a3443';
 const ACCENT_COLOR = '#d10e22';
 
-type InternationalMapProps = {
-  sectionRefs?: { international?: RefObject<HTMLElement> };
-  scrollToSection?: (section: string) => void;
-};
-
-const InternationalMap: React.FC<InternationalMapProps> = ({ sectionRefs, scrollToSection }) => {
-  const [hovered, setHovered] = useState<string | null>(null);
+const InternationalMap: React.FC = () => {
   const [shouldLoadMap, setShouldLoadMap] = useState(false);
 
   // Load map immediately on mount for faster perceived performance
@@ -52,14 +47,14 @@ const InternationalMap: React.FC<InternationalMapProps> = ({ sectionRefs, scroll
   const [mapRef, animateRoutes] = useOptimizedScrollAnimation({ threshold: 'early' });
 
   return (
-    <section ref={sectionRefs?.international} id="international" className="py-24 bg-[#2a3443]">
+    <section id="international" className="py-24 bg-[#2a3443]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-extrabold flex items-center justify-center text-white"> 
             <Globe size={44} className="mr-3" style={{ color: ACCENT_COLOR }} />
             International Import
           </h2>
-          <p className="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">
+          <p className="mt-4 text-lg text-gray-200 max-w-3xl mx-auto">
             We handle international vehicle imports with care — from inspection to shipping, customs clearance and final delivery.
           </p>
         </div>
@@ -85,51 +80,49 @@ const InternationalMap: React.FC<InternationalMapProps> = ({ sectionRefs, scroll
               <div className="bg-[#f8fafc] p-6 rounded-xl shadow">
               <h3 className="text-2xl font-bold mb-4" style={{ color: DARK_TEXT_COLOR }}>Why Import With Us</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <button
-                  type="button"
+                <div
                   className="flex flex-col items-center text-center p-6 bg-white rounded-xl transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group"
                 >
                   <div className="p-4 mb-4 rounded-full bg-[#d10e22]/10 transition-colors duration-300 group-hover:bg-[#d10e22]/20">
-                    <ArrowRightCircle className="w-6 h-6 text-[#d10e22]" />
+                    <ArrowRightCircle className="w-6 h-6 text-[#d10e22]" aria-hidden="true" />
                   </div>
                   <h4 className="text-lg font-semibold text-[#2a3443]">End-to-end handling</h4>
                   <p className="mt-2 text-gray-600">Inspection, transport, customs clearance and final delivery — we manage it all.</p>
-                </button>
+                </div>
 
-                <button
-                  type="button"
+                <div
                   className="flex flex-col items-center text-center p-6 bg-white rounded-xl transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group"
                 >
                   <div className="p-4 mb-4 rounded-full bg-[#d10e22]/10 transition-colors duration-300 group-hover:bg-[#d10e22]/20">
-                    <ArrowRightCircle className="w-6 h-6 text-[#d10e22]" />
+                    <ArrowRightCircle className="w-6 h-6 text-[#d10e22]" aria-hidden="true" />
                   </div>
                   <h4 className="text-lg font-semibold text-[#2a3443]">Competitive rates</h4>
                   <p className="mt-2 text-gray-600">Transparent pricing and trusted carrier networks to keep costs down.</p>
-                </button>
+                </div>
 
-                <button
-                  type="button"
+                <div
                   className="flex flex-col items-center text-center p-6 bg-white rounded-xl transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 group"
                 >
                   <div className="p-4 mb-4 rounded-full bg-[#d10e22]/10 transition-colors duration-300 group-hover:bg-[#d10e22]/20">
-                    <ArrowRightCircle className="w-6 h-6 text-[#d10e22]" />
+                    <ArrowRightCircle className="w-6 h-6 text-[#d10e22]" aria-hidden="true" />
                   </div>
                   <h4 className="text-lg font-semibold text-[#2a3443]">Documentation &amp; compliance</h4>
                   <p className="mt-2 text-gray-600">We handle paperwork and customs to deliver a hassle-free import experience.</p>
-                </button>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Primary CTA below the info panel */}
           <div className="w-full flex justify-center">
-            <button
-              onClick={() => scrollToSection?.('contact')}
+            <a
+              href="#contact"
+              onClick={handleSmoothScroll}
               className="mt-4 inline-flex items-center gap-3 px-8 py-3 text-white rounded-xl shadow-2xl shadow-[#d10e22]/40 hover:bg-[#b00c1b] transition-all duration-300 transform hover:scale-[1.03] active:scale-[0.98] focus:ring-4 focus:ring-[#d10e22]/60"
               style={{ backgroundColor: ACCENT_COLOR }}
             >
-              Get shipping to your country
-            </button>
+              Get a Quote
+            </a>
           </div>
         </div>
       </div>
