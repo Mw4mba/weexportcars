@@ -14,11 +14,6 @@ const ContactFormSection = dynamic(() => import('@/components/home/ContactFormSe
   loading: () => <div className="min-h-[600px] bg-gray-50 animate-pulse" aria-label="Loading contact form" />
 });
 
-const InternationalMap = dynamic(() => import('@/components/home/InternationalMap'), {
-  ssr: false, // Disable SSR for heavy map component
-  loading: () => <div className="min-h-[500px] bg-[#2a3443] animate-pulse" aria-label="Loading map" />
-});
-
 const App = () => {
 
     return (
@@ -30,7 +25,6 @@ const App = () => {
                 <GalleryCarousel />
                 <ResponsiveProcessSection />
                 <TestimonialsSection />
-                <InternationalMap />
                 <ContactFormSection />
             </main>
         </>
