@@ -1,70 +1,43 @@
 "use client";
 
-import React, { memo, useState } from 'react';
-import { AnimatedTitle } from './AnimatedTitle';
-import { ArrowRight } from 'lucide-react';
+import React, { memo } from 'react';
 import Image from 'next/image';
 
-const DARK_TEXT_COLOR = '#2a3443';
-const ACCENT_COLOR = '#d10e22';
-
-// Core offering cards with hero images
-type Offering = {
-  title: string;
-  image: string;
-  link: string;
-};
-
-const OFFERINGS: Offering[] = [
-  {
-    title: "Export Services",
-    image: "/we-export_3.jpg",
-    link: "/#process"
-  }
-];
-
 const WhoWeAreAndOfferings: React.FC = memo(() => {
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-
   return (
     <section id="about" className="py-28 bg-[#2a3443]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Core Offerings - Centered */}
-        <div className="max-w-2xl mx-auto">
-          <h3 className="text-4xl font-bold text-white mb-8 text-center">Our Core Offerings</h3>
-          
-          {/* Single Export Services Card */}
-          <div className="flex justify-center">
-            {OFFERINGS.map((offering) => (
-              <a
-                key={offering.title}
-                href={offering.link}
-                className="relative overflow-hidden rounded-2xl group cursor-pointer transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] w-full h-64"
-                onMouseEnter={() => setHoveredCard(offering.title)}
-                onMouseLeave={() => setHoveredCard(null)}
-              >
-                {/* Background Image */}
-                <Image
-                  src={offering.image}
-                  alt={offering.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-                
-                {/* Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent transition-all duration-500 group-hover:from-black/90" />
-                
-                {/* Title and Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <div className="flex flex-col space-y-2">
-                    <h4 className="text-2xl font-bold tracking-wide">
-                      {offering.title}
-                    </h4>
-                  </div>
-                </div>
-              </a>
-            ))}
+        {/* Two Column Layout */}
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          {/* Left Side - Image Card */}
+          <div className="w-full lg:w-[550px] flex-shrink-0 order-2 lg:order-1">
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl h-64 lg:h-96">
+              {/* Background Image */}
+              <Image
+                src="/we-export_3.jpg"
+                alt="Premium Vehicle Export"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 550px"
+              />
+              
+              {/* Subtle Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+            </div>
+          </div>
+
+          {/* Right Side - Text Content */}
+          <div className="flex-1 text-center lg:text-left order-1 lg:order-2">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight">
+              <span className="text-white">WE</span> <span className="text-[#d10e22]">EXPORT</span><br />
+              <span className="text-white">CARS</span>
+            </h2>
+            <p className="text-lg md:text-xl text-white/80 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+              Your trusted partner for seamless vehicle exports from South Africa. 
+              We handle everything from sourcing premium vehicles to international 
+              delivery, ensuring a hassle-free experience with full documentation 
+              and logistics support.
+            </p>
           </div>
         </div>
       </div>

@@ -1,147 +1,160 @@
 'use client';
 
 import { useState, useEffect, memo } from 'react';
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { TESTIMONIALS } from '@/lib/testimonialsData';
 
 const TestimonialsSection = memo(() => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [visibleMessages, setVisibleMessages] = useState<number[]>([]);
+  const [currentBatch, setCurrentBatch] = useState(0);
 
-  // Auto-rotate testimonials every 5 seconds
+  // Show testimonials as messages popping up one by one
   useEffect(() => {
-    if (!isAutoPlaying) return;
+    // Reset and start new batch
+    setVisibleMessages([]);
     
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length);
-    }, 5000);
-    
-    return () => clearInterval(timer);
-  }, [isAutoPlaying]);
+    const messagesToShow = [
+      currentBatch * 3,
+      currentBatch * 3 + 1,
+      currentBatch * 3 + 2
+    ].filter(i => i < TESTIMONIALS.length);
 
-  const handlePrevious = () => {
-    setIsAutoPlaying(false);
-    setCurrentIndex((prev) => (prev === 0 ? TESTIMONIALS.length - 1 : prev - 1));
-  };
+    // Pop in messages one by one with delay
+    messagesToShow.forEach((msgIndex, i) => {
+      setTimeout(() => {
+        setVisibleMessages(prev => [...prev, msgIndex]);
+      }, (i + 1) * 800);
+    });
 
-  const handleNext = () => {
-    setIsAutoPlaying(false);
-    setCurrentIndex((prev) => (prev === TESTIMONIALS.length - 1 ? 0 : prev + 1));
-  };
+    // Move to next batch after showing all messages
+    const batchTimer = setTimeout(() => {
+      const nextBatch = (currentBatch + 1) % Math.ceil(TESTIMONIALS.length / 3);
+      setCurrentBatch(nextBatch);
+    }, 6000);
 
-  // Show 3 testimonials at a time (current and 2 more)
-  const visibleTestimonials = [
-    TESTIMONIALS[currentIndex],
-    TESTIMONIALS[(currentIndex + 1) % TESTIMONIALS.length],
-    TESTIMONIALS[(currentIndex + 2) % TESTIMONIALS.length]
-  ];
+    return () => clearTimeout(batchTimer);
+  }, [currentBatch]);
+
+  // Get current batch of testimonials
+  const currentTestimonials = TESTIMONIALS.slice(currentBatch * 3, currentBatch * 3 + 3);
 
   return (
-    <section className="py-20 md:py-32 bg-[#2a3443]">
+    <section className="py-20 md:py-32 bg-[#e6e6e6]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white">
-            What Our <span className="text-[#d10e22]">Clients Say</span>
+        
+        {/* Mobile Header - Title above phone */}
+        <div className="lg:hidden text-center mb-10">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#2a3443]">
+            What Our<br />
+            <span className="text-[#d10e22]">Clients Say</span>
           </h2>
-          <p className="text-xl text-white/70 max-w-3xl mx-auto">
-            Don't just take our word for it - hear from clients who have successfully exported their vehicles with us
+          <p className="text-lg md:text-xl text-[#2a3443]/70 max-w-lg mx-auto leading-relaxed">
+            Don't just take our word for it - hear from clients who have successfully exported their vehicles with us. Real stories, real satisfaction.
           </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {visibleTestimonials.map((testimonial, index) => (
-            <div
-              key={`${testimonial.id}-${index}`}
-              className={`bg-white/5 backdrop-blur-sm rounded-2xl p-8 transition-all duration-500 hover:bg-white/10 hover:scale-[1.02] border ${
-                index === 0 
-                  ? 'border-[#d10e22] shadow-xl shadow-[#d10e22]/20' 
-                  : 'border-white/10 shadow-lg'
-              }`}
-            >
-              {/* Rating */}
-              <div className="flex gap-1 mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`w-5 h-5 ${
-                      i < testimonial.rating
-                        ? 'fill-[#d10e22] text-[#d10e22]'
-                        : 'text-white/20'
-                    }`}
-                  />
-                ))}
-              </div>
-
-              {/* Testimonial Text */}
-              <p className="text-white/90 leading-relaxed mb-6 line-clamp-5 text-base">
-                "{testimonial.text}"
-              </p>
-
-              {/* Client Info */}
-              <div className="pt-6 border-t border-white/10">
-                <div className="flex items-center gap-3">
-                  {/* Avatar Circle */}
-                  <div className="w-12 h-12 rounded-full bg-[#d10e22] flex items-center justify-center text-white font-bold text-lg">
-                    {testimonial.name.charAt(0).toUpperCase()}
-                  </div>
-                  
-                  <div className="flex-1">
-                    <p className="font-bold text-white">{testimonial.name}</p>
-                    {testimonial.location && (
-                      <p className="text-sm text-white/60">{testimonial.location}</p>
-                    )}
-                  </div>
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          
+          {/* Left Side - Phone with Messages */}
+          <div className="relative w-full max-w-[380px] lg:max-w-[450px] flex-shrink-0">
+            {/* Phone Frame */}
+            <div className="relative">
+              <Image
+                src="/phone-asset.png"
+                alt="Phone showing testimonials"
+                width={450}
+                height={900}
+                className="w-full h-auto"
+                priority
+              />
+              
+              {/* Messages Container - Positioned inside phone screen */}
+              <div className="absolute top-[10%] left-[6%] right-[6%] bottom-[10%] overflow-hidden">
+                <div className="h-full flex flex-col justify-center gap-4 p-3">
+                  {currentTestimonials.map((testimonial, index) => {
+                    const globalIndex = currentBatch * 3 + index;
+                    const isVisible = visibleMessages.includes(globalIndex);
+                    
+                    return (
+                      <div
+                        key={`${testimonial.id}-${currentBatch}`}
+                        className={`transform transition-all duration-500 ease-out ml-[20%] ${
+                          isVisible 
+                            ? 'translate-y-0 opacity-100 scale-100' 
+                            : 'translate-y-8 opacity-0 scale-150'
+                        }`}
+                      >
+                        {/* Message Bubble */}
+                        <div className="bg-white rounded-2xl rounded-bl-sm p-4 shadow-lg max-w-[65%]">
+                          {/* Message Text */}
+                          <p className="text-[#2a3443] text-xs leading-relaxed line-clamp-4 mb-1">
+                            "{testimonial.text}"
+                          </p>
+                          
+                          {/* Sender with Stars */}
+                          <div className="flex items-center justify-between gap-2 mt-3 pt-2 border-t border-gray-100">
+                            <div className="flex items-center gap-1.5">
+                              <div className="w-5 h-5 rounded-full bg-[#d10e22] flex items-center justify-center text-white text-[10px] font-bold">
+                                {testimonial.name.charAt(0).toUpperCase()}
+                              </div>
+                              <span className="text-[10px] text-[#2a3443]/70 font-medium">
+                                {testimonial.name}
+                              </span>
+                            </div>
+                            {/* Rating Stars */}
+                            <div className="flex gap-0.5">
+                              {[...Array(5)].map((_, i) => (
+                                <Star
+                                  key={i}
+                                  className={`w-2.5 h-2.5 ${
+                                    i < testimonial.rating
+                                      ? 'fill-[#d10e22] text-[#d10e22]'
+                                      : 'text-gray-200'
+                                  }`}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-                
-                <p className="text-sm text-white/40 mt-3">{testimonial.date}</p>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Navigation Controls */}
-        <div className="flex items-center justify-center gap-6">
-          <button
-            onClick={handlePrevious}
-            className="flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-[#d10e22] text-white transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20"
-            aria-label="Previous testimonials"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-
-          {/* Indicator Dots - Simplified to 3 dots */}
-          <div className="flex gap-2">
-            {[0, 1, 2].map((index) => (
-              <div
-                key={index}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === 0
-                    ? 'bg-[#d10e22] w-8'
-                    : 'bg-white/30 w-2'
-                }`}
-              />
-            ))}
           </div>
 
-          <button
-            onClick={handleNext}
-            className="flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-[#d10e22] text-white transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20"
-            aria-label="Next testimonials"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
+          {/* Right Side - Text Content (Desktop only) */}
+          <div className="hidden lg:block flex-1 text-left">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-[#2a3443]">
+              What Our<br />
+              <span className="text-[#d10e22]">Clients Say</span>
+            </h2>
+            <p className="text-lg md:text-xl text-[#2a3443]/70 max-w-lg mb-10 leading-relaxed">
+              Don't just take our word for it - hear from clients who have successfully exported their vehicles with us. Real stories, real satisfaction.
+            </p>
+            
+            {/* View All Button */}
+            <Link
+              href="/testimonials"
+              className="inline-flex items-center gap-3 px-8 py-4 text-lg font-semibold text-white bg-[#d10e22] rounded-full shadow-lg hover:bg-[#b00c1b] transition-all duration-300 hover:scale-105 group"
+            >
+              View All Testimonials
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </Link>
+          </div>
         </div>
 
-        {/* View All Link */}
-        <div className="text-center mt-12">
+        {/* Mobile Button - Below phone */}
+        <div className="lg:hidden text-center mt-10">
           <Link
             href="/testimonials"
-            className="inline-block px-8 py-4 text-lg font-semibold text-white bg-[#d10e22] rounded-xl shadow-lg hover:bg-[#b00c1b] transition-all duration-300 transform hover:scale-105"
+            className="inline-flex items-center gap-3 px-8 py-4 text-lg font-semibold text-white bg-[#d10e22] rounded-full shadow-lg hover:bg-[#b00c1b] transition-all duration-300 hover:scale-105 group"
           >
             View All Testimonials
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
         </div>
       </div>

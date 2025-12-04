@@ -19,11 +19,12 @@ const Navigation = () => {
   
   // navbg_dark() - Called whenever the background is dark to the point that it affects visibility
   // Makes text white when background is dark, returns to natural color when background becomes white
+  // Note: Gallery and Testimonials now have light backgrounds with floating dark cards, so they use dark text
   const navbg_dark = () => {
-    if ((isAboutPage || isGalleryPage || isTestimonialsPage) && !scrolled) {
-      return true; // Dark background - use white text
+    if (isAboutPage && !scrolled) {
+      return true; // Only About page has dark background at top - use white text
     }
-    return false; // Light background - use natural dark text
+    return false; // Light background - use natural dark text (Home, Gallery, Testimonials)
   };
   
   // Determine text color based on page status and scroll position
