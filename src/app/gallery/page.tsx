@@ -77,14 +77,14 @@ const GalleryPage = () => {
                 </div>
                 
                 {/* Right side - Floating Image Card */}
-                <div className="hidden lg:block relative w-[33%] pr-16">
-                  <div className="relative rounded-2xl overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] transform translate-y-2 h-[200px]">
+                <div className="relative w-full lg:w-[33%] px-8 pb-8 lg:px-0 lg:pb-0 lg:pr-16">
+                  <div className="relative rounded-2xl overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] transform lg:translate-y-2 h-[180px] md:h-[200px]">
                     <Image
                       src="/we-export_3.jpg"
                       alt="Premium Vehicle Export"
                       fill
                       className="object-cover"
-                      sizes="33vw"
+                      sizes="(max-width: 1024px) 100vw, 33vw"
                     />
                   </div>
                 </div>

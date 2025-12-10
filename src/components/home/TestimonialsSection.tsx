@@ -66,12 +66,12 @@ const TestimonialsSection = memo(() => {
                 alt="Phone showing testimonials"
                 width={450}
                 height={900}
-                className="w-full h-auto"
+                className="w-full h-auto relative z-10"
                 priority
               />
               
               {/* Messages Container - Positioned inside phone screen */}
-              <div className="absolute top-[10%] left-[6%] right-[6%] bottom-[10%] overflow-hidden">
+              <div className="absolute top-[10%] left-[6%] right-[6%] bottom-[10%] overflow-hidden z-0">
                 <div className="h-full flex flex-col justify-center gap-4 p-3">
                   {currentTestimonials.map((testimonial, index) => {
                     const globalIndex = currentBatch * 3 + index;

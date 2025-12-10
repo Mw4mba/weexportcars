@@ -9,7 +9,7 @@ const AboutContent: React.FC = () => {
       <section 
         className="flex-1 py-28 bg-cover bg-center bg-no-repeat relative flex items-center min-h-screen"
         style={{
-          backgroundImage: 'url(/IMG-20251013-WA0011.jpg)',
+          backgroundImage: 'url(/cars/2025Prado/IMG-20251013-WA0011.jpg)',
         }}
       >
         {/* Overlay for better text readability */}

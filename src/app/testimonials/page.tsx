@@ -34,8 +34,8 @@ const TestimonialsPage = () => {
               </div>
               
               {/* Right side - Mock Review Card */}
-              <div className="hidden lg:block flex-shrink-0" style={{ transform: 'rotateZ(15deg) rotateY(23deg)', perspective: '1000px' }}>
-                <div className="bg-white rounded-2xl rounded-bl-sm p-5 shadow-2xl w-[280px]">
+              <div className="flex-shrink-0 mt-6 lg:mt-0" style={{ transform: 'rotateZ(15deg) rotateY(23deg)', perspective: '1000px' }}>
+                <div className="bg-white rounded-2xl rounded-bl-sm p-4 lg:p-5 shadow-2xl w-[240px] lg:w-[280px]">
                   {/* Mock Review Text */}
                   <p className="text-[#2a3443] text-sm leading-relaxed mb-4 line-clamp-4">
                     "Exceptional service from start to finish. The team handled everything professionally and my vehicle arrived in perfect condition!"

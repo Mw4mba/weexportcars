@@ -156,7 +156,7 @@ const ContactFormSection: React.FC = () => {
       id="contact" 
       className="py-28 bg-cover bg-center bg-no-repeat relative"
       style={{
-        backgroundImage: 'url(/IMG-20251013-WA0011.jpg)',
+        backgroundImage: 'url(/cars/2025Prado/IMG-20251013-WA0011.jpg)',
       }}
     >
       {/* Overlay for better text readability */}
