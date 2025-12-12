@@ -105,15 +105,31 @@ const GalleryCarousel = memo(() => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
             </div>
 
-            {/* Bottom right - View Gallery Card */}
-            <Link href="/gallery" className={`col-span-1 row-span-1 ${
+            {/* Bottom right - Small image 2 */}
+            <div className={`col-span-1 row-span-1 relative rounded-2xl overflow-hidden shadow-lg group ${
               isVisible ? 'animate-fade-in-up' : 'opacity-0'
             }`} style={{ animationDelay: '0.5s' }}>
-              <div className="h-full bg-[#d10e22] rounded-2xl shadow-lg flex flex-col items-center justify-center p-4 hover:bg-[#b00c1b] transition-all duration-300 group">
-                <span className="text-white font-bold text-lg mb-2">View Gallery</span>
-                <ArrowRight className="h-6 w-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
-                <span className="text-white/80 text-sm mt-2">More →</span>
-              </div>
+              <Image
+                src={bentoImages[4].src}
+                alt={bentoImages[4].name}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                sizes="(max-width: 1280px) 25vw, 300px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+            </div>
+          </div>
+
+          {/* Desktop View Gallery Button */}
+          <div className={`hidden md:flex justify-center mt-8 ${
+            isVisible ? 'animate-fade-in-up' : 'opacity-0'
+          }`} style={{ animationDelay: '0.6s' }}>
+            <Link 
+              href="/gallery"
+              className="inline-flex items-center gap-3 px-8 py-3 bg-[#d10e22] text-white font-semibold rounded-lg shadow-lg hover:bg-[#b00c1b] transition-all duration-300 hover:scale-[1.02]"
+            >
+              View Full Gallery
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
 

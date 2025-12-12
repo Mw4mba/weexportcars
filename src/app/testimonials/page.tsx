@@ -18,52 +18,62 @@ const TestimonialsPage = () => {
     <>
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 bg-[#e6e6e6]">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="bg-gradient-to-br from-[#2a3443] to-[#1a2332] rounded-3xl px-8 py-16 md:px-16 md:py-20 overflow-hidden">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
+      {/* Hero Section - floating card style with background image */}
+      <section className="pt-24 pb-12 px-4 bg-[#e6e6e6]">
+        <div className="max-w-[1200px] mx-auto">
+          <div
+            className="relative overflow-hidden rounded-[32px] shadow-2xl bg-cover bg-center"
+            style={{ backgroundImage: "url(/we-export_2.jpg)" }}
+          >
+            {/* Mock Review Card - above background (z-5), below gradient */}
+            <div 
+              className="absolute top-6 right-6 lg:top-8 lg:right-8 z-[5]"
+              style={{ transform: 'rotateZ(15deg) rotateY(23deg)', perspective: '1000px' }}
+            >
+              <div className="bg-white rounded-2xl rounded-bl-sm p-4 lg:p-5 shadow-2xl w-[210px] lg:w-[240px]">
+                {/* Mock Review Text */}
+                <p className="text-[#2a3443] text-sm leading-relaxed mb-4 line-clamp-4">
+                  "Exceptional service from start to finish. The team handled everything professionally and my vehicle arrived in perfect condition!"
+                </p>
+                
+                {/* Sender with Stars */}
+                <div className="flex items-center justify-between gap-3 pt-3 border-t border-gray-100">
+                  <div className="flex items-center gap-2">
+                    <div className="w-7 h-7 rounded-full bg-[#d10e22] flex items-center justify-center text-white text-xs font-bold">
+                      JM
+                    </div>
+                    <div>
+                      <p className="font-semibold text-[#2a3443] text-sm">John M.</p>
+                      <p className="text-[#2a3443]/50 text-xs">United Kingdom</p>
+                    </div>
+                  </div>
+                  
+                  {/* Rating Stars */}
+                  <div className="flex gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-3 h-3 fill-[#d10e22] text-[#d10e22]"
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Gradient overlay - above card */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#2a3443] via-[#2a3443]/85 to-[#2a3443]/35 z-10" />
+            
+            {/* Text content - above gradient */}
+            <div className="relative z-20 px-8 py-10 md:px-12 md:py-12 lg:px-14 lg:py-12 flex flex-col gap-6 min-h-[280px]">
               {/* Left side - Text */}
-              <div className="text-left lg:max-w-[55%]">
+              <div className="text-left lg:max-w-[60%]">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
                   Client <span className="text-[#d10e22]">Testimonials</span>
                 </h1>
                 <p className="text-lg md:text-xl text-white/80 max-w-xl">
                   Hear what our satisfied clients have to say about their experience with We Export Cars
                 </p>
-              </div>
-              
-              {/* Right side - Mock Review Card */}
-              <div className="flex-shrink-0 mt-6 lg:mt-0" style={{ transform: 'rotateZ(15deg) rotateY(23deg)', perspective: '1000px' }}>
-                <div className="bg-white rounded-2xl rounded-bl-sm p-4 lg:p-5 shadow-2xl w-[240px] lg:w-[280px]">
-                  {/* Mock Review Text */}
-                  <p className="text-[#2a3443] text-sm leading-relaxed mb-4 line-clamp-4">
-                    "Exceptional service from start to finish. The team handled everything professionally and my vehicle arrived in perfect condition!"
-                  </p>
-                  
-                  {/* Sender with Stars */}
-                  <div className="flex items-center justify-between gap-3 pt-3 border-t border-gray-100">
-                    <div className="flex items-center gap-2">
-                      <div className="w-7 h-7 rounded-full bg-[#d10e22] flex items-center justify-center text-white text-xs font-bold">
-                        JM
-                      </div>
-                      <div>
-                        <p className="font-semibold text-[#2a3443] text-sm">John M.</p>
-                        <p className="text-[#2a3443]/50 text-xs">United Kingdom</p>
-                      </div>
-                    </div>
-                    
-                    {/* Rating Stars */}
-                    <div className="flex gap-0.5">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="w-3 h-3 fill-[#d10e22] text-[#d10e22]"
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

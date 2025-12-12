@@ -60,33 +60,35 @@ const GalleryPage = () => {
     <>
       <Navigation />
       <main className="min-h-screen bg-[#f8f9fa]">
-        {/* Hero Section */}
-        <section className="pt-32 pb-20 px-4 bg-[#f8f9fa]">
-          <div className="max-w-[1400px] mx-auto">
-            <div className="bg-gradient-to-br from-[#2a3443] to-[#1a2332] rounded-3xl overflow-visible">
-              <div className="flex flex-col lg:flex-row items-center">
-                {/* Left side - Text */}
-                <div className="flex-1 px-8 py-16 md:px-16 md:py-20 text-left">
+        {/* Hero Section - matches floating card style and reduced height */}
+        <section className="pt-28 pb-14 px-4 bg-[#f8f9fa]">
+          <div className="max-w-[1200px] mx-auto">
+            <div
+              className="relative overflow-hidden rounded-[32px] shadow-2xl bg-cover bg-center"
+              style={{ backgroundImage: "url(/we-export_3.jpg)" }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-[#2a3443] via-[#2a3443]/85 to-[#2a3443]/35" />
+              <div className="relative z-10 px-8 py-12 md:px-14 md:py-14 lg:px-16 lg:py-14 flex flex-col lg:flex-row items-start gap-8">
+                {/* Text */}
+                <div className="max-w-3xl">
                   <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
                     Our <span className="text-[#d10e22]">Gallery</span>
                   </h1>
-                  <p className="text-lg md:text-xl text-white/80 max-w-xl">
+                  <p className="text-lg md:text-xl text-white/80 max-w-2xl">
                     Explore our collection of premium vehicles exported from South Africa. 
                     Each photograph tells a story of quality, luxury, and successful delivery.
                   </p>
                 </div>
-                
-                {/* Right side - Floating Image Card */}
-                <div className="relative w-full lg:w-[33%] px-8 pb-8 lg:px-0 lg:pb-0 lg:pr-16">
-                  <div className="relative rounded-2xl overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] transform lg:translate-y-2 h-[180px] md:h-[200px]">
-                    <Image
-                      src="/we-export_3.jpg"
-                      alt="Premium Vehicle Export"
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 33vw"
-                    />
-                  </div>
+
+                {/* Supporting image tile for large screens */}
+                <div className="hidden lg:block relative w-[320px] h-[180px] rounded-2xl overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)]">
+                  <Image
+                    src="/we-export_2.jpg"
+                    alt="Featured export"
+                    fill
+                    className="object-cover"
+                    sizes="320px"
+                  />
                 </div>
               </div>
             </div>
