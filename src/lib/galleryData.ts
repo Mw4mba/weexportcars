@@ -8,7 +8,7 @@ export interface CarGallery {
 export const CAR_GALLERIES: CarGallery[] = [
   {
     id: '2016-prado',
-    name: '2016 Toyota Land Cruiser Prado',
+    name: '2019 Toyota Hilux 2.8GD-6 4x4 auto',
     images: [
       '/cars/2016Prado/IMG-20251020-WA0011.jpg',
       '/cars/2016Prado/IMG-20251020-WA0012.jpg',
@@ -18,12 +18,6 @@ export const CAR_GALLERIES: CarGallery[] = [
       '/cars/2016Prado/IMG-20251020-WA0016.jpg',
       '/cars/2016Prado/IMG-20251020-WA0017.jpg',
       '/cars/2016Prado/IMG-20251020-WA0018.jpg',
-      '/cars/2016Prado/IMG-20251020-WA0024.jpg',
-      '/cars/2016Prado/IMG-20251020-WA0025.jpg',
-      '/cars/2016Prado/IMG-20251020-WA0026.jpg',
-      '/cars/2016Prado/IMG-20251020-WA0027.jpg',
-      '/cars/2016Prado/IMG-20251020-WA0028.jpg',
-      '/cars/2016Prado/IMG-20251020-WA0029.jpg',
     ],
   },
   {
@@ -39,6 +33,18 @@ export const CAR_GALLERIES: CarGallery[] = [
       '/cars/2018Prado/IMG-20251022-WA0007.jpg',
       '/cars/2018Prado/IMG-20251022-WA0008.jpg',
       '/cars/2018Prado/IMG-20251022-WA0009.jpg',
+    ],
+  },
+  {
+    id: '2022-prado',
+    name: '2022 Toyota Prado GD6 VX-L',
+    images: [
+      '/cars/2022ToyotaPrado/IMG-20251020-WA0024.jpg',
+      '/cars/2022ToyotaPrado/IMG-20251020-WA0025.jpg',
+      '/cars/2022ToyotaPrado/IMG-20251020-WA0026.jpg',
+      '/cars/2022ToyotaPrado/IMG-20251020-WA0027.jpg',
+      '/cars/2022ToyotaPrado/IMG-20251020-WA0028.jpg',
+      '/cars/2022ToyotaPrado/IMG-20251020-WA0029.jpg',
     ],
   },
   {
