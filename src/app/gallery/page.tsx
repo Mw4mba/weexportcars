@@ -20,14 +20,14 @@ const GalleryPage = () => {
 
   const goToPrevious = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-    setSelectedImageIndex(prev => 
+    setSelectedImageIndex(prev =>
       prev !== null ? (prev - 1 + ALL_GALLERY_IMAGES.length) % ALL_GALLERY_IMAGES.length : null
     );
   }, []);
 
   const goToNext = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-    setSelectedImageIndex(prev => 
+    setSelectedImageIndex(prev =>
       prev !== null ? (prev + 1) % ALL_GALLERY_IMAGES.length : null
     );
   }, []);
@@ -36,13 +36,13 @@ const GalleryPage = () => {
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (selectedImageIndex === null) return;
-      
+
       if (e.key === 'ArrowLeft') {
-        setSelectedImageIndex(prev => 
+        setSelectedImageIndex(prev =>
           prev !== null ? (prev - 1 + ALL_GALLERY_IMAGES.length) % ALL_GALLERY_IMAGES.length : null
         );
       } else if (e.key === 'ArrowRight') {
-        setSelectedImageIndex(prev => 
+        setSelectedImageIndex(prev =>
           prev !== null ? (prev + 1) % ALL_GALLERY_IMAGES.length : null
         );
       } else if (e.key === 'Escape') {
@@ -75,7 +75,7 @@ const GalleryPage = () => {
                     Our <span className="text-[#d10e22]">Gallery</span>
                   </h1>
                   <p className="text-lg md:text-xl text-white/80 max-w-2xl">
-                    Explore our collection of premium vehicles exported from South Africa. 
+                    Explore our collection of premium vehicles exported from South Africa.
                     Each photograph tells a story of quality, luxury, and successful delivery.
                   </p>
                 </div>
@@ -96,6 +96,7 @@ const GalleryPage = () => {
         </section>
 
         {/* Car Gallery Sections */}
+        {/* Car Gallery Sections */}
         {CAR_GALLERIES.map((car) => (
           <section key={car.id} className="py-16 px-4 border-b border-gray-200 last:border-b-0">
             <div className="max-w-7xl mx-auto">
@@ -103,30 +104,84 @@ const GalleryPage = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-8 text-[#2a3443]">
                 <span className="text-[#d10e22]">{car.name}</span>
               </h2>
-              
-              {/* Image Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
-                {car.images.map((image, index) => (
-                  <div
-                    key={index}
-                    className={`relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 ${
-                      index === 0 ? 'col-span-2 row-span-2 aspect-square' : 'aspect-[4/3]'
-                    }`}
-                    onClick={() => openLightbox(image)}
-                  >
-                    <Image
-                      src={image}
-                      alt={`${car.name} - Image ${index + 1}`}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                      sizes={index === 0 
-                        ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
-                        : "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                      }
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                ))}
+
+              <div className="flex flex-col lg:grid lg:grid-cols-5 gap-4 lg:gap-6">
+                {/* Large Main Image - Spans 3 cols on desktop */}
+                <div
+                  className="lg:col-span-3 relative aspect-[4/3] lg:aspect-auto lg:h-[500px] cursor-pointer overflow-hidden rounded-2xl shadow-lg group"
+                  onClick={() => openLightbox(car.images[0])}
+                >
+                  <Image
+                    src={car.images[0]}
+                    alt={`${car.name} - Main View`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    priority={car === CAR_GALLERIES[0]}
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                </div>
+
+                {/* Right Side Grid - Spans 2 cols on desktop */}
+                <div className="lg:col-span-2 grid grid-cols-3 lg:grid-cols-2 gap-3 lg:gap-4 h-full lg:h-[500px]">
+                  {car.images.slice(1, 5).map((image, index) => {
+                    const totalImages = car.images.length;
+                    // Mobile shows 4 images (1 large + 3 small), Desktop shows 5 (1 large + 4 small)
+                    const extraOnMobile = totalImages - 4; // Extra images beyond what mobile shows
+                    const extraOnDesktop = totalImages - 5; // Extra images beyond what desktop shows
+
+                    // index 2 is the 3rd small image (last visible on mobile)
+                    // index 3 is the 4th small image (last visible on desktop, hidden on mobile)
+                    const isLastOnMobile = index === 2;
+                    const isLastOnDesktop = index === 3;
+
+                    const showMobileOverlay = isLastOnMobile && extraOnMobile > 0;
+                    const showDesktopOverlay = isLastOnDesktop && extraOnDesktop > 0;
+
+                    return (
+                      <div
+                        key={index}
+                        className={`relative aspect-[4/3] lg:aspect-auto cursor-pointer overflow-hidden rounded-xl shadow-md group ${index === 3 ? 'hidden lg:block' : ''
+                          }`}
+                        onClick={() => openLightbox(image)}
+                      >
+                        <Image
+                          src={image}
+                          alt={`${car.name} - View ${index + 2}`}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-500"
+                          sizes="(max-width: 1024px) 33vw, 20vw"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+
+                        {/* Mobile overlay: show on 3rd small image (index 2) if more than 4 total */}
+                        {showMobileOverlay && (
+                          <div className="absolute inset-0 bg-black/30 flex items-center justify-center lg:hidden">
+                            <span className="text-white text-3xl font-bold">+{extraOnMobile}</span>
+                          </div>
+                        )}
+
+                        {/* Desktop overlay: show on 4th small image (index 3) if more than 5 total */}
+                        {showDesktopOverlay && (
+                          <div className="absolute inset-0 bg-black/30 hidden lg:flex items-center justify-center">
+                            <span className="text-white text-3xl font-bold">+{extraOnDesktop}</span>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* View More Button */}
+              <div className="mt-8 text-center">
+                <a
+                  href={`/gallery/${car.id}`}
+                  className="inline-flex items-center justify-center w-full md:w-auto px-8 py-3 bg-[#d10e22] text-white font-semibold rounded-lg shadow-lg hover:bg-[#b00c1b] transition-all duration-300 hover:scale-[1.02]"
+                >
+                  View All Photos of {car.name}
+                  <ChevronRight className="ml-2 h-5 w-5" />
+                </a>
               </div>
             </div>
           </section>
@@ -134,7 +189,7 @@ const GalleryPage = () => {
 
         {/* Lightbox Modal */}
         {currentImage && (
-          <div 
+          <div
             className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 animate-fadeIn"
             onClick={closeLightbox}
           >
