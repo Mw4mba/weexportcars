@@ -6,6 +6,7 @@ import WhoWeAreAndOfferings from '../components/home/WhoWeAreAndOfferings';
 import Hero2 from '@/components/home/Hero2';
 import GalleryCarousel from '@/components/home/GalleryCarousel';
 import ResponsiveProcessSection from '@/components/home/ResponsiveProcessSection';
+import ClassicsSection from '@/components/home/ClassicsSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 
 // Lazy load heavy components that are below the fold
@@ -24,6 +25,7 @@ const App = () => {
                 <WhoWeAreAndOfferings />
                 <GalleryCarousel />
                 <ResponsiveProcessSection />
+                <ClassicsSection />
                 <TestimonialsSection />
                 <ContactFormSection />
             </main>

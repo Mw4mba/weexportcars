@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="gradient-hero pt-16 pb-8 bg-[#2a3443]">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-4 gap-8 mb-12">
           
           {/* Company Info */}
           <div className="space-y-6">
@@ -83,6 +83,25 @@ const Footer = () => {
                 </a>
               </div>
             </div>
+          </div>
+
+          {/* Our Classics */}
+          <div>
+            <h4 className="font-semibold mb-6 text-lg text-white">Our Classics</h4>
+            <a
+              href="https://pinnacle-classics.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block hover:opacity-80 transition-opacity"
+            >
+              <Image
+                src="/cars/classics/pctTextLogo.PNG"
+                alt="Pinnacle Classics"
+                width={180}
+                height={60}
+                className="h-auto w-auto max-w-[180px]"
+              />
+            </a>
           </div>
         </div>
 

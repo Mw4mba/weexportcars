@@ -123,6 +123,9 @@ const Navigation = () => {
             <a href="/gallery" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               Gallery
             </a>
+            <a href="https://pinnacle-classics.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#3185AA] hover:text-[#266d8a] transition-quick font-medium">
+              Classics
+            </a>
             <a href="/testimonials" className={`${getTextColor()} hover:text-[#d10e22] transition-quick font-medium`}>
               Testimonials
             </a>
@@ -191,6 +194,7 @@ const Navigation = () => {
           <a href="/" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Home</a>
           <a href="/about" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>About Us</a>
           <a href="/gallery" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Gallery</a>
+          <a href="https://pinnacle-classics.vercel.app" target="_blank" rel="noopener noreferrer" className="block px-3 py-2 text-[#3185AA] hover:text-[#266d8a] transition-quick font-medium" onClick={() => setIsOpen(false)}>Classics</a>
           <a href="/testimonials" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={() => setIsOpen(false)}>Testimonials</a>
           <a href="/#process" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={(e) => { handleSmoothScroll(e); setIsOpen(false); }}>How it works</a>
           <a href="/#contact" className="block px-3 py-2 text-[#2a3443] hover:text-[#d10e22] transition-quick font-medium" onClick={(e) => { handleSmoothScroll(e); setIsOpen(false); }}>Contact</a>

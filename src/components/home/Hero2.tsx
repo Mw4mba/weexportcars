@@ -12,29 +12,39 @@ const loadGsap = () => import('gsap').then(mod => mod.gsap);
 
 const heroTextContent = [
     {
+        topSubtitle: "Premium Vehicle Export",
         title: "Exporting South Africa's Finest Vehicles",
         subtitle: "Experience a seamless, transparent, and premium vehicle exporting service. We handle everything, so you can focus on the destination.",
     },
     {
+        topSubtitle: "Exporting Classic Cars",
+        topSubtitleColor: "#3185AA",
+        title: "Bring You the Best of Classic Cars",
+        subtitle: "Discover timeless automotive masterpieces sourced from collections around the world. From vintage muscle cars to elegant European grand tourers, we connect enthusiasts with the classic vehicles they've always dreamed of owning.",
+        galleryButtonText: "View Classics",
+        galleryButtonColor: "#3185AA",
+        galleryButtonHoverColor: "#266d8a",
+        galleryButtonHref: "https://pinnacle-classics.vercel.app",
+        imageLogo: "/cars/classics/pcLogo.png",
+    },
+    {
+        topSubtitle: "Premium Vehicle Export",
         title: "Your Gateway to Global Automotive Excellence",
         subtitle: "From Johannesburg to the world. We specialize in sourcing and delivering luxury and exotic cars to discerning clients globally.",
     },
     {
+        topSubtitle: "Premium Vehicle Export",
         title: "Drive Your Dream Car, Anywhere in the World",
         subtitle: "Leverage our expertise in logistics, finance, and customs clearance to make your international car purchase a reality.",
     },
 ];
 
-// Use images from gallery for the hero carousel (select 8 images)
+// Use images from gallery for the hero carousel (select images)
 const heroImageContent = [
     GALLERY_IMAGES[0],  // First image
+    '/cars/classics/new-footer-image.png', // Classic cars slide
     GALLERY_IMAGES[4],  // Fifth image
     GALLERY_IMAGES[8],  // Ninth image
-    GALLERY_IMAGES[12], // Thirteenth image
-    GALLERY_IMAGES[16], // Seventeenth image
-    GALLERY_IMAGES[2],  // Third image
-    GALLERY_IMAGES[10], // Eleventh image
-    GALLERY_IMAGES[18], // Nineteenth image
 ];
 
 export default function Hero() {
@@ -129,7 +139,12 @@ export default function Hero() {
                             className="absolute w-full"
                         >
                             <div className="flex flex-col items-center md:items-start w-full">
-                                <span className="text-[#d10e22] text-sm sm:text-base md:text-lg font-semibold uppercase tracking-widest mb-2 block break-words text-balance text-center md:text-left">Premium Vehicle Export</span>
+                                <span
+                                    className="text-sm sm:text-base md:text-lg font-semibold uppercase tracking-widest mb-2 block break-words text-balance text-center md:text-left"
+                                    style={{ color: heroTextContent[currentIndex].topSubtitleColor || '#d10e22' }}
+                                >
+                                    {heroTextContent[currentIndex].topSubtitle}
+                                </span>
                                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#2a3443] mb-3 md:mb-4 leading-[1.15] sm:leading-tight break-words text-balance max-w-[500px] sm:max-w-[550px] md:max-w-full text-center md:text-left">
                                     {heroTextContent[currentIndex].title}
                                 </h1>
@@ -170,12 +185,42 @@ export default function Hero() {
                                 {/* Overlay gradient for button visibility */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                                {/* View Gallery Button */}
-                                <Link href="/gallery">
-                                    <div className="absolute bottom-4 right-4 px-4 sm:px-6 py-2 sm:py-3 bg-[#d10e22] text-white text-sm sm:text-base font-semibold rounded-xl shadow-lg hover:bg-[#b00c1b] transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-105 cursor-pointer">
-                                        View Gallery
+                                {/* Per-slide logo (bottom-left) */}
+                                {heroTextContent[currentIndex].imageLogo && (
+                                    <div className="absolute bottom-4 left-4 z-10">
+                                        <Image
+                                            src={heroTextContent[currentIndex].imageLogo}
+                                            alt="Partner logo"
+                                            width={80}
+                                            height={80}
+                                            className="object-contain drop-shadow-lg"
+                                        />
                                     </div>
-                                </Link>
+                                )}
+
+                                {/* View Gallery / View Classics Button */}
+                                {heroTextContent[currentIndex].galleryButtonHref ? (
+                                    <a
+                                        href={heroTextContent[currentIndex].galleryButtonHref}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <div
+                                            className="absolute bottom-4 right-4 px-4 sm:px-6 py-2 sm:py-3 text-white text-sm sm:text-base font-semibold rounded-xl shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-105 cursor-pointer"
+                                            style={{ backgroundColor: heroTextContent[currentIndex].galleryButtonColor || '#d10e22' }}
+                                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = heroTextContent[currentIndex].galleryButtonHoverColor || '#b00c1b'}
+                                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = heroTextContent[currentIndex].galleryButtonColor || '#d10e22'}
+                                        >
+                                            {heroTextContent[currentIndex].galleryButtonText || 'View Gallery'}
+                                        </div>
+                                    </a>
+                                ) : (
+                                    <Link href="/gallery">
+                                        <div className="absolute bottom-4 right-4 px-4 sm:px-6 py-2 sm:py-3 bg-[#d10e22] text-white text-sm sm:text-base font-semibold rounded-xl shadow-lg hover:bg-[#b00c1b] transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-105 cursor-pointer">
+                                            View Gallery
+                                        </div>
+                                    </Link>
+                                )}
                             </div>
                         </div>
                     </div>
