@@ -100,10 +100,15 @@ const GalleryPage = () => {
         {CAR_GALLERIES.map((car) => (
           <section key={car.id} className="py-16 px-4 border-b border-gray-200 last:border-b-0">
             <div className="max-w-7xl mx-auto">
-              {/* Car Title */}
-              <h2 className="text-3xl md:text-4xl font-bold mb-8 text-[#2a3443]">
-                <span className="text-[#d10e22]">{car.name}</span>
-              </h2>
+              {/* Car Title & Price */}
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold text-[#2a3443]">
+                  <span className="text-[#d10e22]">{car.name}</span>
+                </h2>
+                <span className="text-xl md:text-2xl font-bold text-[#2a3443] whitespace-nowrap ml-4">
+                  {car.price || 'N/A'}
+                </span>
+              </div>
 
               <div className="flex flex-col lg:grid lg:grid-cols-5 gap-4 lg:gap-6">
                 {/* Large Main Image - Spans 3 cols on desktop */}
