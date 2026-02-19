@@ -1,9 +1,10 @@
 import { MetadataRoute } from 'next';
+import { CAR_GALLERIES } from '@/lib/galleryData';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.weexportcars.africa';
 
-  return [
+  const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -35,4 +36,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
   ];
+
+  const galleryPages: MetadataRoute.Sitemap = CAR_GALLERIES.map((car) => ({
+    url: `${baseUrl}/gallery/${car.id}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...galleryPages];
 }
