@@ -192,6 +192,33 @@ const GalleryPage = () => {
           </section>
         ))}
 
+        {/* View Our Classics Section */}
+        <section className="py-16 px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="bg-[#2a3443] rounded-[32px] overflow-hidden shadow-2xl relative">
+              <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: "url(/we-export_3.jpg)" }}></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#2a3443] via-[#2a3443]/80 to-[#2a3443]/40"></div>
+              <div className="relative z-10 p-10 md:p-16 flex flex-col items-center text-center">
+                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+                  Looking for <span className="text-[#d10e22]">Classic</span> Cars?
+                </h2>
+                <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-10">
+                  Discover our exclusive collection of timeless automotive masterpieces at Pinnacle Classics.
+                </p>
+                <a
+                  href="https://www.pinnacleclassics.com/collection"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-10 py-4 bg-[#d10e22] text-white font-bold rounded-xl shadow-[0_0_20px_rgba(209,14,34,0.3)] hover:shadow-[0_0_30px_rgba(209,14,34,0.5)] hover:bg-[#b00c1b] transition-all duration-300 hover:scale-[1.02] text-lg"
+                >
+                  View Pinnacle Classics
+                  <ChevronRight className="ml-2 h-6 w-6" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Lightbox Modal */}
         {currentImage && (
           <div
