@@ -24,7 +24,7 @@ const heroTextContent = [
         galleryButtonText: "View Classics",
         galleryButtonColor: "#3185AA",
         galleryButtonHoverColor: "#266d8a",
-        galleryButtonHref: "https://pinnacle-classics.vercel.app",
+        galleryButtonHref: "https://www.pinnacleclassics.com",
         imageLogo: "/cars/classics/pcLogo.png",
     },
     {

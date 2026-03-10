@@ -206,7 +206,7 @@ const GalleryPage = () => {
                   Discover our exclusive collection of timeless automotive masterpieces at Pinnacle Classics.
                 </p>
                 <a
-                  href="https://www.pinnacleclassics.com/collection"
+                  href="https://www.pinnacleclassics.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-10 py-4 bg-[#d10e22] text-white font-bold rounded-xl shadow-[0_0_20px_rgba(209,14,34,0.3)] hover:shadow-[0_0_30px_rgba(209,14,34,0.5)] hover:bg-[#b00c1b] transition-all duration-300 hover:scale-[1.02] text-lg"

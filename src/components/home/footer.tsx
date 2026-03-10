@@ -89,7 +89,7 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-6 text-lg text-white">Our Classics</h4>
             <a
-              href="https://pinnacle-classics.vercel.app"
+              href="https://www.pinnacleclassics.com"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block hover:opacity-80 transition-opacity"

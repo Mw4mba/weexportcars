@@ -21,7 +21,7 @@ const ClassicsSection = () => {
               With our vast collection and global distribution network, we can connect you with the classic car of your dreams. Whether you&apos;re searching for a pristine vintage sports car, a rare muscle car, or an iconic European grand tourer, our team sources and delivers exceptional vehicles to collectors and enthusiasts worldwide. Let us handle the logistics while you enjoy the ride.
             </p>
             <a
-              href="https://pinnacle-classics.vercel.app"
+              href="https://www.pinnacleclassics.com"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-8 py-3.5 text-lg font-semibold text-white rounded-xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
