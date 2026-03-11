@@ -126,7 +126,6 @@ export const CAR_GALLERIES: CarGallery[] = [
       '/cars/2019 Toyota Landcruiser Prado VX-L 3.0D/20251121_060444410_iOS.jpg',
       '/cars/2019 Toyota Landcruiser Prado VX-L 3.0D/20251121_060456522_iOS.jpg',
       '/cars/2019 Toyota Landcruiser Prado VX-L 3.0D/20251121_060856926_iOS.jpg',
-      '/cars/2019 Toyota Landcruiser Prado VX-L 3.0D/20251121_060903707_iOS.jpg',
       '/cars/2019 Toyota Landcruiser Prado VX-L 3.0D/20251121_060916744_iOS.jpg',
       '/cars/2019 Toyota Landcruiser Prado VX-L 3.0D/20251121_060927899_iOS.jpg',
       '/cars/2019 Toyota Landcruiser Prado VX-L 3.0D/20251121_060938406_iOS.jpg',
